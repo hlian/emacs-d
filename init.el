@@ -57,3 +57,11 @@
  recentf-max-saved-items 1000
  uniquify-buffer-name-style 'forward
  )
+
+(setq frame-title-format
+      '(:eval
+        (let ((home (regexp-quote (getenv "HOME")))
+              (file-name (convert-standard-filename (or buffer-file-name "a"))))
+          (if buffer-file-name
+              (rsub "\\\\" "/" (rsub home "~" file-name))
+            (buffer-name)))))
