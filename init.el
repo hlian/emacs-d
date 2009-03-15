@@ -11,6 +11,8 @@
 (show-paren-mode t)
 (column-number-mode t)
 (setq-default indent-tabs-mode nil)
+(setq-default show-trailing-whitespace t)
+(add-hook 'write-file-functions 'delete-trailing-whitespace)
 
 ;;;;;;;;;; Programming modes
 (setq asm-comment-char ?#)
