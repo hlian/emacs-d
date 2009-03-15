@@ -24,8 +24,10 @@
 
  c-basic-offset 4
  sgml-basic-offset 4
+ ;; Performance slowdown, never used.
+ vc-handled-backends '()
  )
- 
+
 ;;;;;;;;;; Emacs power tools.
 (kill-buffer "*scratch*")
 (fset 'yes-or-no-p 'y-or-n-p)
