@@ -1,3 +1,4 @@
+(add-to-list 'load-path "~/.emacs.d")
 (require 'uniquify)
 (require 'recentf)
 
@@ -36,6 +37,7 @@
 (defalias 'xp 'replace-regexp)
 (defalias 'is 'ispell)
 (defalias 'll 'longlines-mode)
+(defalias 'rsub 'replace-regexp-in-string)
 
 (setq
  inhibit-startup-message t
@@ -61,7 +63,14 @@
 (setq frame-title-format
       '(:eval
         (let ((home (regexp-quote (getenv "HOME")))
-              (file-name (convert-standard-filename (or buffer-file-name "a"))))
+              (file-name (convert-standard-filename buffer-file-name)))
           (if buffer-file-name
               (rsub "\\\\" "/" (rsub home "~" file-name))
             (buffer-name)))))
+
+(setq is-sally
+      (and
+       (string= "gnu/linux" (symbol-name system-type))
+       (string= "TORT.HOME" (system-name))))
+
+(require 'theme)
