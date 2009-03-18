@@ -1,4 +1,7 @@
 (add-to-list 'load-path "~/.emacs.d")
+(defvar autosave-dir "/tmp/emacs")
+(make-directory autosave-dir t)
+
 (require 'uniquify)
 (require 'recentf)
 
@@ -73,4 +76,4 @@
        (string= "gnu/linux" (symbol-name system-type))
        (string= "TORT.HOME" (system-name))))
 
-(require 'theme)
+(load-library "theme")
