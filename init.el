@@ -1,10 +1,16 @@
 (add-to-list 'load-path "~/.emacs.d")
+
+; Put autosaves in a sane place.
 (defvar autosave-dir "/tmp/emacs")
 (make-directory autosave-dir t)
+
+; TODO: add warp table.
+(desktop-save-mode t)
 
 (require 'uniquify)
 (require 'recentf)
 
+; All the Emacs modes that make Emacs fun.
 (recentf-mode t)
 (menu-bar-mode nil)
 (tool-bar-mode nil)
