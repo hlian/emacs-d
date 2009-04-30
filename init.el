@@ -20,23 +20,10 @@
 (partial-completion-mode t)
 (show-paren-mode t)
 (column-number-mode t)
+(global-hl-line-mode t)
 (setq-default indent-tabs-mode nil)
 (setq-default show-trailing-whitespace t)
 (add-hook 'write-file-functions 'delete-trailing-whitespace)
-
-;;;;;;;;;; Programming modes
-(setq asm-comment-char ?#)
-(defalias 'perl-mode 'cperl-mode)
-(setq
- cperl-indent-level 4
- cperl-hairy t
- cperl-electric-parens-string ""
-
- c-basic-offset 4
- sgml-basic-offset 4
- ;; Performance slowdown, never used.
- vc-handled-backends '()
- )
 
 ;;;;;;;;;; Emacs power tools.
 (kill-buffer "*scratch*")
@@ -83,3 +70,4 @@
        (string= "TORT.HOME" (system-name))))
 
 (load-library "theme")
+(load-library "modes")
