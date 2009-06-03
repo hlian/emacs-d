@@ -33,5 +33,17 @@
       (require 'color-theme)
       (color-theme-initialize)
       (color-theme-deep-blue)
+
+      ;; http://pocoo.org/~gbrandl/dotemacs
+      (custom-set-faces
+       '(ido-indicator ((((min-colors 88) (class color)) (:background "RoyalBlue1" :width condensed))))
+       '(ido-only-match ((((class color)) (:foreground "white"))))
+       '(ido-subdir ((((min-colors 88) (class color)) (:foreground "LightPink1"))))
+       '(mode-line ((t (:background "#C0F500" :foreground "#666666" :box (:line-width 1 :color "#C0F500") :height 90))))
+       '(mode-line-buffer-id ((t (:foreground "black" :weight bold))))
+       '(mode-line-highlight ((t (:inherit mode-line :box nil))))
+       '(mode-line-inactive ((t (:background "white" :foreground "#cccccc" :box (:line-width 1 :color "white") :height 90)))))
+      (set-face-background 'hl-line "black")
+      (set-face-background 'mode-line-highlight "#C0F500")
       )
     )
