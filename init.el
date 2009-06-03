@@ -1,4 +1,11 @@
-(add-to-list 'load-path "~/.emacs.d")
+; Sweet setup from emacs-starter-kit.
+(setq dotfiles-dir (file-name-directory
+                    (or (buffer-file-name) load-file-name)))
+(add-to-list 'load-path dotfiles-dir)
+
+(setq autoload-file (concat dotfiles-dir "loaddefs.el"))
+(setq custom-file (concat dotfiles-dir "custom.el"))
+(setq package-user-dir (concat dotfiles-dir "packages"))
 
 ; Put autosaves in a sane place.
 (defvar autosave-dir "/tmp/emacs")
@@ -56,6 +63,7 @@
  uniquify-buffer-name-style 'forward
  )
 
+(defalias 'rsub 'replace-regexp-in-string)
 (setq frame-title-format
       '(:eval
         (let ((home (regexp-quote (getenv "HOME")))
@@ -68,6 +76,11 @@
       (and
        (string= "gnu/linux" (symbol-name system-type))
        (string= "TORT.HOME" (system-name))))
+
+(setq is-susie
+      (and
+       (string= "windows-nt" (symbol-name system-type))
+       (string= "TORT" (system-name))))
 
 (load-library "theme")
 (load-library "modes")
