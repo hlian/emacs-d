@@ -14,24 +14,30 @@
 (make-directory autosave-dir t)
 
 ; TODO: add warp table.
-(desktop-save-mode t)
 
 (require 'uniquify)
 (require 'recentf)
+(require 'saveplace)
+(require 'filladapt)
 
 ; All the Emacs modes that make Emacs fun.
-(recentf-mode t)
-(menu-bar-mode nil)
-(tool-bar-mode nil)
+(column-number-mode t)
+(desktop-save-mode t)
+(global-hl-line-mode t)
 (ido-mode t)
 (ido-everywhere t)
-(setq ido-enable-flex-matching t)
+(menu-bar-mode nil)
+(recentf-mode t)
 (partial-completion-mode t)
 (show-paren-mode t)
-(column-number-mode t)
-(global-hl-line-mode t)
-(setq-default indent-tabs-mode nil)
-(setq-default show-trailing-whitespace t)
+(tool-bar-mode nil)
+
+(setq-default
+ indent-tabs-mode nil
+ filladapt-mode t)
+
+(setq filladapt-mode-line-string " F!")
+
 (add-hook 'write-file-functions 'delete-trailing-whitespace)
 
 ;;;;;;;;;; Emacs power tools.
@@ -53,7 +59,6 @@
  enable-local-variables :all
  require-final-newline t
  visible-bell t
- adaptive-fill-mode t
  default-major-mode 'text-mode
  ;; Old backups that is.
  delete-old-versions t
