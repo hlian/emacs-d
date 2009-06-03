@@ -20,7 +20,6 @@
 (require 'saveplace)
 (require 'filladapt)
 
-; All the Emacs modes that make Emacs fun.
 (column-number-mode t)
 (desktop-save-mode t)
 (global-hl-line-mode t)
@@ -35,8 +34,6 @@
 (setq-default
  indent-tabs-mode nil
  filladapt-mode t)
-
-(setq filladapt-mode-line-string " F!")
 
 (add-hook 'write-file-functions 'delete-trailing-whitespace)
 
@@ -91,3 +88,5 @@
 
 (load-library "theme")
 (load-library "modes")
+(load-library "keyboard")
+
