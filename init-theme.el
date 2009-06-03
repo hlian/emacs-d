@@ -40,6 +40,8 @@
       ;; http://pocoo.org/~gbrandl/dotemacs
       (custom-set-faces
        '(default ((t (:stipple nil :background "#102e4e" :foreground "#ffffff" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 90 :width normal :family "outline-consolas"))))
+       '(cursor ((t (:background "powder blue" :foreground "black"))))
+       '(font-lock-comment-face ((t (:foreground "gray" :slant italic))))
        '(ido-indicator ((((min-colors 88) (class color)) (:background "RoyalBlue1" :width condensed))))
        '(ido-only-match ((((class color)) (:foreground "white"))))
        '(ido-subdir ((((min-colors 88) (class color)) (:foreground "LightPink1"))))
