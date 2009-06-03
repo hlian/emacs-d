@@ -1,8 +1,9 @@
-;;; Setup.
+;;;
+; Setup.
+;;;
 (autoload 'php-mode  "php-mode" nil t)
 (autoload 'ruby-mode  "ruby-mode" nil t)
 (autoload 'markdown  "markdown-mode" nil t)
-(autoload 'matlab-mode "matlab-mode" nil t)
 (autoload 'css-mode "css-mode" nil t)
 (autoload 'js2-mode "js2-mode" nil t)
 (autoload 'rst-mode "rst-mode" nil t)
@@ -11,19 +12,21 @@
       (append
        '(("\\.php\\'"  . php-mode)
          ("\\.rb\\'"   . ruby-mode)
-         ("\\.m\\'"    . matlab-mode)
+         ("\\.m\\'"    . octave-mode)
          ("\\.css\\'"  . css-mode)
 	 ("\\.js\\'"   . js2-mode)
 	 ("\\.rst\\'"  . rst-mode))
        auto-mode-alist))
 
-;;; Customizations.
+;;;
+; Customizations.
+;;;
 (setq
  c-basic-offset 4
  sgml-basic-offset 2
 )
 
-;; Performance slowdown, never used.
+; Performance slowdown, never used.
 (setq vc-handled-backends nil)
 
 (setq asm-comment-char ?#)
