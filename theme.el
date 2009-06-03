@@ -30,6 +30,9 @@
       (add-to-list 'default-frame-alist `(font . ,consolas))
       (set-default-font consolas)
 
+      (setq-default line-spacing 2)
+      (setq-default show-trailing-whitespace t)
+
       (require 'color-theme)
       (color-theme-initialize)
       (color-theme-deep-blue)
