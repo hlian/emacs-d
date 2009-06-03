@@ -88,7 +88,8 @@
        (string= "windows-nt" (symbol-name system-type))
        (string= "TORT" (system-name))))
 
-(load-library "theme")
-(load-library "modes")
-(load-library "keyboard")
-(load-library "snippets")
+(load-library "init-theme")
+(load-library "init-modes")
+(load-library "init-snippets")
+(load-library "init-pager")
+(load-library "init-keyboard")
