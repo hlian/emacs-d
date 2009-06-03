@@ -24,7 +24,7 @@
 )
 
 ;; Performance slowdown, never used.
-(setq vc-handled-backends '())
+(setq vc-handled-backends nil)
 
 (setq asm-comment-char ?#)
 
@@ -36,6 +36,19 @@
  )
 
 (setq filladapt-mode-line-string " F!")
+
+(setq
+ js2-auto-indent-flag nil
+ js2-basic-offset 4
+ js2-electric-keys nil
+ js2-enter-indents-newline nil
+ js2-mirror-mode nil
+ js2-mode-show-parse-errors nil
+ js2-mode-show-strict-warnings nil
+ js2-mode-squeeze-spaces t
+ js2-strict-missing-semi-warning nil
+ js2-strict-trailing-comma-warning nil
+ )
 
 (setq tex-dvi-view-command "start \"C:\\Program Files\\Foxit Reader\\Foxit Reader.exe\" *")
 
