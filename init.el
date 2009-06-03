@@ -92,4 +92,5 @@
 (load-library "init-modes")
 (load-library "init-snippets")
 (load-library "init-pager")
+(load-library "init-warp")
 (load-library "init-keyboard")

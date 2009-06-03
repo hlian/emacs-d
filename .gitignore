@@ -1,5 +1,6 @@
 auto-save-list/
 packages/
+tops/
 custom.el
 *~
 *.elc
