@@ -27,6 +27,7 @@
 
 (defun my-fill-column ()
   (interactive)
+  (message "fill column set to 50")
   (setq fill-column 50))
 
 (defun ido-execute ()
@@ -54,6 +55,27 @@
                                   recentf-list)
                           nil t))))
 
+(setq-default cleanliness nil)
+
+(defun clean-on nil
+  (interactive)
+  (message "cleanliness on")
+  (add-hook 'write-file-functions 'delete-trailing-whitespace)
+  (setq-default require-final-newline t)
+  (setq-default mode-require-final-newline nil))
+
+(defun clean-off nil
+  (interactive)
+  (message "cleanliness off")
+  (remove-hook 'write-file-functions 'delete-trailing-whitespace)
+  (setq-default require-final-newline nil)
+  (setq-default mode-require-final-newline nil))
+
+(defun clean-toggle nil
+  (interactive)
+  (if cleanliness (clean-off) (clean-on))
+  (setq-default cleanliness (not cleanliness)))
+
 (global-set-keys
  '(("<f7>" markdown)
    ("<f8>" (lambda (warp)
@@ -70,6 +92,8 @@
    ("C-c C-f" auto-fill-mode)
    ("C-<f11>" my-fill-column)
    ("C-c C-<return>" unfill-paragraph)
+
+   ("C-<f12>" clean-toggle)
 
    ("C-x C-k" (lambda () (interactive) (kill-buffer nil)))
    ("C-x C-b" electric-buffer-list)
@@ -94,3 +118,16 @@
                 (interactive)
                 (save-buffer) (tex-file) (tex-view)))))
 
+(set-keyboard-coding-system 'utf-8-unix)
+(prefer-coding-system 'utf-8-unix)
+
+;; Real men end follow periods with one space only.
+(setq sentence-end "[.?!][]\"')}]*\\($\\|[ \t]\\)[ \t\n]*")
+(setq sentence-end-double-space nil)
+
+(defun explorer ()
+  (interactive)
+  (w32-shell-execute
+   "open" "explorer"
+   (concat "/e,/select,"
+           (convert-standard-filename buffer-file-name))))

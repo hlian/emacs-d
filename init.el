@@ -15,8 +15,6 @@
 (defvar autosave-dir "/tmp/emacs")
 (make-directory autosave-dir t)
 
-; TODO: add warp table.
-
 (require 'uniquify)
 (require 'recentf)
 (require 'saveplace)
