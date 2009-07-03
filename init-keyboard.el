@@ -61,13 +61,15 @@
   (interactive)
   (message "cleanliness on")
   (add-hook 'write-file-functions 'delete-trailing-whitespace)
+  (setq require-final-newline t)
   (setq-default require-final-newline t)
-  (setq-default mode-require-final-newline nil))
+  (setq-default mode-require-final-newline t))
 
 (defun clean-off nil
   (interactive)
   (message "cleanliness off")
   (remove-hook 'write-file-functions 'delete-trailing-whitespace)
+  (setq require-final-newline t)
   (setq-default require-final-newline nil)
   (setq-default mode-require-final-newline nil))
 
@@ -75,6 +77,8 @@
   (interactive)
   (if cleanliness (clean-off) (clean-on))
   (setq-default cleanliness (not cleanliness)))
+
+(clean-toggle)
 
 (global-set-keys
  '(("<f7>" markdown)
