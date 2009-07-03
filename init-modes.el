@@ -7,12 +7,14 @@
 (autoload 'css-mode "css-mode" nil t)
 (autoload 'js2-mode "js2-mode" nil t)
 (autoload 'rst-mode "rst-mode" nil t)
+(autoload 'matlab-mode "matlab-mode" nil t)
+(autoload 'po-mode "po-mode" nil t)
 
 (setq auto-mode-alist
       (append
        '(("\\.php\\'"  . php-mode)
          ("\\.rb\\'"   . ruby-mode)
-         ("\\.m\\'"    . octave-mode)
+         ("\\.m\\'"    . matlab-mode)
          ("\\.css\\'"  . css-mode)
 	 ("\\.js\\'"   . js2-mode)
 	 ("\\.rst\\'"  . rst-mode))
@@ -34,7 +36,6 @@
 (defalias 'perl-mode 'cperl-mode)
 (setq
  cperl-indent-level 4
- cperl-hairy t
  cperl-electric-parens-string ""
  )
 
