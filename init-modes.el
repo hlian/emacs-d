@@ -58,7 +58,7 @@
 
 (setq markdown-command
       (concat "python -c \"import sys, markdown2 as m, smartypants as s;"
-              "print(s.smartyPants(m.markdown(sys.stdin.read().decode('utf8'))).strip().encode('utf8'))\""))
+              "print(s.smartyPants(m.markdown(sys.stdin.read().decode('iso-8859-2'))).strip().encode('iso-8859-2'))\""))
 
 (setq latex-run-command "pdflatex")
 
