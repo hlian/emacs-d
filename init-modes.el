@@ -57,7 +57,7 @@
 (setq tex-dvi-view-command "start \"C:\\Program Files\\Foxit Reader\\Foxit Reader.exe\" *")
 
 (setq markdown-command
-      (concat "python -c \"import sys, markdown2 as m, smartypants as s;"
+      (concat "c:/cygwin/usr/local/bin/python -c \"import sys, markdown2 as m, smartypants as s;"
               "print(s.smartyPants(m.markdown(sys.stdin.read().decode('iso-8859-2'))).strip().encode('iso-8859-2'))\""))
 
 (setq latex-run-command "pdflatex")
