@@ -24,4 +24,5 @@
 (new-warp "actiogreen" "actiogreen")
 (new-warp "sho" "shoulders")
 (new-warp "plon" "pylonshello")
+(new-warp "ptx" "ptx")
 (puthash "home" "~/" warp-table)
