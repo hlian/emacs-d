@@ -114,6 +114,7 @@
 (add-hook 'latex-mode-hook (override-keys latex-mode-map))
 (add-hook 'matlab-mode-hook (override-keys matlab-mode-map))
 (add-hook 'php-mode-hook (override-keys php-mode-map))
+(add-hook 'rst-mode-hook (override-keys rst-mode-map))
 (add-hook 'tex-mode-hook
           (lambda nil
             (interactive)
