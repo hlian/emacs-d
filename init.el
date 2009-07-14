@@ -30,6 +30,7 @@
 (partial-completion-mode t)
 (show-paren-mode t)
 (tool-bar-mode nil)
+(scroll-bar-mode nil)
 
 (setq-default
  indent-tabs-mode nil
