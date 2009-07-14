@@ -53,9 +53,7 @@
        '(change-log-name-face ((t (:foreground "gold"))))
        '(comint-highlight-input ((t (:bold t :weight bold))))
        '(comint-highlight-prompt ((t (:foreground "cyan"))))
-       '(cursor ((t (:background "green" :foreground "black"))))
        '(diary-face ((t (:foreground "orange red"))))
-       '(diff-added-face ((t (nil))))
        '(diff-changed-face ((t (nil))))
        '(diff-context-face ((t (:foreground "grey70"))))
        '(diff-file-header-face ((t (:bold t :background "grey60" :weight bold))))
@@ -64,7 +62,6 @@
        '(diff-hunk-header-face ((t (:background "grey45"))))
        '(diff-index-face ((t (:bold t :weight bold :background "grey60"))))
        '(diff-nonexistent-face ((t (:bold t :weight bold :background "grey60"))))
-       '(diff-removed-face ((t (nil))))
        '(fixed-pitch ((t (:family "fixed"))))
        '(font-latex-bold-face ((t (:bold t :foreground "OliveDrab" :weight bold))))
        '(font-latex-italic-face ((t (:italic t :foreground "OliveDrab" :slant italic))))
@@ -72,17 +69,14 @@
        '(font-latex-sedate-face ((t (:foreground "LightGray"))))
        '(font-latex-string-face ((t (:foreground "LightSalmon"))))
        '(font-latex-warning-face ((t (:bold t :foreground "Pink" :weight bold))))
-       '(font-lock-comment-face ((t (:italic t :foreground "CadetBlue" :slant italic))))
        '(font-lock-constant-face ((t (:foreground "gold"))))
        '(font-lock-doc-face ((t (:foreground "BlanchedAlmond"))))
        '(font-lock-doc-string-face ((t (:foreground "BlanchedAlmond"))))
-       '(font-lock-function-name-face ((t (:bold t :foreground "goldenrod" :weight bold))))
        '(font-lock-keyword-face ((t (:bold t :foreground "DeepSkyBlue1" :weight bold))))
        '(font-lock-preprocessor-face ((t (:foreground "gold"))))
        '(font-lock-reference-face ((t (:foreground "LightCoral"))))
        '(font-lock-string-face ((t (:foreground "burlywood"))))
        '(font-lock-type-face ((t (:foreground "CadetBlue1"))))
-       '(font-lock-variable-name-face ((t (:foreground "SeaGreen2"))))
        '(font-lock-warning-face ((t (:foreground "yellow"))))
        '(fringe ((t (:background "#405060"))))
        '(header-line ((t (:box (:line-width 2 :style released-button) :background "grey20" :foreground "grey90" :box nil))))
@@ -116,10 +110,7 @@
        '(widget-documentation-face ((t (:foreground "lime green"))))
        '(widget-field-face ((t (:background "dim gray"))))
        '(widget-inactive-face ((t (:foreground "light gray"))))
-       '(widget-single-line-field-face ((t (:background "dim gray")))))
-
-      ;; http://pocoo.org/~gbrandl/dotemacs
-      (custom-set-faces
+       '(widget-single-line-field-face ((t (:background "dim gray"))))
        '(default ((t (:stipple nil
                                :background "#102e4e" :foreground "#ffffff"
                                :inverse-video nil :box nil
@@ -135,7 +126,7 @@
        '(font-lock-builtin-face ((t (:foreground "#fdf"))))
        '(diff-added ((t (:inherit diff-changed :background "royal blue"))))
        '(diff-removed ((t (:inherit diff-changed :background "DeepPink4"))))
-       '(rst-level-face-base-light 30)
+       '(rst-level-1-face ((t nil)) t)
 
        '(frame-background-mode (quote dark))
        '(ido-indicator ((((min-colors 88) (class color)) (:background "RoyalBlue1" :width condensed))))
@@ -150,4 +141,6 @@
       (set-face-background 'hl-line "black")
       (set-face-background 'mode-line-highlight "#C0F500")
       )
-  )
+
+  (custom-set-variables
+   '(rst-level-face-base-color "black")))
