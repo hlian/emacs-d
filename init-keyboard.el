@@ -86,6 +86,7 @@
 
    ("M-[" backward-paragraph)
    ("M-]" forward-paragraph)
+   ("C-i" backward-delete-char-untabify)
    ("C-." save-buffer)
    ("C-," align-regexp)
    ("C-?" redo)
