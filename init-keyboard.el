@@ -11,12 +11,6 @@
   (interactive "p")
   (delete-word (- arg)))
 
-(defmacro override-keys (map)
-  `(lambda nil
-     (define-key ,map ,(kbd "C-c C-r") 'ido-recentf)
-     (define-key ,map ,(kbd "C-c C-m") 'make-directory)
-     (define-key ,map ,(kbd "C-.") 'save-buffer)))
-
 ;; Stefan Monnier <foo at acm.org>. It is the opposite of
 ;; fill-paragraph: Takes a multi-line paragraph and makes it into a
 ;; single line of text.
@@ -87,41 +81,25 @@
              (desktop-change-dir
               (gethash warp warp-table))))
 
-   ("C-c C-d" delete-region)
    ("M-d" delete-word)
    ("C-<backspace>" backward-delete-word)
+
    ("M-[" backward-paragraph)
    ("M-]" forward-paragraph)
-
-   ("C-c C-f" auto-fill-mode)
-   ("C-<f11>" my-fill-column)
-   ("C-c C-<return>" unfill-paragraph)
-
-   ("C-<f12>" clean-toggle)
-
-   ("C-x C-k" (lambda () (interactive) (kill-buffer nil)))
-   ("C-x C-b" electric-buffer-list)
-
-   ("C-c C-r" ido-recentf)
-   ("M-x" ido-execute)
-
-   ("C-z" align-regexp)
-   ("C-c C-m" make-directory)
+   ("C-." save-buffer)
+   ("C-," align-regexp)
    ("C-?" redo)
-   ("C-." save-buffer)))
 
-(add-hook 'python-mode-hook (override-keys python-mode-map))
-(add-hook 'latex-mode-hook (override-keys latex-mode-map))
-(add-hook 'matlab-mode-hook (override-keys matlab-mode-map))
-(add-hook 'php-mode-hook (override-keys php-mode-map))
-(add-hook 'rst-mode-hook (override-keys rst-mode-map))
-(add-hook 'tex-mode-hook
-          (lambda nil
-            (interactive)
-            (define-key tex-mode-map (kbd "<f5>")
-              (lambda nil
-                (interactive)
-                (save-buffer) (tex-file) (tex-view)))))
+   ("C-<f11>" my-fill-column)
+   ("C-<f12>" clean-toggle)
+   ("C-; C-k" (lambda () (interactive) (kill-buffer nil)))
+   ("C-; C-b" electric-buffer-list)
+   ("C-; C-d" delete-region)
+   ("C-; C-f" auto-fill-mode)
+   ("C-; C-<return>" unfill-paragraph)
+   ("C-; C-r" ido-recentf)
+   ("C-; C-m" make-directory)
+   ))
 
 (set-keyboard-coding-system 'utf-8-unix)
 (prefer-coding-system 'utf-8-unix)
