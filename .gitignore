@@ -4,3 +4,4 @@ tops/
 custom.el
 *~
 *.elc
+tramp
