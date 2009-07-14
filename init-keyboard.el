@@ -24,30 +24,19 @@
   (message "fill column set to 50")
   (setq fill-column 50))
 
-(defun ido-execute ()
-  (interactive)
-  (call-interactively
-   (intern
-    (ido-completing-read
-     "M-x "
-     (let (cmd-list)
-       (mapatoms
-        (lambda (S)
-          (when (commandp S)
-            (setq cmd-list (cons (format "%S" S) cmd-list)))))
-       cmd-list)))))
-
 ;; From xsteve. Thants, xsteve.
 (defun ido-recentf ()
   "Use ido to select a recently opened file from the `recentf-list'"
   (interactive)
-  (let ((home (expand-file-name (getenv "HOME"))))
+  (let
+      ((home (expand-file-name (getenv "HOME"))))
     (find-file
-     (ido-completing-read "Recentf open: "
-                          (mapcar (lambda (path)
-                                    (replace-regexp-in-string home "~" path))
-                                  recentf-list)
-                          nil t))))
+     (ido-completing-read
+      "Recentf open: "
+      (mapcar (lambda (path)
+                (replace-regexp-in-string home "~" path))
+              recentf-list)
+      nil t))))
 
 (setq-default cleanliness nil)
 
