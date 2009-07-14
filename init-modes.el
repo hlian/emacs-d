@@ -9,6 +9,7 @@
 (autoload 'rst-mode "rst-mode" nil t)
 (autoload 'matlab-mode "matlab-mode" nil t)
 (autoload 'po-mode "po-mode" nil t)
+(autoload 'lua-mode "lua-mode" nil t)
 
 (setq auto-mode-alist
       (append
@@ -17,7 +18,9 @@
          ("\\.m\\'"    . matlab-mode)
          ("\\.css\\'"  . css-mode)
 	 ("\\.js\\'"   . js2-mode)
-	 ("\\.rst\\'"  . rst-mode))
+	 ("\\.rst\\'"  . rst-mode)
+	 ("\\.lua\\'"  . lua-mode)
+         )
        auto-mode-alist))
 
 ;;;
@@ -65,3 +68,19 @@
 (setq-default ispell-program-name "C:/Cygwin/bin/aspell.exe")
 (setq ispell-extra-args '("--sug-mode=fast"))
 
+(if is-susie
+    (progn
+      (require 'tramp)
+      (setq tramp-default-method "myplink")
+      (add-to-list
+       'tramp-methods
+       '("myplink"
+         (tramp-login-program        "\"c:/program files/putty/plink.exe\"")
+         (tramp-login-args           (("%h") ("-l" "%u") ("-P" "%p")
+                                      ("-ssh")))
+         (tramp-remote-sh            "/bin/sh")
+         (tramp-copy-program         nil)
+         (tramp-copy-args            nil)
+         (tramp-copy-keep-date       nil)
+         (tramp-password-end-of-line "xy")
+         (tramp-default-port         22)))))
