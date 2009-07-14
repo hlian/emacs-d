@@ -51,7 +51,7 @@
  inhibit-startup-message t
  initial-scratch-message nil
  ;; Unhide the power functions.
- disabled-command-hook nil
+ disabled-command-function nil
  default-indicate-empty-lines t
  enable-local-variables :all
  require-final-newline t
