@@ -18,8 +18,8 @@
          ("\\.m\\'"    . matlab-mode)
          ("\\.css\\'"  . css-mode)
 	 ("\\.js\\'"   . js2-mode)
-	 ("\\.rst\\'"  . rst-mode)
-	 ("\\.lua\\'"  . lua-mode)
+         ("\\.rst\\'"  . rst-mode)
+         ("\\.lua\\'"  . lua-mode)
          )
        auto-mode-alist))
 
