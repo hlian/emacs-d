@@ -24,7 +24,7 @@
 (desktop-save-mode t)
 (global-hl-line-mode t)
 (ido-mode t)
-(ido-everywhere t)
+(setq-default ido-auto-merge-delay-time 99)
 (menu-bar-mode nil)
 (recentf-mode t)
 (partial-completion-mode t)
@@ -34,7 +34,8 @@
 
 (setq-default
  indent-tabs-mode nil
- filladapt-mode t)
+ filladapt-mode t
+ truncate-lines t)
 
 (add-hook 'write-file-functions 'delete-trailing-whitespace)
 
@@ -47,6 +48,7 @@
 (defalias 'is 'ispell)
 (defalias 'll 'longlines-mode)
 (defalias 'rsub 'replace-regexp-in-string)
+(defalias 'bc 'byte-compile-file)
 
 (setq
  inhibit-startup-message t
