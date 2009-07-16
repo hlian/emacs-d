@@ -15,4 +15,5 @@
    ("def" "def ${function}(${args}):$0")
    ("init" "def __init__(self, ${args}):$0")
    ("log" "import logging\nlog = logging.getLogger(__name__)\n")
+   ("pdb" "import pdb; pdb.set_trace()")
    ))
