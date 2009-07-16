@@ -140,7 +140,7 @@
 
       (set-face-background 'hl-line "black")
       (set-face-background 'mode-line-highlight "#C0F500")
-      )
 
-  (custom-set-variables
-   '(rst-level-face-base-color "black")))
+      (custom-set-variables
+       '(rst-level-face-base-color "black"))
+      ))
