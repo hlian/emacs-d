@@ -2680,7 +2680,7 @@ faces."
   :group 'rst-faces-defaults
   :type '(integer)
   :set 'rst-set-level-default)
-(defcustom rst-level-face-base-color "grey"
+(defcustom rst-level-face-base-color "black"
   "The base name of the color to be used for creating background colors in
 ection title faces for all levels."
   :group 'rst-faces-defaults
