@@ -97,7 +97,7 @@
        '(modeline-mousable ((t (:background "gray" :foreground "black" :box (:line-width 2 :style released-button)))))
        '(modeline-mousable-minor-mode ((t (:background "gray" :foreground "black" :box (:line-width 2 :style released-button)))))
        '(mouse ((t (:background "white"))))
-       '(region ((t (:background "DarkCyan"))))
+       '(region ((t (:background "DeepSkyBlue4"))))
        '(scroll-bar ((t (:background "gray" :foreground "#506070"))))
        '(secondary-selection ((t (:background "yellow" :foreground "gray10"))))
        '(show-paren-match-face ((t (:bold t :foreground "yellow" :weight bold))))
@@ -119,7 +119,7 @@
                                :weight normal :height 90
                                :width normal  :family "outline-consolas"))))
        '(cursor ((t (:background "powder blue" :foreground "black"))))
-       '(font-lock-comment-face ((t (:foreground "gray" :slant italic))))
+       '(font-lock-comment-face ((t (:foreground "#999" :slant italic))))
        '(font-lock-function-name-face ((t (:foreground "bisque1" :weight bold))))
        '(font-lock-string-face ((t (:foreground "#99D8FF"))))
        '(font-lock-variable-name-face ((t (:foreground "pale green"))))
