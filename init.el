@@ -31,6 +31,7 @@
 (show-paren-mode t)
 (tool-bar-mode nil)
 (scroll-bar-mode nil)
+(delete-selection-mode t)
 
 (setq-default
  indent-tabs-mode nil
