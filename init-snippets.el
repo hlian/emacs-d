@@ -16,4 +16,6 @@
    ("init" "def __init__(self, ${args}):$0")
    ("log" "import logging\nlog = logging.getLogger(__name__)\n")
    ("pdb" "import pdb; pdb.set_trace()")
+   ("nose" "import nose; nose.tools.set_trace()")
+   ("main" "if __name__ == '__main__':")
    ))
