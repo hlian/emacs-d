@@ -35,7 +35,6 @@
 
 (setq-default
  indent-tabs-mode nil
- filladapt-mode t
  truncate-lines t)
 
 (add-hook 'write-file-functions 'delete-trailing-whitespace)
