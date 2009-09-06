@@ -55,6 +55,7 @@
  js2-mode-squeeze-spaces t
  js2-strict-missing-semi-warning nil
  js2-strict-trailing-comma-warning nil
+ js2-bounce-indent-p t
  )
 
 (setq tex-dvi-view-command "start \"C:\\Program Files\\Foxit Reader\\Foxit Reader.exe\" *")
