@@ -25,4 +25,5 @@
 (new-warp "plon" "pylonshello")
 (new-warp "ptx" "ptx")
 (new-warp "oduslist" "oduslist")
+(new-warp "brownstone" "brownstone")
 (puthash "home" "~/" warp-table)
