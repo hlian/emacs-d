@@ -26,4 +26,5 @@
 (new-warp "ptx" "ptx")
 (new-warp "oduslist" "oduslist")
 (new-warp "brownstone" "brownstone")
+(new-warp "brev" "breviloquention")
 (puthash "home" "~/" warp-table)
