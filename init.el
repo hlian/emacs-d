@@ -65,6 +65,8 @@
  make-backup-files nil
  backup-inhibited t
  auto-save-default nil
+ ;; Stretch cursor for tab characters.
+ x-stretch-cursor t
 
  recentf-max-saved-items 1000
  uniquify-buffer-name-style 'forward
