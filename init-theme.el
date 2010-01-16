@@ -1,23 +1,14 @@
 ;; http://microsoft.com/downloads/details.aspx?FamilyId=941b3470-3ae9-4aee-8f43-c6bb74cd1466
-(setq consolas "-*-Consolas-normal-r-*-*-15-*-*-*-c-*-*-*")
-
 (if is-sally
     (custom-set-faces
-     '(default ((t
-                 (:stipple nil
-                           :background "#eeeeee"
-                           :foreground "#000000"
-                           :inverse-video nil
-                           :box nil
-                           :strike-through nil
-                           :overline nil
-                           :underline nil
-                           :slant normal
-                           :weight normal
-                           :height 1
-                           :width normal
-                           :family "default")))))
-  )
+       '(default ((t (:stipple nil
+                               :background "white" :foreground "black"
+                               :inverse-video nil :box nil
+                               :strike-through nil :overline nil
+                               :underline nil :slant normal
+                               :weight normal :height 90
+                               :width normal  :family "outline-consolas"))))
+       ))
 
 (defun w32-maximize-frame ()
   "Maximize the current frame"
@@ -27,10 +18,7 @@
 (if is-susie
     (progn
       (add-hook 'window-setup-hook 'w32-maximize-frame)
-      (add-to-list 'default-frame-alist `(font . ,consolas))
-      (set-frame-font consolas)
-
-      (setq-default line-spacing 2)
+      (setq-default line-spacing 1)
       (setq-default show-trailing-whitespace t)
       (setq-default frame-background-mode 'dark)
 
