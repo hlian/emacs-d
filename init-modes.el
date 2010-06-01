@@ -9,7 +9,6 @@
 (autoload 'css-mode "css-mode" nil t)
 (autoload 'js2-mode "js2-mode" nil t)
 (autoload 'rst-mode "rst-mode" nil t)
-(autoload 'matlab-mode "matlab-mode" nil t)
 (autoload 'po-mode "po-mode" nil t)
 (autoload 'lua-mode "lua-mode" nil t)
 (autoload 'coq-mode "coq-mode" nil t)
@@ -20,12 +19,11 @@
       (append
        '(("\\.php\\'"     . php-mode)
          ("\\.rb\\'"      . ruby-mode)
-         ("\\.m\\'"       . matlab-mode)
+         ("\\.m\\'"       . octave-mode)
          ("\\.css\\'"     . css-mode)
 	 ("\\.js\\'"      . js2-mode)
          ("\\.rst\\'"     . rst-mode)
          ("\\.lua\\'"     . lua-mode)
-         ("\\.v\\'"       . coq-mode)
          ("\\.ml[iyl]?$"  . tuareg-mode)
          )
        auto-mode-alist))
@@ -65,7 +63,7 @@
  js2-bounce-indent-p t
  )
 
-(setq tex-dvi-view-command "start \"C:\\Program Files\\Foxit Reader\\Foxit Reader.exe\" *")
+(setq tex-dvi-view-command "open")
 
 (setq markdown-command
       (concat "python -c \"import sys, markdown2 as m, smartypants as s;"
@@ -73,22 +71,5 @@
 
 (setq latex-run-command "pdflatex")
 
-(setq-default ispell-program-name "C:/Cygwin/bin/aspell.exe")
+(setq-default ispell-program-name "/opt/local/bin/aspell")
 (setq ispell-extra-args '("--sug-mode=fast"))
-
-(if is-susie
-    (progn
-      (require 'tramp)
-      (setq tramp-default-method "myplink")
-      (add-to-list
-       'tramp-methods
-       '("myplink"
-         (tramp-login-program        "\"c:/program files/putty/plink.exe\"")
-         (tramp-login-args           (("%h") ("-l" "%u") ("-P" "%p")
-                                      ("-ssh")))
-         (tramp-remote-sh            "/bin/sh")
-         (tramp-copy-program         nil)
-         (tramp-copy-args            nil)
-         (tramp-copy-keep-date       nil)
-         (tramp-password-end-of-line "xy")
-         (tramp-default-port         22)))))
