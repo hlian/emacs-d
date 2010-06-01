@@ -89,6 +89,7 @@
    ("C-; C-<return>" unfill-paragraph)
    ("C-; C-r" ido-recentf)
    ("C-; C-m" make-directory)
+   ("C-; C-v" tex-view)
    ))
 
 (set-keyboard-coding-system 'utf-8-unix)
