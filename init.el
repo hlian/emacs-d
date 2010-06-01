@@ -25,11 +25,10 @@
 (global-hl-line-mode t)
 (ido-mode t)
 (setq-default ido-auto-merge-delay-time 99)
-(menu-bar-mode nil)
+(menu-bar-mode t)
 (recentf-mode t)
 (partial-completion-mode t)
 (show-paren-mode t)
-(tool-bar-mode nil)
 (scroll-bar-mode nil)
 (delete-selection-mode t)
 
@@ -55,11 +54,11 @@
  initial-scratch-message nil
  ;; Unhide the power functions.
  disabled-command-function nil
- default-indicate-empty-lines t
+ indicate-empty-lines t
  enable-local-variables :all
  require-final-newline t
  visible-bell t
- default-major-mode 'text-mode
+ major-mode 'text-mode
  ;; Old backups that is.
  delete-old-versions t
  make-backup-files nil
@@ -67,6 +66,7 @@
  auto-save-default nil
  ;; Stretch cursor for tab characters.
  x-stretch-cursor t
+ kill-do-not-save-duplicates t
 
  recentf-max-saved-items 1000
  uniquify-buffer-name-style 'forward
