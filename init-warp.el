@@ -14,6 +14,8 @@
 (new-warp "stomp" "stomping-ground")
 (new-warp "dswap" "dswap")
 (new-warp "scg" "scg")
+(new-warp "cf" "cf")
+
 (new-warp "cos318" "cos318")
 (new-warp "iw" "iw")
 (puthash "home" "~/" warp-table)

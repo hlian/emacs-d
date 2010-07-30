@@ -82,6 +82,11 @@
               (rsub "\\\\" "/" (rsub home "~" file-name))
             (buffer-name)))))
 
+(setq mac-option-key-is-meta nil)
+(setq mac-command-key-is-meta t)
+(setq mac-command-modifier 'meta)
+(setq mac-option-modifier nil)
+
 (load-library "init-theme")
 (load-library "init-modes")
 (load-library "init-snippets")
