@@ -2,6 +2,7 @@ auto-save-list/
 packages/
 tops/
 custom.el
+init-here.el
 *~
 *.elc
 tramp
