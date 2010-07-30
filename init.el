@@ -82,16 +82,6 @@
               (rsub "\\\\" "/" (rsub home "~" file-name))
             (buffer-name)))))
 
-(setq is-sally
-      (and
-       (string= "gnu/linux" (symbol-name system-type))
-       (string= "TORT.HOME" (system-name))))
-
-(setq is-susie
-      (and
-       (string= "windows-nt" (symbol-name system-type))
-       (string= "TORT" (system-name))))
-
 (load-library "init-theme")
 (load-library "init-modes")
 (load-library "init-snippets")
