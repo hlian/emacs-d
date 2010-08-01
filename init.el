@@ -35,7 +35,8 @@
 
 (setq-default
  indent-tabs-mode nil
- truncate-lines t)
+ truncate-lines t
+ indicate-empty-lines t)
 
 (add-hook 'write-file-functions 'delete-trailing-whitespace)
 
@@ -55,7 +56,6 @@
  initial-scratch-message nil
  ;; Unhide the power functions.
  disabled-command-function nil
- indicate-empty-lines t
  enable-local-variables :all
  require-final-newline t
  visible-bell t
