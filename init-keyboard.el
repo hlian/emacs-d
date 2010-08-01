@@ -98,10 +98,3 @@
 ;; Real men end follow periods with one space only.
 (setq sentence-end "[.?!][]\"')}]*\\($\\|[ \t]\\)[ \t\n]*")
 (setq sentence-end-double-space nil)
-
-(defun explorer ()
-  (interactive)
-  (w32-shell-execute
-   "open" "explorer"
-   (concat "/e,/select,"
-           (convert-standard-filename buffer-file-name))))
