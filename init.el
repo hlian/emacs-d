@@ -26,7 +26,7 @@
 (ido-mode t)
 (setq-default ido-auto-merge-delay-time 99)
 (menu-bar-mode t)
-(tool-bar-mode nil)
+(tool-bar-mode 0)
 (recentf-mode t)
 (partial-completion-mode t)
 (show-paren-mode t)
