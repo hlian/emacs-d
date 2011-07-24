@@ -4,6 +4,10 @@
 (add-to-list 'yas/extra-mode-hooks 'cperl-mode-hook)
 
 (yas/define-snippets
+ 'text-mode
+ '(("loc" "# Local Variables:\n#   mode: filladapt\n#   fill-column: 50\n# End:\n")))
+
+(yas/define-snippets
  'cperl-mode
  '(("use" "use strict; use warnings; use 5.010;\n")
    ("env" "#!/usr/bin/env perl\n")))
