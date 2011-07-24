@@ -1,29 +1,29 @@
 ;;;
 ; Setup.
 ;;;
-(add-to-list 'load-path (concat modes-user-dir "/ocaml"))
+(add-to-list 'load-path (concat modes-user-dir "/sml-mode"))
 
 (autoload 'php-mode  "php-mode" nil t)
 (autoload 'ruby-mode  "ruby-mode" nil t)
-(autoload 'markdown  "markdown-mode" nil t)
+(autoload 'markdown-mode  "markdown-mode" nil t)
 (autoload 'css-mode "css-mode" nil t)
 (autoload 'rst-mode "rst-mode" nil t)
 (autoload 'po-mode "po-mode" nil t)
 (autoload 'lua-mode "lua-mode" nil t)
 (autoload 'coq-mode "coq-mode" nil t)
 (autoload 'gas-mode "gas-mode" nil t)
-(autoload 'tuareg-mode "tuareg" nil t)
+(autoload 'sml-mode "sml-mode" nil t)
 
 (setq auto-mode-alist
       (append
        '(("\\.php\\'"     . php-mode)
          ("\\.rb\\'"      . ruby-mode)
-         ("\\.m\\'"       . octave-mode)
          ("\\.css\\'"     . css-mode)
          ("\\.js\\'"      . javascript-mode)
          ("\\.rst\\'"     . rst-mode)
          ("\\.lua\\'"     . lua-mode)
-         ("\\.ml[iyl]?$"  . tuareg-mode)
+         ("\\.sml?$"      . sml-mode)
+         ("\\.md?$"       . markdown-mode)
          )
        auto-mode-alist))
 
