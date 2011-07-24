@@ -75,3 +75,6 @@
 (add-hook 'emacs-lisp-mode-hook '(lambda ()
   (add-hook 'after-save-hook 'emacs-lisp-byte-compile t t))
 )
+
+; https://github.com/winterTTr/ace-jump-mode/wiki
+(require 'ace-jump-mode)

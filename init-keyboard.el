@@ -75,16 +75,13 @@
 
    ("M-[" backward-paragraph)
    ("M-]" forward-paragraph)
-   ("C-'" backward-delete-char-untabify)
    ("C-." save-buffer)
-   ("C-," align-regexp)
-   ("C-?" redo)
+   ("C-," ace-jump-mode)
 
    ("C-<f11>" my-fill-column)
    ("C-<f12>" clean-toggle)
    ("C-; C-k" (lambda () (interactive) (kill-buffer nil)))
    ("C-; C-b" electric-buffer-list)
-   ("C-; C-d" delete-region)
    ("C-; C-f" auto-fill-mode)
    ("C-; C-<return>" unfill-paragraph)
    ("C-; C-r" ido-recentf)
