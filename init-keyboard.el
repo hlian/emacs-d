@@ -92,6 +92,10 @@
    ("C-; C-v" tex-view)
    ))
 
+(add-hook 'c-mode-common-hook
+  (lambda()
+    (local-set-key (kbd "C-; C-;") 'ff-find-other-file)))
+
 (set-keyboard-coding-system 'utf-8-unix)
 (prefer-coding-system 'utf-8-unix)
 
