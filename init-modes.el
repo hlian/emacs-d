@@ -62,13 +62,16 @@
  js2-bounce-indent-p t
  )
 
+(setq latex-run-command "pdflatex")
 (setq tex-dvi-view-command "open")
 
 (setq markdown-command
-      (concat "python -c \"import sys, markdown2 as m, smartypants as s;"
-              "print(s.smartyPants(m.markdown(sys.stdin.read().decode('iso-8859-2'))).strip().encode('iso-8859-2'))\""))
-
-(setq latex-run-command "pdflatex")
+      (concat "/opt/local/bin/python -c \"import sys, markdown2 as m, smartypants as s;"
+              "print(s.smartyPants(m.markdown(sys.stdin.read().decode('utf-8'))).strip().encode('utf-8'))\""))
 
 (setq-default ispell-program-name "/opt/local/bin/aspell")
-(setq ispell-extra-args '("--sug-mode=fast"))
+(setq ispell-extra-args '("--sug-mode=ultra"))
+
+(add-hook 'emacs-lisp-mode-hook '(lambda ()
+  (add-hook 'after-save-hook 'emacs-lisp-byte-compile t t))
+)
