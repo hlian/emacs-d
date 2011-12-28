@@ -8,14 +8,9 @@
 
 (new-warp "nims" "pylonshello") ; Ruby something
 (new-warp "ptx" "ptx") ; Backbone.js
-(new-warp "oduslist" "oduslist") ; This is a promise
-(new-warp "426" "brownstone") ; COS 426
-(new-warp "333" "breviloquention") ; COS 333
-(new-warp "stomp" "stomping-ground")
-(new-warp "dswap" "dswap") ; Point
-(new-warp "320" "scg") ; COS 320
-(new-warp "cf" "cf") ; Courseforge
+(new-warp "promise" "oduslist") ; This is a promise
+(new-warp "426" "brownstone") ; node
 (new-warp "http" "http") ; libevent experiments
 (new-warp "nn" "nanowrimo") ; NaNoWriMo
-(new-warp "io" "io") ; Google I/O 2011
+(new-warp "node" "node")
 (puthash "home" "~/" warp-table)
