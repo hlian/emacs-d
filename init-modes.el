@@ -1,6 +1,4 @@
-;;;
-; Setup.
-;;;
+;;; Setup. ;;;;;;;;;;;;;;;;;;;;
 (add-to-list 'load-path (concat modes-user-dir "/sml-mode"))
 
 (autoload 'php-mode  "php-mode" nil t)
@@ -13,8 +11,13 @@
 (autoload 'coq-mode "coq-mode" nil t)
 (autoload 'gas-mode "gas-mode" nil t)
 (autoload 'sml-mode "sml-mode" nil t)
+<<<<<<< HEAD
 (autoload 'powershell-mode "powershell-mode" nil t)
 (autoload 'less-css-mode "less-css-mode" nil t)
+=======
+(autoload 'coffee-mode "coffee-mode" nil t)
+(autoload 'tuareg-mode "tuareg" nil t)
+>>>>>>> e3f5430569c88aa66e5c3a8ecaa02b01771421b1
 
 (setq auto-mode-alist
       (append
@@ -27,21 +30,27 @@
          ("\\.lua\\'"     . lua-mode)
          ("\\.sml?$"      . sml-mode)
          ("\\.md?$"       . markdown-mode)
+<<<<<<< HEAD
          ("\\.ps1?$"      . powershell-mode)
+=======
+         ("\\.coffee?$"   . coffee-mode)
+         ("Cakefile"      . coffee-mode)
+         ("\\.ml[iyl]?$"  . tuareg-mode)
+>>>>>>> e3f5430569c88aa66e5c3a8ecaa02b01771421b1
          )
        auto-mode-alist))
 
-;;;
-; Customizations.
-;;;
+;;; Customizations. ;;;;;;;;;;;;;;;;;;;;
 (setq
  c-basic-offset 4
  sgml-basic-offset 2
+ tab-width 4
 )
 
 ; Performance slowdown, never used.
 (setq vc-handled-backends nil)
 
+;;; Mode-specific stuff. ;;;;;;;;;;;;;;;;;;;;
 (setq asm-comment-char ?#)
 
 (defalias 'perl-mode 'cperl-mode)
