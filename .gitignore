@@ -3,6 +3,7 @@ packages/
 tops/
 custom.el
 init-here.el
+init-warp.el
 *~
 *.elc
 tramp
