@@ -9,7 +9,9 @@
 
 (add-to-list 'load-path dotfiles-dir)
 (add-to-list 'load-path modes-user-dir)
-(add-to-list 'load-path package-user-dir)
+(let ((default-directory package-user-dir))
+  (normal-top-level-add-to-load-path '("."))
+  (normal-top-level-add-subdirs-to-load-path))
 
 ; Put autosaves in a sane place.
 (defvar autosave-dir "/tmp/emacs")
@@ -94,3 +96,10 @@
 (load-library "init-warp")
 (load-library "init-keyboard")
 (load-library "init-here")
+
+(when (load (expand-file-name "~/.emacs.d/elpa/package.el"))
+  (package-initialize)
+  (setq package-archives
+        '(("ELPA" . "http://tromey.com/elpa/")
+          ("gnu" . "http://elpa.gnu.org/packages/")
+          ("marmalade" . "http://marmalade-repo.org/packages/"))))
