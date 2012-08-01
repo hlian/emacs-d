@@ -1,3 +1,5 @@
+(require 'subword)
+
 (defun global-set-keys (alist) nil
   (mapcar (lambda (a) nil
             (setcar a (read-kbd-macro (car a)))
@@ -5,7 +7,7 @@
 
 (defun delete-word (arg)
   (interactive "p")
-  (delete-region (point) (progn (forward-word arg) (point))))
+  (delete-region (point) (progn (subword-forward arg) (point))))
 
 (defun backward-delete-word (arg)
   (interactive "p")
