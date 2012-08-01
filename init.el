@@ -30,7 +30,6 @@
 (menu-bar-mode t)
 (tool-bar-mode 0)
 (recentf-mode t)
-(partial-completion-mode t)
 (show-paren-mode t)
 (scroll-bar-mode nil)
 (delete-selection-mode t)
