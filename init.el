@@ -75,13 +75,6 @@
  )
 
 (defalias 'rsub 'replace-regexp-in-string)
-(setq frame-title-format
-      '(:eval
-        (let ((home (regexp-quote (getenv "HOME")))
-              (file-name (convert-standard-filename buffer-file-name)))
-          (if buffer-file-name
-              (rsub "\\\\" "/" (rsub home "~" file-name))
-            (buffer-name)))))
 
 (setq mac-option-key-is-meta nil)
 (setq mac-command-key-is-meta t)
@@ -96,9 +89,10 @@
 (load-library "init-keyboard")
 (load-library "init-here")
 
-(when (load (expand-file-name "~/.emacs.d/elpa/package.el"))
-  (package-initialize)
-  (setq package-archives
-        '(("ELPA" . "http://tromey.com/elpa/")
-          ("gnu" . "http://elpa.gnu.org/packages/")
-          ("marmalade" . "http://marmalade-repo.org/packages/"))))
+(package-initialize)
+(setq package-archives
+      '(("ELPA" . "http://tromey.com/elpa/")
+        ("gnu" . "http://elpa.gnu.org/packages/")
+        ("marmalade" . "http://marmalade-repo.org/packages/")))
+
+(load custom-file)
