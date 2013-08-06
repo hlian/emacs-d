@@ -37,9 +37,8 @@
 (setq-default
  indent-tabs-mode nil
  truncate-lines t
- indicate-empty-lines t)
-
-(add-hook 'write-file-functions 'delete-trailing-whitespace)
+ indicate-empty-lines t
+ major-mode 'text-mode)
 
 ;;;;;;;;;; Emacs power tools.
 (kill-buffer "*scratch*")
@@ -77,11 +76,11 @@
 (defalias 'rsub 'replace-regexp-in-string)
 (setq frame-title-format
       '(:eval
-        (let ((home (regexp-quote (getenv "HOME")))
-              (file-name (convert-standard-filename buffer-file-name)))
-          (if buffer-file-name
-              (rsub "\\\\" "/" (rsub home "~" file-name))
-            (buffer-name)))))
+        (if buffer-file-name
+            (let ((home (regexp-quote (getenv "HOME")))
+                  (file-name (convert-standard-filename buffer-file-name)))
+              (rsub "\\\\" "/" (rsub home "~" file-name)))
+          (buffer-name))))
 
 (setq mac-option-key-is-meta nil)
 (setq mac-command-key-is-meta t)
