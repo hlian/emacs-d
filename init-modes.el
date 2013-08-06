@@ -15,6 +15,7 @@
 (autoload 'less-css-mode "less-css-mode" nil t)
 (autoload 'coffee-mode "coffee-mode" nil t)
 (autoload 'tuareg-mode "tuareg" nil t)
+(autoload 'js2-mode "js2-mode" nil t)
 
 (setq auto-mode-alist
       (append
@@ -22,7 +23,7 @@
          ("\\.rb\\'"      . ruby-mode)
          ("\\.css\\'"     . less-css-mode)
          ("\\.less\\'"    . less-css-mode)
-         ("\\.js\\'"      . javascript-mode)
+         ("\\.js\\'"      . js2-mode)
          ("\\.rst\\'"     . rst-mode)
          ("\\.lua\\'"     . lua-mode)
          ("\\.sml?$"      . sml-mode)
