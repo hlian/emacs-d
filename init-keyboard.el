@@ -63,8 +63,6 @@
   (if cleanliness (clean-off) (clean-on))
   (setq-default cleanliness (not cleanliness)))
 
-(clean-toggle)
-
 (global-set-keys
  '(("<f7>" markdown)
    ("<f8>" (lambda (warp)
