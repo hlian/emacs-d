@@ -74,13 +74,14 @@
  )
 
 (defalias 'rsub 'replace-regexp-in-string)
-(setq frame-title-format
+(setq frame-title-format-0
       '(:eval
         (if buffer-file-name
             (let ((home (regexp-quote (getenv "HOME")))
                   (file-name (convert-standard-filename buffer-file-name)))
               (rsub "\\\\" "/" (rsub home "~" file-name)))
           (buffer-name))))
+(setq frame-title-format `(,frame-title-format-0 " - emacs"))
 
 (setq mac-option-key-is-meta nil)
 (setq mac-command-key-is-meta t)
