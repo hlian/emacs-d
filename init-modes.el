@@ -68,7 +68,10 @@
  js2-strict-missing-semi-warning nil
  js2-strict-trailing-comma-warning nil
  js2-bounce-indent-p t
- )
+ js2-global-externs (list "$" "ko" "Url" "_" "EventTracking")
+ js2-highlight-external-variables t
+ js2-mode-show-parse-errors t
+ js2-mode-show-strict-warnings t)
 
 (setq powershell-indent 2)
 (setq powershell-continuation-indent 2)
