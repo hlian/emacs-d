@@ -100,17 +100,18 @@
 ; https://github.com/winterTTr/ace-jump-mode/wiki
 (require 'ace-jump-mode)
 
-; https://bitbucket.org/jek/sandbox/src/tip/pycheckers
+(add-to-list 'load-path "~/.emacs.d") ;; check path
+
 (when (load "flymake" t)
-  (defun flymake-pycheckers-init ()
+  (defun flymake-pylint-init ()
     (let* ((temp-file (flymake-init-create-temp-buffer-copy
                        'flymake-create-temp-inplace))
            (local-file (file-relative-name
                         temp-file
                         (file-name-directory buffer-file-name))))
-      (list "/cygwin/home/.emacs.d/packages/pycheckers.bat" (list local-file))))
-  (add-to-list 'flymake-allowed-file-name-masks
-               '("\\.py\\'" flymake-pycheckers-init)))
+      (list "/goofs/pycheckers.bat" (list local-file))))
 
-(require 'flymake)
-(require 'flymake-cursor)
+  (add-to-list 'flymake-allowed-file-name-masks
+               '("\\.py\\'" flymake-pylint-init)))
+
+(eval-after-load "flymake" '(require 'flymake-cursor))
