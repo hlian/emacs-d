@@ -16,6 +16,9 @@
 (autoload 'coffee-mode "coffee-mode" nil t)
 (autoload 'tuareg-mode "tuareg" nil t)
 (autoload 'js2-mode "js2-mode" nil t)
+(autoload 'recentf-list "recentf" nil t)
+(autoload 'filladapt-mode "filladapt" nil t)
+(autoload 'flymake-mode "flymake" nil t)
 
 (setq auto-mode-alist
       (append

@@ -20,9 +20,7 @@
 (make-directory autosave-dir t)
 
 (require 'uniquify)
-(require 'recentf)
 (require 'saveplace)
-(require 'filladapt)
 
 (column-number-mode t)
 (desktop-save-mode t)
@@ -90,18 +88,10 @@
 (setq mac-command-modifier 'meta)
 (setq mac-option-modifier nil)
 
-(load-library "init-theme")
 (load-library "init-modes")
+(load-library "init-keyboard")
 (load-library "init-snippets")
 (load-library "init-pager")
 (load-library "init-warp")
-(load-library "init-keyboard")
 (load-library "init-here")
-
-(package-initialize)
-(setq package-archives
-      '(("ELPA" . "http://tromey.com/elpa/")
-        ("gnu" . "http://elpa.gnu.org/packages/")
-        ("marmalade" . "http://marmalade-repo.org/packages/")))
-
 (load custom-file)
