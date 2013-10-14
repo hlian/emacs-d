@@ -1,9 +1,12 @@
+*~
+*.elc
+.emacs.desktop
+.emacs.desktop.lock
+
 auto-save-list/
 packages/
 tops/
 custom.el
 init-here.el
 init-warp.el
-*~
-*.elc
 tramp
