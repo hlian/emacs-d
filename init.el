@@ -1,3 +1,5 @@
+(setq vc-handled-backends nil)
+
 ; Sweet setup from emacs-starter-kit.
 (setq dotfiles-dir (file-name-directory
                     (or (buffer-file-name) load-file-name)))
