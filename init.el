@@ -71,6 +71,7 @@
 
  recentf-max-saved-items 1000
  uniquify-buffer-name-style 'forward
+ show-trailing-whitespace t
  )
 
 (defalias 'rsub 'replace-regexp-in-string)
