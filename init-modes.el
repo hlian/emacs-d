@@ -29,7 +29,7 @@
          ("\\.rst\\'"     . rst-mode)
          ("\\.lua\\'"     . lua-mode)
          ("\\.sml?$"      . sml-mode)
-         ("\\.md?$"       . markdown-mode)
+         ("\\.md$"       . markdown-mode)
          ("\\.coffee?$"   . coffee-mode)
          ("Cakefile"      . coffee-mode)
          ("\\.ml[iyl]?$"  . tuareg-mode)
