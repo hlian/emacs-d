@@ -93,6 +93,5 @@
 (load-library "init-keyboard")
 (load-library "init-snippets")
 (load-library "init-pager")
-(load-library "init-warp")
 (load-library "init-here")
 (load custom-file)
