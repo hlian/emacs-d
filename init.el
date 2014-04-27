@@ -28,10 +28,8 @@
 (ido-mode t)
 (setq-default ido-auto-merge-delay-time 99)
 (menu-bar-mode t)
-(tool-bar-mode 0)
 (recentf-mode t)
 (show-paren-mode t)
-(scroll-bar-mode nil)
 (delete-selection-mode t)
 
 (setq-default

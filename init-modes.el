@@ -18,6 +18,8 @@
 (autoload 'recentf-list "recentf" nil t)
 (autoload 'filladapt-mode "filladapt" nil t)
 (autoload 'flymake-mode "flymake" nil t)
+(autoload 'puppet-mode "puppet-mode" nil t)
+(autoload 'flymake-coffee-load "flymake-coffee" nil t)
 
 (setq auto-mode-alist
       (append
@@ -33,6 +35,7 @@
          ("\\.coffee?$"   . coffee-mode)
          ("Cakefile"      . coffee-mode)
          ("\\.ml[iyl]?$"  . tuareg-mode)
+         ("\\.pp$"        . puppet-mode)
          )
        auto-mode-alist))
 
