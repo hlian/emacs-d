@@ -27,7 +27,7 @@
                                             (turn-on-haskell-indentation)))))
 
 (use-package js2-mode
-  :mode "\\.js\\'"  
+  :mode "\\.js\\'"
   :commands js2-mode
   :config (setq-default
            js2-auto-indent-flag nil
