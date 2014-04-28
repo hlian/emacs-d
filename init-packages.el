@@ -1,6 +1,8 @@
 (require 'diminish)
 (require 'use-package)
-(setq-default use-package-verbose t)
+(setq-default
+ use-package-idle-interval 1
+ use-package-verbose t)
 
 (use-package cc-mode
   :commands c-mode
