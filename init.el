@@ -46,7 +46,7 @@
 (defalias 'rsub 'replace-regexp-in-string)
 (defalias 'bc 'byte-compile-file)
 
-(setq
+(setq-default
  c-basic-offset 4
  delete-old-versions t ;; Old backups that is.
  disabled-command-function nil ;; Unhide the power functions.
