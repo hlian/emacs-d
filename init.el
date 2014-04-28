@@ -23,7 +23,8 @@
 (desktop-save-mode t)
 (global-hl-line-mode t)
 (ido-mode t)
-(menu-bar-mode t)
+(menu-bar-mode 1)
+(tool-bar-mode -1)
 (setq-default ido-auto-merge-delay-time 99)
 (show-paren-mode t)
 
