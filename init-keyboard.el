@@ -63,6 +63,7 @@
    ("C-; C-r" ido-recentf)
    ("C-; C-m" make-directory)
    ("C-; C-v" tex-view)
+   ("C-; C-a" vc-register)
    ("M-/" hippie-expand)
    ))
 
