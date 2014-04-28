@@ -1,6 +1,3 @@
-(yas-global-mode 't)
-(define-key yas-minor-mode-map (kbd "M-/") 'yas-expand)
-
 (yas-define-snippets
  'text-mode
  '(("re" "ALTER DATABASE [$1] SET SINGLE_USER WITH ROLLBACK IMMEDIATE\nALTER DATABASE [$1] MODIFY Name = [$2]\nALTER DATABASE [$2] SET MULTI_USER WITH ROLLBACK IMMEDIATE" "re")
