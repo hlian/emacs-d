@@ -18,6 +18,7 @@
 
 (use-package haskell-mode
   :commands haskell-mode
+  :diminish haskell-indentation-mode
   :config (progn
             (setq-default haskell-program-name "/usr/local/bin/cabal repl")
             (add-hook 'haskell-mode-hook '(lambda ()
@@ -70,6 +71,7 @@
 
 (use-package smartparens
   :commands smartparens-global-mode
+  :diminish smartparens-mode
   :idle (smartparens-global-mode))
 
 (use-package subword
@@ -81,5 +83,6 @@
 
 (use-package yasnippet
   :commands yas-global-mode
+  :diminish yas-minor-mode
   :idle (yas-global-mode t)
   :config (define-key yas-minor-mode-map (kbd "M-/") 'yas-expand))
