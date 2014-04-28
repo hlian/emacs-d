@@ -1,4 +1,3 @@
-(require 'yasnippet)
 (yas-global-mode 't)
 (define-key yas-minor-mode-map (kbd "M-/") 'yas-expand)
 

@@ -1,13 +1,13 @@
-(setq vc-handled-backends nil)
+(require 'cask "~/.cask/cask.el")
+(cask-initialize)
 
 ; Sweet setup from emacs-starter-kit.
 (setq dotfiles-dir (file-name-directory
                     (or (buffer-file-name) load-file-name)))
 
-(setq autoload-file (concat dotfiles-dir "loaddefs.el"))
-(setq custom-file (concat dotfiles-dir "custom.el"))
 (setq package-user-dir (concat dotfiles-dir "packages"))
 (setq modes-user-dir (concat dotfiles-dir "modes"))
+(setq-default custom-file (concat dotfiles-dir "custom.el"))
 
 (add-to-list 'load-path dotfiles-dir)
 (add-to-list 'load-path modes-user-dir)
@@ -19,24 +19,35 @@
 (defvar autosave-dir "/tmp/emacs")
 (make-directory autosave-dir t)
 
-(require 'uniquify)
+(require 'drag-stuff)
+(require 'popwin)
 (require 'saveplace)
+(require 'uniquify)
 
 (column-number-mode t)
+(delete-selection-mode t)
+(drag-stuff-mode t)
 (desktop-save-mode t)
 (global-hl-line-mode t)
+(global-flycheck-mode t)
 (ido-mode t)
-(setq-default ido-auto-merge-delay-time 99)
 (menu-bar-mode t)
+(popwin-mode t)
 (recentf-mode t)
+(setq-default ido-auto-merge-delay-time 99)
 (show-paren-mode t)
-(delete-selection-mode t)
 
 (setq-default
  indent-tabs-mode nil
  truncate-lines t
  indicate-empty-lines t
  major-mode 'text-mode)
+
+(require 'use-package)
+(use-package expand-region
+  :bind ("C-=" . er/expand-region))
+(use-package smex
+  :bind ("M-x" . smex))
 
 ;;;;;;;;;; Emacs power tools.
 (kill-buffer "*scratch*")

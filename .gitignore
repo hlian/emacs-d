@@ -3,6 +3,8 @@
 .emacs.desktop
 .emacs.desktop.lock
 
+.cask/
+
 auto-save-list/
 packages/
 tops/
@@ -10,3 +12,6 @@ custom.el
 init-here.el
 init-warp.el
 tramp
+
+eshell/
+url/
