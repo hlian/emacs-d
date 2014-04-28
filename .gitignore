@@ -2,6 +2,7 @@
 *.elc
 .emacs.desktop
 .emacs.desktop.lock
+projectile*
 
 .cask/
 

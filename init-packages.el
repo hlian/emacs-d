@@ -61,17 +61,25 @@
   :config (setq-default recentf-max-saved-items 1000))
 
 (use-package saveplace
+  :defer
   :idle (setq-default save-place t))
 
 (use-package smex
+  :commands smex
   :bind ("M-x" . smex))
+
+(use-package smartparens
+  :commands smartparens-global-mode
+  :idle (smartparens-global-mode))
 
 (use-package subword
   :commands subword-forward)
 
 (use-package uniquify
+  :defer
   :idle (setq-default uniquify-buffer-name-style 'forward))
 
 (use-package yasnippet
+  :commands yas-global-mode
   :idle (yas-global-mode t)
   :config (define-key yas-minor-mode-map (kbd "M-/") 'yas-expand))
