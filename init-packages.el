@@ -56,6 +56,8 @@
                     '(lambda ()
                        (add-hook 'after-save-hook 'emacs-lisp-byte-compile t t))))
 
+(use-package midnight)
+
 (use-package recentf
   :commands recentf-mode
   :idle (recentf-mode t)
