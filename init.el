@@ -33,7 +33,9 @@
  truncate-lines t
  indicate-empty-lines t
  major-mode 'text-mode
- scroll-preserve-screen-position t)
+ scroll-preserve-screen-position t
+ vc-handled-backends '(Git)
+)
 
 ;;;;;;;;;; Emacs power tools.
 (kill-buffer "*scratch*")
