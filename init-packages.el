@@ -61,6 +61,10 @@
   :idle (recentf-mode t)
   :config (setq-default recentf-max-saved-items 1000))
 
+(use-package rainbow-delimiters
+  :commands global-rainbow-delimiters-mode
+  :idle (global-rainbow-delimiters-mode t))
+
 (use-package saveplace
   :defer
   :idle (setq-default save-place t))
