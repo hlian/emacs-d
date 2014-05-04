@@ -18,13 +18,13 @@
 
 (use-package haskell-mode
   :commands haskell-mode
-  :diminish haskell-indentation-mode
   :config (progn
             (setq-default haskell-program-name "/usr/local/bin/cabal repl")
             (add-hook 'haskell-mode-hook '(lambda ()
                                             (flycheck-mode)
                                             (flycheck-haskell-setup)
-                                            (turn-on-haskell-indentation)))))
+                                            (turn-on-haskell-indentation)
+                                            (diminish 'haskell-indentation-mode)))))
 
 (use-package js2-mode
   :mode "\\.js\\'"  
