@@ -17,6 +17,7 @@
 (depends-on "popwin")
 (depends-on "projectile")
 (depends-on "smartparens")
+(depends-on "rainbow-delimiters")
 (depends-on "smex")
 (depends-on "use-package")
 (depends-on "yasnippet")

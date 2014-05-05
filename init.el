@@ -49,13 +49,13 @@
  kill-do-not-save-duplicates t
  line-spacing 2
  major-mode 'text-mode
- major-mode 'text-mode
  require-final-newline t
  scroll-preserve-screen-position t
  sgml-basic-offset 2
  show-trailing-whitespace t
  tab-width 4
  truncate-lines t
+ vc-handled-backends '(Git)
  visible-bell t
  x-stretch-cursor t ;; Stretch cursor for tab characters.
  )
