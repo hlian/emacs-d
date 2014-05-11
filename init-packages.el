@@ -20,13 +20,13 @@
 
 (use-package haskell-mode
   :commands haskell-mode
-  :diminish haskell-indentation-mode
   :config (progn
             (setq-default haskell-program-name "/usr/local/bin/cabal repl")
             (add-hook 'haskell-mode-hook '(lambda ()
                                             (flycheck-mode)
                                             (flycheck-haskell-setup)
-                                            (turn-on-haskell-indentation)))))
+                                            (turn-on-haskell-indentation)
+                                            (diminish 'haskell-indentation-mode)))))
 
 (use-package js2-mode
   :mode "\\.js\\'"  
@@ -62,6 +62,10 @@
   :commands recentf-mode
   :idle (recentf-mode t)
   :config (setq-default recentf-max-saved-items 1000))
+
+(use-package rainbow-delimiters
+  :commands global-rainbow-delimiters-mode
+  :idle (global-rainbow-delimiters-mode t))
 
 (use-package saveplace
   :defer
