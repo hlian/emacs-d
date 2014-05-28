@@ -2,6 +2,10 @@
 (require 'use-package)
 (setq-default use-package-verbose t)
 
+(use-package coffee-mode
+  :commands coffee-mode
+  :mode "\\.coffee\\'")
+
 (use-package cc-mode
   :commands c-mode
   :config (add-hook 'c-mode-common-hook
@@ -55,6 +59,10 @@
   :config (add-hook 'emacs-lisp-mode-hook
                     '(lambda ()
                        (add-hook 'after-save-hook 'emacs-lisp-byte-compile t t))))
+
+(use-package markdown-mode
+  :mode "\\.md\\'"
+  :commands markdown-mode)
 
 (use-package midnight)
 
