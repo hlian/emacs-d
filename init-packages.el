@@ -1,6 +1,8 @@
 (require 'diminish)
 (require 'use-package)
-(setq-default use-package-verbose t)
+(setq-default
+ use-package-idle-interval 1
+ use-package-verbose t)
 
 (use-package coffee-mode
   :commands coffee-mode
@@ -20,6 +22,9 @@
 (use-package expand-region
   :bind ("C-=" . er/expand-region))
 
+(use-package exec-path-from-shell
+  :commands exec-path-from-shell-initialize)
+
 (use-package haskell-mode
   :commands haskell-mode
   :config (progn
@@ -27,8 +32,8 @@
             (add-hook 'haskell-mode-hook '(lambda ()
                                             (flycheck-mode)
                                             (flycheck-haskell-setup)
-                                            (turn-on-haskell-indentation)
-                                            (diminish 'haskell-indentation-mode)))))
+                                            (exec-path-from-shell-initialize)
+                                            (structured-haskell-mode)))))
 
 (use-package js2-mode
   :mode "\\.js\\'"
@@ -78,6 +83,9 @@
 (use-package saveplace
   :defer
   :idle (setq-default save-place t))
+
+(use-package shm
+  :commands structured-haskell-mode)
 
 (use-package smex
   :commands smex

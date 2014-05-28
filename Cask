@@ -18,6 +18,8 @@
 (depends-on "projectile")
 (depends-on "smartparens")
 (depends-on "rainbow-delimiters")
+(depends-on "smartparens")
 (depends-on "smex")
+(depends-on "shm")
 (depends-on "use-package")
 (depends-on "yasnippet")
