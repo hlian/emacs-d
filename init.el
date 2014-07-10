@@ -1,5 +1,5 @@
 ;; Cask!
-(require 'cask)
+(require 'cask "~/.cask/cask.el")
 (cask-initialize)
 
 ;; Sweet setup from emacs-starter-kit.

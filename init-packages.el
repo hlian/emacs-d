@@ -23,7 +23,8 @@
   :bind ("C-=" . er/expand-region))
 
 (use-package exec-path-from-shell
-  :commands exec-path-from-shell-initialize)
+  :commands exec-path-from-shell-initialize
+  :idle (exec-path-from-shell-initialize))
 
 (use-package haskell-mode
   :commands haskell-mode
@@ -32,8 +33,8 @@
             (add-hook 'haskell-mode-hook '(lambda ()
                                             (flycheck-mode)
                                             (flycheck-haskell-setup)
-                                            (exec-path-from-shell-initialize)
-                                            (structured-haskell-mode)))))
+                                            (turn-on-haskell-indentation)
+                                            ))))
 
 (use-package js2-mode
   :mode "\\.js\\'"
