@@ -92,11 +92,6 @@
   :commands smex
   :bind ("M-x" . smex))
 
-(use-package smartparens
-  :commands smartparens-global-mode
-  :diminish smartparens-mode
-  :idle (smartparens-global-mode))
-
 (use-package subword
   :commands subword-forward)
 
