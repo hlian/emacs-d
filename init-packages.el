@@ -31,9 +31,12 @@
   :config (progn
             (setq-default haskell-program-name "/usr/local/bin/cabal repl")
             (add-hook 'haskell-mode-hook '(lambda ()
+                                            (interactive-haskell-mode)
                                             (flycheck-mode)
                                             (flycheck-haskell-setup)
                                             (turn-on-haskell-indentation)
+                                            (custom-set-variables
+                                             '(haskell-process-type 'cabal-repl))
                                             ))))
 
 (use-package js2-mode
