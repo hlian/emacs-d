@@ -5,8 +5,6 @@
 ;; Sweet setup from emacs-starter-kit.
 (defvar dotfiles-dir (file-name-directory
                       (or (buffer-file-name) load-file-name)))
-(add-to-list 'load-path dotfiles-dir)
-
 ;; Use-package!
 (load (concat dotfiles-dir "init-packages.el"))
 
@@ -75,8 +73,9 @@
  mac-command-key-is-meta t
  mac-command-modifier 'meta
  mac-option-modifier nil
+ ns-pop-up-frames nil
  )
 
-(load-library "init-keyboard")
-(load-library "init-here")
+(load (concat dotfiles-dir "init-keyboard.el"))
+(load (concat dotfiles-dir "init-here.el"))
 (load-library custom-file)
