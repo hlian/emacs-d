@@ -23,8 +23,9 @@
   :bind ("C-=" . er/expand-region))
 
 (use-package exec-path-from-shell
-  :commands exec-path-from-shell-initialize
-  :idle (exec-path-from-shell-initialize))
+  :commands exec-path-from-shell-initialize)
+
+(exec-path-from-shell-initialize)
 
 (use-package haskell-mode
   :commands haskell-mode
@@ -98,9 +99,8 @@
 (use-package subword
   :commands subword-forward)
 
-(use-package uniquify
-  :defer
-  :idle (setq-default uniquify-buffer-name-style 'forward))
+(require 'uniquify)
+(setq-default uniquify-buffer-name-style 'forward)
 
 (use-package yasnippet
   :commands yas-global-mode

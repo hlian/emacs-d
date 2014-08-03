@@ -12,6 +12,7 @@
 (delete-selection-mode t)
 (desktop-save-mode t)
 (global-hl-line-mode t)
+(global-auto-revert-mode t)
 (ido-mode t)
 (menu-bar-mode 1)
 (tool-bar-mode -1)
