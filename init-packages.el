@@ -27,14 +27,23 @@
 
 (exec-path-from-shell-initialize)
 
+(defun ghc-mod-site-lisp ()
+  (let ((ghc-mod (executable-find "ghc-mod")))
+    (and ghc-mod
+         (expand-file-name "../share/emacs/site-lisp"
+                           (file-name-directory ghc-mod)))))
+
+(use-package ghc
+  :commands ghc-init ghc-debug)
+
 (use-package haskell-mode
   :commands haskell-mode
   :config (progn
             (setq-default haskell-program-name "/usr/local/bin/cabal repl")
+            (setq-default ghc-display-error 'minibuffer)
             (add-hook 'haskell-mode-hook '(lambda ()
                                             (interactive-haskell-mode)
-                                            (flycheck-mode)
-                                            (flycheck-haskell-setup)
+                                            (ghc-init)
                                             (turn-on-haskell-indentation)
                                             (custom-set-variables
                                              '(haskell-process-type 'cabal-repl))
