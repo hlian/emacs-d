@@ -83,7 +83,8 @@
   :mode "\\.md\\'"
   :commands markdown-mode)
 
-(use-package midnight)
+(use-package midnight
+  :defer)
 
 (use-package recentf
   :commands recentf-mode
