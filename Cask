@@ -9,6 +9,7 @@
 (depends-on "flycheck")
 (depends-on "flycheck-cask")
 (depends-on "flycheck-haskell")
+(depends-on "helm")
 (depends-on "idle-highlight-mode")
 (depends-on "js2-mode")
 (depends-on "magit")
