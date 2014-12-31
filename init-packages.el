@@ -23,18 +23,30 @@
   :bind ("C-=" . er/expand-region))
 
 (use-package exec-path-from-shell
-  :commands exec-path-from-shell-initialize
-  :idle (exec-path-from-shell-initialize))
+  :commands exec-path-from-shell-initialize)
+
+(exec-path-from-shell-initialize)
+
+(defun ghc-mod-site-lisp ()
+  (let ((ghc-mod (executable-find "ghc-mod")))
+    (and ghc-mod
+         (expand-file-name "../share/emacs/site-lisp"
+                           (file-name-directory ghc-mod)))))
+
+(use-package ghc
+  :commands ghc-init ghc-debug)
 
 (use-package haskell-mode
   :commands haskell-mode
   :config (progn
             (setq-default haskell-program-name "/usr/local/bin/cabal repl")
             (custom-set-variables '(haskell-process-type 'cabal-repl))
+            (setq-default ghc-display-error 'minibuffer)
             (add-hook 'haskell-mode-hook '(lambda ()
-                                            (flycheck-mode)
-                                            (flycheck-haskell-setup)
+                                            (ghc-init)
                                             (turn-on-haskell-indentation)
+                                            (custom-set-variables
+                                             '(haskell-process-type 'cabal-repl))
                                             ))))
 
 (use-package js2-mode
@@ -71,7 +83,8 @@
   :mode "\\.md\\'"
   :commands markdown-mode)
 
-(use-package midnight)
+(use-package midnight
+  :defer)
 
 (use-package recentf
   :commands recentf-mode
@@ -96,9 +109,8 @@
 (use-package subword
   :commands subword-forward)
 
-(use-package uniquify
-  :defer
-  :idle (setq-default uniquify-buffer-name-style 'forward))
+(require 'uniquify)
+(setq-default uniquify-buffer-name-style 'forward)
 
 (use-package yasnippet
   :commands yas-global-mode

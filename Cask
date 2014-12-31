@@ -21,4 +21,5 @@
 (depends-on "smex")
 (depends-on "shm")
 (depends-on "use-package")
+(depends-on "windmove")
 (depends-on "yasnippet")

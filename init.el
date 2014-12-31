@@ -5,8 +5,6 @@
 ;; Sweet setup from emacs-starter-kit.
 (defvar dotfiles-dir (file-name-directory
                       (or (buffer-file-name) load-file-name)))
-(add-to-list 'load-path dotfiles-dir)
-
 ;; Use-package!
 (load (concat dotfiles-dir "init-packages.el"))
 
@@ -14,6 +12,7 @@
 (delete-selection-mode t)
 (desktop-save-mode t)
 (global-hl-line-mode t)
+(global-auto-revert-mode t)
 (ido-mode t)
 (menu-bar-mode 1)
 (tool-bar-mode -1)
@@ -84,6 +83,6 @@
     (define-key key-translation-map (kbd "C-\\") (kbd "C-;"))
     )
 
-(load-library "init-keyboard")
-(load-library "init-here")
+(load (concat dotfiles-dir "init-keyboard.el"))
+(load (concat dotfiles-dir "init-here.el"))
 (load-library custom-file)
