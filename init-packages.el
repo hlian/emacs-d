@@ -30,6 +30,7 @@
   :commands haskell-mode
   :config (progn
             (setq-default haskell-program-name "/usr/local/bin/cabal repl")
+            (custom-set-variables '(haskell-process-type 'cabal-repl))
             (add-hook 'haskell-mode-hook '(lambda ()
                                             (flycheck-mode)
                                             (flycheck-haskell-setup)
@@ -91,11 +92,6 @@
 (use-package smex
   :commands smex
   :bind ("M-x" . smex))
-
-(use-package smartparens
-  :commands smartparens-global-mode
-  :diminish smartparens-mode
-  :idle (smartparens-global-mode))
 
 (use-package subword
   :commands subword-forward)

@@ -19,6 +19,8 @@
 (tool-bar-mode -1)
 (show-paren-mode t)
 (windmove-default-keybindings)
+(electric-pair-mode)
+(auto-revert-mode 1)
 
 (kill-buffer "*scratch*")
 
@@ -75,7 +77,12 @@
  mac-command-key-is-meta t
  mac-command-modifier 'meta
  mac-option-modifier nil
+ ns-pop-up-frames nil
  )
+
+(if (null window-system)
+    (define-key key-translation-map (kbd "C-\\") (kbd "C-;"))
+    )
 
 (load-library "init-keyboard")
 (load-library "init-here")
