@@ -3,6 +3,7 @@
 
 (depends-on "ace-jump-mode")
 (depends-on "cask")
+(depends-on "company-ghc")
 (depends-on "diminish")
 (depends-on "drag-stuff")
 (depends-on "exec-path-from-shell")

@@ -42,8 +42,10 @@
             (setq-default haskell-program-name "/usr/local/bin/cabal repl")
             (setq-default ghc-display-error 'minibuffer)
             (add-hook 'haskell-mode-hook '(lambda ()
-                                            (interactive-haskell-mode)
                                             (ghc-init)
+                                            (add-to-list 'company-backends 'company-ghc)
+                                            (custom-set-variables '(company-ghc-show-info t))
+                                            (flycheck-mode)
                                             (turn-on-haskell-indentation)
                                             (custom-set-variables
                                              '(haskell-process-type 'cabal-repl))
