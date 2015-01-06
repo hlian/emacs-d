@@ -1,3 +1,8 @@
+(require 'package)
+(add-to-list 'package-archives
+  '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(package-initialize)
+
 (require 'diminish)
 (require 'use-package)
 (setq-default
@@ -13,6 +18,17 @@
   :config (add-hook 'c-mode-common-hook
                     (lambda()
                       (local-set-key (kbd "C-; C-;") 'ff-find-other-file))))
+
+(use-package company
+  :commands company-mode
+  :config (progn
+            (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload)
+            (define-key haskell-mode-map (kbd "SPC") 'haskell-mode-contextual-space)
+            (add-to-list 'company-backends 'company-ghc)
+            (custom-set-variables '(company-show-numbers t))
+            (custom-set-variables '(company-idle-delay 0))
+            (custom-set-variables '(company-frontends '(company-pseudo-tooltip-frontend)))
+            ))
 
 (use-package drag-stuff
   :commands drag-stuff-mode
@@ -36,18 +52,17 @@
 (use-package ghc
   :commands ghc-init ghc-debug)
 
-(use-package haskell-mode
-  :commands haskell-mode
-  :config (progn
-            (setq-default haskell-program-name "/usr/local/bin/cabal repl")
-            (setq-default ghc-display-error 'minibuffer)
-            (add-hook 'haskell-mode-hook '(lambda ()
-                                            (interactive-haskell-mode)
-                                            (ghc-init)
-                                            (turn-on-haskell-indentation)
-                                            (custom-set-variables
-                                             '(haskell-process-type 'cabal-repl))
-                                            ))))
+ (use-package haskell-mode
+   :commands haskell-mode
+   :config (progn
+             (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload)
+             (define-key haskell-mode-map (kbd "SPC") 'haskell-mode-contextual-space)
+             (custom-set-variables '(haskell-process-type 'cabal-repl))
+             (setq-default ghc-display-error 'other-buffer)
+             (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+             (add-hook 'haskell-mode-hook 'ghc-init)
+             (add-hook 'haskell-mode-hook 'company-mode)
+             ))
 
 (use-package js2-mode
   :mode "\\.js\\'"
@@ -92,8 +107,8 @@
   :config (setq-default recentf-max-saved-items 1000))
 
 (use-package rainbow-delimiters
-  :commands global-rainbow-delimiters-mode
-  :idle (global-rainbow-delimiters-mode t))
+  :commands rainbow-delimiters-mode
+  :idle (rainbow-delimiters-mode t))
 
 (use-package saveplace
   :defer

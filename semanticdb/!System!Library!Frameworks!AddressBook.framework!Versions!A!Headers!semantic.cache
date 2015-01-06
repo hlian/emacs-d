@@ -1,0 +1,23 @@
+;; Object Headers/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "Headers/"
+  :tables (list 
+   (semanticdb-table "ABImageLoading.h"
+    :major-mode 'c-mode
+    :tags 
+        '( ("tag" variable (:type "int") nil [239 243])
+            ("data" variable (:type "int") nil [545 550])
+            ("imageData" variable (:type "int") nil [700 710])
+            ("client" variable (:type "int") nil [947 954])
+            ("tag" variable (:type "int") nil [1264 1268]))          
+    :file "ABImageLoading.h"
+    :pointmax 1406
+    :fsize 1405
+    :lastmodtime '(21523 46687 0 0)
+    :unmatched-syntax '((symbol 1402 . 1405) (punctuation 1401 . 1402) (semantic-list 1253 . 1264) (punctuation 1252 . 1253) (symbol 1224 . 1252) (semantic-list 1218 . 1224) (punctuation 1216 . 1217) (semantic-list 928 . 947) (punctuation 927 . 928) (symbol 897 . 927) (semantic-list 886 . 897) (punctuation 884 . 885) (semantic-list 690 . 700) (punctuation 688 . 689) (semantic-list 535 . 545) (punctuation 534 . 535) (symbol 522 . 534) (semantic-list 516 . 522) (punctuation 514 . 515) (semantic-list 488 . 512) (symbol 479 . 487) (symbol 469 . 478) (punctuation 468 . 469) (symbol 463 . 466) (punctuation 462 . 463) (semantic-list 228 . 239) (punctuation 227 . 228) (symbol 221 . 227) (symbol 216 . 220) (semantic-list 206 . 216) (punctuation 205 . 206) (symbol 189 . 205) (semantic-list 183 . 189) (punctuation 181 . 182) (punctuation 179 . 180) (symbol 171 . 179) (punctuation 170 . 171) (symbol 156 . 169) (symbol 147 . 155) (punctuation 146 . 147) (punctuation 143 . 144) (symbol 142 . 143) (punctuation 141 . 142) (symbol 130 . 141) (punctuation 129 . 130) (symbol 118 . 129) (punctuation 117 . 118) (symbol 110 . 116) (punctuation 109 . 110))
+    )
+   )
+  :file "!System!Library!Frameworks!AddressBook.framework!Versions!A!Headers!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2"
+  )

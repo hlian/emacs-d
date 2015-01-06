@@ -1,0 +1,51 @@
+;; Object Headers/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "Headers/"
+  :tables (list 
+   (semanticdb-table "SKTransition.h"
+    :major-mode 'c-mode
+    :tags 
+        '( ("CIFilter" type
+               (:prototype t
+                :type "class")
+                nil [140 155])
+            ("NS_ENUM" function
+               (:arguments 
+                  ( ("" variable (:type ("NSInteger" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [173 183])
+                    ("" variable (:type ("SKTransitionDirection" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [184 206]))                  
+                :type "int")
+                nil [165 332])
+            ("NS_ENUM_AVAILABLE" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type ("_9" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [353 356])
+                    ("" variable (:type ("_0" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [358 361]))                  
+                :type "int")
+                nil [333 362])
+            ("sec" variable (:type "int") nil [521 525])
+            ("sec" variable (:type "int") nil [578 582])
+            ("sec" variable (:type "int") nil [658 662])
+            ("sec" variable (:type "int") nil [725 729])
+            ("sec" variable (:type "int") nil [789 793])
+            ("sec" variable (:type "int") nil [891 895])
+            ("sec" variable (:type "int") nil [992 996])
+            ("sec" variable (:type "int") nil [1091 1095])
+            ("sec" variable (:type "int") nil [1163 1167])
+            ("sec" variable (:type "int") nil [1232 1236])
+            ("sec" variable (:type "int") nil [1304 1308])
+            ("sec" variable (:type "int") nil [1374 1378])
+            ("sec" variable (:type "int") nil [1434 1438])
+            ("sec" variable (:type "int") nil [1840 1844])
+            ("pausesIncomingScene" variable (:type ("BOOL" type (:type "class") nil nil)) nil [1942 1967])
+            ("pausesOutgoingScene" variable (:type ("BOOL" type (:type "class") nil nil)) nil [2065 2090]))          
+    :file "SKTransition.h"
+    :pointmax 2098
+    :fsize 2097
+    :lastmodtime '(21519 34099 0 0)
+    :unmatched-syntax '((symbol 2094 . 2097) (punctuation 2093 . 2094) (semantic-list 2053 . 2064) (symbol 2044 . 2052) (punctuation 2043 . 2044) (semantic-list 1930 . 1941) (symbol 1921 . 1929) (punctuation 1920 . 1921) (semantic-list 1824 . 1840) (punctuation 1823 . 1824) (symbol 1815 . 1823) (symbol 1808 . 1814) (semantic-list 1797 . 1808) (punctuation 1796 . 1797) (symbol 1774 . 1796) (semantic-list 1758 . 1774) (punctuation 1756 . 1757) (semantic-list 1418 . 1434) (punctuation 1417 . 1418) (symbol 1398 . 1417) (semantic-list 1382 . 1398) (punctuation 1380 . 1381) (semantic-list 1358 . 1374) (punctuation 1357 . 1358) (symbol 1327 . 1357) (semantic-list 1311 . 1327) (punctuation 1309 . 1310) (semantic-list 1288 . 1304) (punctuation 1287 . 1288) (symbol 1255 . 1287) (semantic-list 1239 . 1255) (punctuation 1237 . 1238) (semantic-list 1216 . 1232) (punctuation 1215 . 1216) (symbol 1186 . 1215) (semantic-list 1170 . 1186) (punctuation 1168 . 1169) (semantic-list 1147 . 1163) (punctuation 1146 . 1147) (symbol 1115 . 1146) (semantic-list 1099 . 1115) (punctuation 1097 . 1098) (semantic-list 1075 . 1091) (punctuation 1074 . 1075) (symbol 1066 . 1074) (symbol 1056 . 1065) (semantic-list 1033 . 1056) (punctuation 1032 . 1033) (symbol 1015 . 1032) (semantic-list 999 . 1015) (punctuation 997 . 998) (semantic-list 976 . 992) (punctuation 975 . 976) (symbol 967 . 975) (symbol 957 . 966) (semantic-list 934 . 957) (punctuation 933 . 934) (symbol 914 . 933) (semantic-list 898 . 914) (punctuation 896 . 897) (semantic-list 875 . 891) (punctuation 874 . 875) (symbol 866 . 874) (symbol 856 . 865) (semantic-list 833 . 856) (punctuation 832 . 833) (symbol 813 . 832) (semantic-list 797 . 813) (punctuation 795 . 796) (semantic-list 773 . 789) (punctuation 772 . 773) (symbol 748 . 772) (semantic-list 732 . 748) (punctuation 730 . 731) (semantic-list 709 . 725) (punctuation 708 . 709) (symbol 682 . 708) (semantic-list 666 . 682) (punctuation 664 . 665) (semantic-list 642 . 658) (punctuation 641 . 642) (symbol 633 . 641) (symbol 627 . 632) (semantic-list 616 . 627) (punctuation 615 . 616) (symbol 602 . 615) (semantic-list 586 . 602) (punctuation 584 . 585) (semantic-list 562 . 578) (punctuation 561 . 562) (symbol 545 . 561) (semantic-list 529 . 545) (punctuation 527 . 528) (semantic-list 505 . 521) (punctuation 504 . 505) (symbol 483 . 504) (semantic-list 467 . 483) (punctuation 465 . 466) (symbol 455 . 463) (punctuation 453 . 454) (symbol 440 . 452) (symbol 430 . 439) (punctuation 429 . 430) (symbol 419 . 428) (number 357 . 358) (number 351 . 353) (TYPEDEF 157 . 164) (punctuation 139 . 140) (punctuation 136 . 137) (symbol 135 . 136) (punctuation 134 . 135) (symbol 121 . 134) (punctuation 120 . 121) (symbol 111 . 120) (punctuation 110 . 111) (symbol 103 . 109) (punctuation 102 . 103))
+    )
+   )
+  :file "!System!Library!Frameworks!SpriteKit.framework!Versions!A!Headers!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2"
+  )

@@ -1,0 +1,19 @@
+;; Object Trellis/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "Trellis/"
+  :tables (list 
+   (semanticdb-table "FCTBoardViewController+CardPlacement.h"
+    :major-mode 'c-mode
+    :tags 
+        '( ("prepareCardSyncing" variable (:type "int") nil [368 387]))          
+    :file "FCTBoardViewController+CardPlacement.h"
+    :pointmax 394
+    :fsize 393
+    :lastmodtime '(21655 280 0 0)
+    :unmatched-syntax '((symbol 390 . 393) (punctuation 389 . 390) (semantic-list 362 . 368) (punctuation 360 . 361) (semantic-list 174 . 187) (symbol 151 . 173) (symbol 141 . 150) (punctuation 140 . 141) (string 112 . 138) (symbol 105 . 111) (punctuation 104 . 105))
+    )
+   )
+  :file "!Users!hao!lab!trello!Trellis!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2"
+  )
