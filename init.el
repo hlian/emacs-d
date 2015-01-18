@@ -17,7 +17,9 @@
 (menu-bar-mode 1)
 (tool-bar-mode -1)
 (show-paren-mode t)
-(electric-pair-mode t)
+(windmove-default-keybindings)
+(electric-pair-mode)
+(auto-revert-mode 1)
 
 (kill-buffer "*scratch*")
 
@@ -76,6 +78,10 @@
  mac-option-modifier nil
  ns-pop-up-frames nil
  )
+
+(if (null window-system)
+    (define-key key-translation-map (kbd "C-\\") (kbd "C-;"))
+    )
 
 (load (concat dotfiles-dir "init-keyboard.el"))
 (load (concat dotfiles-dir "init-here.el"))
