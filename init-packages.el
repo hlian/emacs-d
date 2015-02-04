@@ -51,7 +51,7 @@
 (use-package ghc
   :commands ghc-init ghc-debug)
 
- (use-package haskell-mode
+(use-package haskell-mode
    :commands haskell-mode
    :config (progn
              (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload)
@@ -59,7 +59,9 @@
              (custom-set-variables '(haskell-process-type 'cabal-repl))
              (setq-default ghc-display-error 'other-buffer)
              (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
-             (add-hook 'haskell-mode-hook 'ghc-init)
+             (add-hook 'haskell-mode-hook 'flycheck-haskell-setup)
+             (add-hook 'haskell-mode-hook 'flycheck-mode)
+             ; (add-hook 'haskell-mode-hook 'ghc-init)
              (add-hook 'haskell-mode-hook 'company-mode)
              ))
 
