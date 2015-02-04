@@ -133,3 +133,16 @@
   :diminish yas-minor-mode
   :idle (yas-global-mode t)
   :config (define-key yas-minor-mode-map (kbd "M-/") 'yas-expand))
+
+(use-package org-mode
+  :mode "\\.org\\'"
+  :config (progn
+            (setq org-agenda-include-diary t)
+            (add-hook
+             'org-mode-hook
+             (lambda ()
+               (org-indent-mode)
+               (define-key org-mode-map (kbd "C-c l") 'org-store-link)
+               (define-key org-mode-map (kbd "C-c c") 'org-capture)
+               (define-key org-mode-map (kbd "C-c a") 'org-agenda)
+               (define-key org-mode-map (kbd "C-c b") 'org-iswitchb)))))
