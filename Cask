@@ -17,6 +17,7 @@
 (depends-on "idle-highlight-mode")
 (depends-on "js2-mode")
 (depends-on "magit")
+(depends-on "multiple-cursors")
 (depends-on "nyan-mode")
 (depends-on "pallet")
 (depends-on "popwin")

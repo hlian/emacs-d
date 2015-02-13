@@ -102,6 +102,13 @@
 (use-package midnight
   :defer)
 
+(use-package multiple-cursors
+  :defer
+  :config (progn
+            (global-set-key (kbd "C->") 'mc/mark-next-like-this)
+            (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+            (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)))
+
 (use-package recentf
   :commands recentf-mode
   :idle (recentf-mode t)
