@@ -149,7 +149,7 @@
 (use-package org-mode
   :mode "\\.org\\'"
   :config (progn
-            (setq org-agenda-include-diary t)
+            (setq-default org-agenda-include-diary t)
             (add-hook
              'org-mode-hook
              (lambda ()
