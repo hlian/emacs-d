@@ -34,6 +34,11 @@
   :diminish drag-stuff-mode
   :idle (drag-stuff-mode t))
 
+(use-package hao-mode
+  :commands hao-mode
+  :load-path "lisp"
+  :idle (hao-mode t))
+
 (use-package expand-region
   :bind ("C-=" . er/expand-region))
 

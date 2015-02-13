@@ -8,21 +8,6 @@
 ;; Use-package!
 (load (concat dotfiles-dir "init-packages.el"))
 
-(column-number-mode t)
-(delete-selection-mode t)
-(desktop-save-mode t)
-(global-hl-line-mode t)
-(global-auto-revert-mode t)
-(ido-mode t)
-(menu-bar-mode 1)
-(tool-bar-mode -1)
-(show-paren-mode t)
-(windmove-default-keybindings)
-(electric-pair-mode)
-(auto-revert-mode 1)
-
-(kill-buffer "*scratch*")
-
 ;; Nobody wants to type "yes" and "no"
 (fset 'yes-or-no-p 'y-or-n-p)
 
@@ -62,15 +47,6 @@
  x-stretch-cursor t ;; Stretch cursor for tab characters.
  )
 
-(setq frame-title-format-0
-      '(:eval
-        (if buffer-file-name
-            (let ((home (regexp-quote (getenv "HOME")))
-                  (file-name (convert-standard-filename buffer-file-name)))
-              (rsub "\\\\" "/" (rsub home "~" file-name)))
-          (buffer-name))))
-(setq frame-title-format `(,frame-title-format-0 " - emacs"))
-
 (setq-default
  mac-option-key-is-meta nil
  mac-command-key-is-meta t
@@ -80,9 +56,4 @@
  )
 
 (if (null window-system)
-    (define-key key-translation-map (kbd "C-\\") (kbd "C-;"))
-    )
-
-(load (concat dotfiles-dir "init-keyboard.el"))
-(load (concat dotfiles-dir "init-here.el"))
-(load-library custom-file)
+    (define-key key-translation-map (kbd "C-\\") (kbd "C-;")))
