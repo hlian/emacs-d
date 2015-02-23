@@ -26,6 +26,7 @@
 (depends-on "smartparens")
 (depends-on "smex")
 (depends-on "shm")
+(depends-on "solarized-theme")
 (depends-on "use-package")
 (depends-on "windmove")
 (depends-on "yasnippet")
