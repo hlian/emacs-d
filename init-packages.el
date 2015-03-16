@@ -32,12 +32,14 @@
 (use-package drag-stuff
   :commands drag-stuff-mode
   :diminish drag-stuff-mode
-  :idle (drag-stuff-mode t))
+  :defer t
+  :init (drag-stuff-mode t))
 
 (use-package hao-mode
   :commands hao-mode
   :load-path "lisp"
-  :idle (hao-mode t))
+  :defer t
+  :init (hao-mode t))
 
 (use-package expand-region
   :bind ("C-=" . er/expand-region))
@@ -92,7 +94,8 @@
 
 (use-package popwin
   :commands popwin-mode
-  :idle (popwin-mode t))
+  :defer t
+  :init (popwin-mode t))
 
 (use-package lisp-mode
   :commands emacs-lisp-mode
@@ -116,16 +119,18 @@
 
 (use-package recentf
   :commands recentf-mode
-  :idle (recentf-mode t)
+  :defer t
+  :init (recentf-mode t)
   :config (setq-default recentf-max-saved-items 1000))
 
 (use-package rainbow-delimiters
   :commands rainbow-delimiters-mode
-  :idle (rainbow-delimiters-mode t))
+  :defer t
+  :init (rainbow-delimiters-mode t))
 
 (use-package saveplace
-  :defer
-  :idle (setq-default save-place t))
+  :defer t
+  :init (setq-default save-place t))
 
 (use-package shm
   :commands structured-haskell-mode)
@@ -143,7 +148,8 @@
 (use-package yasnippet
   :commands yas-global-mode
   :diminish yas-minor-mode
-  :idle (yas-global-mode t)
+  :defer t
+  :init (yas-global-mode t)
   :config (define-key yas-minor-mode-map (kbd "M-/") 'yas-expand))
 
 (use-package org-mode
