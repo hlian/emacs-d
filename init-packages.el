@@ -70,7 +70,11 @@
              (add-hook 'haskell-mode-hook 'flycheck-mode)
              ; (add-hook 'haskell-mode-hook 'ghc-init)
              (add-hook 'haskell-mode-hook 'company-mode)
+             (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
              ))
+
+(use-package haskell-interactive-mode
+  :commands haskell-interactive-mode)
 
 (use-package js2-mode
   :mode "\\.js\\'"
