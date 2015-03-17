@@ -5,7 +5,7 @@
 (require 'diminish)
 (require 'use-package)
 (setq-default
- use-package-idle-interval 1
+ use-package-idle-interval 2
  use-package-verbose t)
 
 (use-package coffee-mode
