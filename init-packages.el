@@ -32,14 +32,14 @@
 (use-package drag-stuff
   :commands drag-stuff-mode
   :diminish drag-stuff-mode
-  :defer t
-  :init (drag-stuff-mode t))
+  :defer use-package-idle-interval
+  :config (drag-stuff-mode t))
 
 (use-package hao-mode
   :commands hao-mode
   :load-path "lisp"
-  :defer t
-  :init (hao-mode t))
+  :defer use-package-idle-interval
+  :config (hao-mode t))
 
 (use-package expand-region
   :bind ("C-=" . er/expand-region))
@@ -98,8 +98,8 @@
 
 (use-package popwin
   :commands popwin-mode
-  :defer t
-  :init (popwin-mode t))
+  :defer use-package-idle-interval
+  :config (popwin-mode t))
 
 (use-package lisp-mode
   :commands emacs-lisp-mode
@@ -112,10 +112,10 @@
   :commands markdown-mode)
 
 (use-package midnight
-  :defer)
+  :defer use-package-idle-interval)
 
 (use-package multiple-cursors
-  :defer
+  :defer use-package-idle-interval
   :config (progn
             (global-set-key (kbd "C->") 'mc/mark-next-like-this)
             (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
@@ -123,18 +123,17 @@
 
 (use-package recentf
   :commands recentf-mode
-  :defer t
-  :init (recentf-mode t)
-  :config (setq-default recentf-max-saved-items 1000))
+  :defer use-package-idle-interval
+  :config (progn (recentf-mode t) (setq-default recentf-max-saved-items 1000)))
 
 (use-package rainbow-delimiters
   :commands rainbow-delimiters-mode
-  :defer t
-  :init (rainbow-delimiters-mode t))
+  :defer use-package-idle-interval
+  :config (rainbow-delimiters-mode t))
 
 (use-package saveplace
-  :defer t
-  :init (setq-default save-place t))
+  :defer use-package-idle-interval
+  :config (setq-default save-place t))
 
 (use-package shm
   :commands structured-haskell-mode)
@@ -152,9 +151,10 @@
 (use-package yasnippet
   :commands yas-global-mode
   :diminish yas-minor-mode
-  :defer t
-  :init (yas-global-mode t)
-  :config (define-key yas-minor-mode-map (kbd "M-/") 'yas-expand))
+  :defer use-package-idle-interval
+  :config (progn
+            (yas-global-mode t)
+            (define-key yas-minor-mode-map (kbd "M-/") 'yas-expand)))
 
 (use-package org-mode
   :mode "\\.org\\'"
@@ -162,9 +162,9 @@
             (setq-default org-agenda-include-diary t)
             (add-hook
              'org-mode-hook
-             (lambda ()
-               (org-indent-mode)
-               (define-key org-mode-map (kbd "C-c l") 'org-store-link)
-               (define-key org-mode-map (kbd "C-c c") 'org-capture)
-               (define-key org-mode-map (kbd "C-c a") 'org-agenda)
-               (define-key org-mode-map (kbd "C-c b") 'org-iswitchb)))))
+             '(lambda ()
+                (org-indent-mode)
+                (define-key org-mode-map (kbd "C-c l") 'org-store-link)
+                (define-key org-mode-map (kbd "C-c c") 'org-capture)
+                (define-key org-mode-map (kbd "C-c a") 'org-agenda)
+                (define-key org-mode-map (kbd "C-c b") 'org-iswitchb)))))
