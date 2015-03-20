@@ -4,9 +4,7 @@
 
 (require 'diminish)
 (require 'use-package)
-(setq-default
- use-package-idle-interval 2
- use-package-verbose t)
+(setq use-package-verbose t)
 
 (use-package coffee-mode
   :commands coffee-mode
@@ -32,13 +30,13 @@
 (use-package drag-stuff
   :commands drag-stuff-mode
   :diminish drag-stuff-mode
-  :defer use-package-idle-interval
+  :defer 2
   :config (drag-stuff-mode t))
 
 (use-package hao-mode
   :commands hao-mode
   :load-path "lisp"
-  :defer use-package-idle-interval
+  :defer 2
   :config (hao-mode t))
 
 (use-package expand-region
@@ -98,7 +96,7 @@
 
 (use-package popwin
   :commands popwin-mode
-  :defer use-package-idle-interval
+  :defer 2
   :config (popwin-mode t))
 
 (use-package lisp-mode
@@ -112,10 +110,10 @@
   :commands markdown-mode)
 
 (use-package midnight
-  :defer use-package-idle-interval)
+  :defer 2)
 
 (use-package multiple-cursors
-  :defer use-package-idle-interval
+  :defer 2
   :config (progn
             (global-set-key (kbd "C->") 'mc/mark-next-like-this)
             (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
@@ -123,16 +121,16 @@
 
 (use-package recentf
   :commands recentf-mode
-  :defer use-package-idle-interval
+  :defer 2
   :config (progn (recentf-mode t) (setq-default recentf-max-saved-items 1000)))
 
 (use-package rainbow-delimiters
   :commands rainbow-delimiters-mode
-  :defer use-package-idle-interval
+  :defer 2
   :config (rainbow-delimiters-mode t))
 
 (use-package saveplace
-  :defer use-package-idle-interval
+  :defer 2
   :config (setq-default save-place t))
 
 (use-package shm
@@ -151,7 +149,7 @@
 (use-package yasnippet
   :commands yas-global-mode
   :diminish yas-minor-mode
-  :defer use-package-idle-interval
+  :defer 2
   :config (progn
             (yas-global-mode t)
             (define-key yas-minor-mode-map (kbd "M-/") 'yas-expand)))
