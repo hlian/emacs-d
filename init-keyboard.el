@@ -3,14 +3,6 @@
             (setcar a (read-kbd-macro (car a)))
             (apply 'global-set-key a)) alist))
 
-(defun delete-word (arg)
-  (interactive "p")
-  (delete-region (point) (progn (subword-forward arg) (point))))
-
-(defun backward-delete-word (arg)
-  (interactive "p")
-  (delete-word (- arg)))
-
 ;; Stefan Monnier <foo at acm.org>. It is the opposite of
 ;; fill-paragraph: Takes a multi-line paragraph and makes it into a
 ;; single line of text.
@@ -46,8 +38,7 @@
              (desktop-change-dir
               (gethash warp warp-table))))
 
-   ("M-d" delete-word)
-   ("C-<backspace>" backward-delete-word)
+   ("C-<backspace>" backward-kill-word)
 
    ("M-[" backward-paragraph)
    ("M-]" forward-paragraph)
