@@ -8,7 +8,7 @@
     (global-hl-line-mode t)
     (global-auto-revert-mode t)
     (ido-mode t)
-    (menu-bar-mode 1)
+    (menu-bar-mode 0)
     (tool-bar-mode -1)
     (show-paren-mode t)
     (windmove-default-keybindings)
