@@ -23,8 +23,6 @@
 (depends-on "popwin")
 (depends-on "projectile")
 (depends-on "rainbow-delimiters")
-(depends-on "smartparens")
-(depends-on "smex")
 (depends-on "shm")
 (depends-on "solarized-theme")
 (depends-on "use-package")

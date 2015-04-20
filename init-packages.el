@@ -1,8 +1,3 @@
-(require 'package)
-(add-to-list 'package-archives
-  '("melpa" . "http://melpa.milkbox.net/packages/") t)
-
-(require 'diminish)
 (require 'use-package)
 (setq use-package-verbose t)
 
@@ -27,25 +22,14 @@
             (custom-set-variables '(company-frontends '(company-pseudo-tooltip-frontend)))
             ))
 
-(use-package drag-stuff
-  :commands drag-stuff-mode
-  :diminish drag-stuff-mode
-  :defer 2
-  :config (drag-stuff-mode t))
-
 (use-package hao-mode
   :commands hao-mode
   :load-path "lisp"
-  :defer 2
+  :defer 1
   :config (hao-mode t))
 
 (use-package expand-region
   :bind ("C-=" . er/expand-region))
-
-(use-package exec-path-from-shell
-  :commands exec-path-from-shell-initialize)
-
-(exec-path-from-shell-initialize)
 
 (defun ghc-mod-site-lisp ()
   (let ((ghc-mod (executable-find "ghc-mod")))
@@ -94,11 +78,6 @@
            js2-mode-show-parse-errors t
            js2-mode-show-strict-warnings t))
 
-(use-package popwin
-  :commands popwin-mode
-  :defer 2
-  :config (popwin-mode t))
-
 (use-package lisp-mode
   :commands emacs-lisp-mode
   :config (add-hook 'emacs-lisp-mode-hook
@@ -106,11 +85,7 @@
                        (add-hook 'after-save-hook 'emacs-lisp-byte-compile t t))))
 
 (use-package markdown-mode
-  :mode "\\.md\\'"
-  :commands markdown-mode)
-
-(use-package midnight
-  :defer 2)
+  :mode "\\.md\\'")
 
 (use-package multiple-cursors
   :defer 2
@@ -129,12 +104,14 @@
   :defer 2
   :config (rainbow-delimiters-mode t))
 
-(use-package saveplace
-  :defer 2
-  :config (setq-default save-place t))
+(use-package multiple-cursors
+  :bind
+  (("C->" . mc/mark-next-like-this)
+   ("C-<" . mc/mark-previous-like-this)
+   ("C-c C-<" . mc/mark-all-like-this)))
 
-(use-package shm
-  :commands structured-haskell-mode)
+(use-package popwin
+  :commands popwin-mode)
 
 (use-package smex
   :commands smex
@@ -143,26 +120,20 @@
 (use-package subword
   :commands subword-forward)
 
-(require 'uniquify)
-(setq-default uniquify-buffer-name-style 'forward)
-
 (use-package yasnippet
-  :commands yas-global-mode
   :diminish yas-minor-mode
-  :defer 2
-  :config (progn
-            (yas-global-mode t)
-            (define-key yas-minor-mode-map (kbd "M-/") 'yas-expand)))
+  :defer 1
+  :config
+  (yas-global-mode t)
+  (define-key yas-minor-mode-map (kbd "M-/") 'yas-expand))
 
-(use-package org-mode
-  :mode "\\.org\\'"
-  :config (progn
-            (setq-default org-agenda-include-diary t)
-            (add-hook
-             'org-mode-hook
-             '(lambda ()
-                (org-indent-mode)
-                (define-key org-mode-map (kbd "C-c l") 'org-store-link)
-                (define-key org-mode-map (kbd "C-c c") 'org-capture)
-                (define-key org-mode-map (kbd "C-c a") 'org-agenda)
-                (define-key org-mode-map (kbd "C-c b") 'org-iswitchb)))))
+(progn
+  (setq-default org-agenda-include-diary t)
+  (add-hook
+   'org-mode-hook
+   (lambda ()
+     (org-indent-mode)
+     (define-key org-mode-map (kbd "C-c l") 'org-store-link)
+     (define-key org-mode-map (kbd "C-c c") 'org-capture)
+     (define-key org-mode-map (kbd "C-c a") 'org-agenda)
+     (define-key org-mode-map (kbd "C-c b") 'org-iswitchb))))
