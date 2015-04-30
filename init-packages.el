@@ -50,9 +50,9 @@
              (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
              (add-hook 'haskell-mode-hook 'flycheck-haskell-setup)
              (add-hook 'haskell-mode-hook 'flycheck-mode)
-             ; (add-hook 'haskell-mode-hook 'ghc-init)
+             (add-hook 'haskell-mode-hook 'ghc-init)
              (add-hook 'haskell-mode-hook 'company-mode)
-             (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
+             ;(add-hook 'haskell-mode-hook 'interactive-haskell-mode)
              ))
 
 (use-package haskell-interactive-mode

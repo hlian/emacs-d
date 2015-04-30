@@ -60,3 +60,6 @@
 
 (load (concat dotfiles-dir "init-keyboard.el"))
 (load (concat dotfiles-dir "init-here.el"))
+
+(menu-bar-mode 0)
+(tool-bar-mode -1)
