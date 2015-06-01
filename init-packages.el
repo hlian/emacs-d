@@ -1,6 +1,6 @@
 (require 'package)
 (add-to-list 'package-archives
-         '("melpa" . "http://melpa-stable.milkbox.net/packages/"))
+             '("melpa" . "http://melpa.org/packages/") t)
 (package-initialize)
 
 (require 'use-package)
@@ -49,15 +49,30 @@
    :commands haskell-mode
    :config (progn
              (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload)
+             (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload)
+             (define-key haskell-mode-map (kbd "C-`") 'haskell-interactive-bring)
+             (define-key haskell-mode-map (kbd "C-c C-t") 'haskell-process-do-type)
+             (define-key haskell-mode-map (kbd "C-c C-i") 'haskell-process-do-info)
+             (define-key haskell-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
+             (define-key haskell-mode-map (kbd "C-c C-k") 'haskell-interactive-mode-clear)
+             (define-key haskell-mode-map (kbd "C-c c") 'haskell-process-cabal)
              (define-key haskell-mode-map (kbd "SPC") 'haskell-mode-contextual-space)
-             (custom-set-variables '(haskell-process-type 'cabal-repl))
-             (setq-default ghc-display-error 'other-buffer)
+
+            (define-key haskell-cabal-mode-map (kbd "C-`") 'haskell-interactive-bring)
+            (define-key haskell-cabal-mode-map (kbd "C-c C-k") 'haskell-interactive-mode-clear)
+            (define-key haskell-cabal-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
+            (define-key haskell-cabal-mode-map (kbd "C-c c") 'haskell-process-cabal)
+
+             (custom-set-variables
+               '(haskell-process-auto-import-loaded-modules t)
+               '(haskell-process-log t)
+               '(haskell-process-type 'cabal-repl))
+
              (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
              (add-hook 'haskell-mode-hook 'flycheck-haskell-setup)
              (add-hook 'haskell-mode-hook 'flycheck-mode)
-             (add-hook 'haskell-mode-hook 'ghc-init)
              (add-hook 'haskell-mode-hook 'company-mode)
-             ;(add-hook 'haskell-mode-hook 'interactive-haskell-mode)
+             (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
              ))
 
 (use-package haskell-interactive-mode
