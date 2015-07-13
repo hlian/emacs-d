@@ -32,13 +32,7 @@
       nil t))))
 
 (global-set-keys
- '(("<f7>" markdown)
-   ("<f8>" (lambda (warp)
-             (interactive "sLevel warp: ")
-             (desktop-change-dir
-              (gethash warp warp-table))))
-
-   ("C-<backspace>" backward-kill-word)
+ '(("C-<backspace>" backward-kill-word)
 
    ("M-[" backward-paragraph)
    ("M-]" forward-paragraph)
@@ -46,15 +40,12 @@
    ("C-," ace-jump-mode)
 
    ("C-<f11>" my-fill-column)
-   ("C-<f12>" clean-toggle)
    ("C-; C-k" (lambda () (interactive) (kill-buffer nil)))
    ("C-; C-b" electric-buffer-list)
    ("C-; C-f" auto-fill-mode)
    ("C-; C-<return>" unfill-paragraph)
    ("C-; C-r" ido-recentf)
    ("C-; C-m" make-directory)
-   ("C-; C-v" tex-view)
-   ("C-; C-;" company-manual-begin)
    ("M-/" hippie-expand)
    ))
 

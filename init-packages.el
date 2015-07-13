@@ -2,9 +2,11 @@
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.org/packages/") t)
 (package-initialize)
+(exec-path-from-shell-initialize)
 
-(require 'use-package)
-(setq use-package-verbose t)
+(eval-when-compile
+  (defvar use-package-verbose t)
+  (require 'use-package))
 
 (use-package coffee-mode
   :commands coffee-mode
@@ -16,17 +18,6 @@
                     (lambda()
                       (local-set-key (kbd "C-; C-;") 'ff-find-other-file))))
 
-(use-package company
-  :commands company-mode
-  :config (progn
-            (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload)
-            (define-key haskell-mode-map (kbd "SPC") 'haskell-mode-contextual-space)
-            (add-to-list 'company-backends 'company-ghc)
-            (custom-set-variables '(company-show-numbers t))
-            (custom-set-variables '(company-idle-delay 0))
-            (custom-set-variables '(company-frontends '(company-pseudo-tooltip-frontend)))
-            ))
-
 (use-package hao-mode
   :commands hao-mode
   :load-path "lisp"
@@ -36,14 +27,14 @@
 (use-package expand-region
   :bind ("C-=" . er/expand-region))
 
-(defun ghc-mod-site-lisp ()
-  (let ((ghc-mod (executable-find "ghc-mod")))
-    (and ghc-mod
-         (expand-file-name "../share/emacs/site-lisp"
-                           (file-name-directory ghc-mod)))))
-
-(use-package ghc
-  :commands ghc-init ghc-debug)
+(custom-set-variables
+ '(flycheck-haskell-ghc-executable "stack")
+ '(flycheck-ghc-args "ghc")
+ '(haskell-process-auto-import-loaded-modules t)
+ '(haskell-process-log t)
+ '(haskell-process-type 'ghci)
+ '(haskell-process-path-ghci "stack")
+ '(haskell-process-args-ghci '("ghci" "--with-ghc=ghci-ng")))
 
 (use-package haskell-mode
    :commands haskell-mode
@@ -58,20 +49,10 @@
              (define-key haskell-mode-map (kbd "C-c c") 'haskell-process-cabal)
              (define-key haskell-mode-map (kbd "SPC") 'haskell-mode-contextual-space)
 
-            (define-key haskell-cabal-mode-map (kbd "C-`") 'haskell-interactive-bring)
-            (define-key haskell-cabal-mode-map (kbd "C-c C-k") 'haskell-interactive-mode-clear)
-            (define-key haskell-cabal-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
-            (define-key haskell-cabal-mode-map (kbd "C-c c") 'haskell-process-cabal)
-
-             (custom-set-variables
-               '(haskell-process-auto-import-loaded-modules t)
-               '(haskell-process-log t)
-               '(haskell-process-type 'cabal-repl))
-
              (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
              (add-hook 'haskell-mode-hook 'flycheck-haskell-setup)
              (add-hook 'haskell-mode-hook 'flycheck-mode)
-             (add-hook 'haskell-mode-hook 'company-mode)
+             ; (add-hook 'haskell-mode-hook 'company-mode)
              (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
              ))
 
@@ -146,14 +127,3 @@
   :config
   (yas-global-mode t)
   (define-key yas-minor-mode-map (kbd "M-/") 'yas-expand))
-
-(progn
-  (setq-default org-agenda-include-diary t)
-  (add-hook
-   'org-mode-hook
-   (lambda ()
-     (org-indent-mode)
-     (define-key org-mode-map (kbd "C-c l") 'org-store-link)
-     (define-key org-mode-map (kbd "C-c c") 'org-capture)
-     (define-key org-mode-map (kbd "C-c a") 'org-agenda)
-     (define-key org-mode-map (kbd "C-c b") 'org-iswitchb))))
