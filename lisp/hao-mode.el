@@ -23,7 +23,6 @@
     (require 'saveplace)
     (require 'uniquify)
     (require 'midnight)
-    (setq backup-directory-alist `(("." . "~/.saves")))
     (setq-default save-place t)
     (setq-default uniquify-buffer-name-style 'forward)
     (midnight-delay-set 'midnight-delay "4:30am")))
