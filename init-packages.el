@@ -59,6 +59,8 @@
 (use-package haskell-interactive-mode
   :commands haskell-interactive-mode)
 
+(use-package magit)
+
 (use-package js2-mode
   :mode "\\.js\\'"
   :commands js2-mode
