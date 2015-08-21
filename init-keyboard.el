@@ -55,3 +55,7 @@
 ;; Real men end follow periods with one space only.
 (setq sentence-end "[.?!][]\"')}]*\\($\\|[ \t]\\)[ \t\n]*")
 (setq sentence-end-double-space nil)
+
+
+(eval-after-load "latex"
+  '(define-key (LaTex-mode-map) (kbd "C-.") '(lambda () (interactive) (save-buffer) (tex-file) (tex-view))))
