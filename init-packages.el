@@ -59,7 +59,8 @@
 (use-package haskell-interactive-mode
   :commands haskell-interactive-mode)
 
-(use-package magit)
+(use-package magit
+  :config (setq magit-last-seen-setup-instructions "1.4.0"))
 
 (use-package js2-mode
   :mode "\\.js\\'"
