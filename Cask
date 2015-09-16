@@ -12,6 +12,7 @@
 (depends-on "expand-region")
 (depends-on "flycheck")
 (depends-on "flycheck-cask")
+(depends-on "flycheck-haskell")
 (depends-on "haskell-mode")
 (depends-on "helm")
 (depends-on "idle-highlight-mode")

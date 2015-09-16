@@ -27,18 +27,13 @@
 (use-package expand-region
   :bind ("C-=" . er/expand-region))
 
-(custom-set-variables
- '(flycheck-haskell-ghc-executable "stack")
- '(flycheck-ghc-args "ghc")
- '(haskell-process-auto-import-loaded-modules t)
- '(haskell-process-log t)
- '(haskell-process-type 'ghci)
- '(haskell-process-path-ghci "stack")
- '(haskell-process-args-ghci '("ghci" "--with-ghc=ghci-ng")))
+(use-package ghc
+  :commands ghc-init ghc-debug)
 
 (use-package haskell-mode
-   :commands haskell-mode
-   :config (progn
+  :mode "\\.hs\\'"
+  :commands haskell-mode
+  :config (progn
              (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload)
              (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload)
              (define-key haskell-mode-map (kbd "C-`") 'haskell-interactive-bring)
@@ -49,11 +44,16 @@
              (define-key haskell-mode-map (kbd "C-c c") 'haskell-process-cabal)
              (define-key haskell-mode-map (kbd "SPC") 'haskell-mode-contextual-space)
 
+             (custom-set-variables
+               '(haskell-ask-also-kill-buffers nil)
+               '(haskell-process-type (quote stack-ghci)))
+
              (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+             ; (add-hook 'haskell-mode-hook 'ghc-init)
              (add-hook 'haskell-mode-hook 'flycheck-haskell-setup)
              (add-hook 'haskell-mode-hook 'flycheck-mode)
-             ; (add-hook 'haskell-mode-hook 'company-mode)
              (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
+             ; (add-hook 'haskell-mode-hook 'company-mode)
              ))
 
 (use-package haskell-interactive-mode
