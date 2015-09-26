@@ -4,6 +4,15 @@
 (package-initialize)
 (exec-path-from-shell-initialize)
 
+(defun select-current-line ()
+  "Select the current line"
+  (interactive)
+  (end-of-line) ; move to end of line
+  (set-mark (line-beginning-position)))
+(global-set-key (kbd "C-\\") 'comment-region)
+(global-set-key (kbd "C-M-\\") 'uncomment-region)
+(global-set-key (kbd "C-8") 'select-current-line)
+
 (eval-when-compile
   (defvar use-package-verbose t)
   (require 'use-package))
@@ -48,7 +57,7 @@
                '(haskell-ask-also-kill-buffers nil)
                '(haskell-process-type (quote stack-ghci)))
 
-             (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+             (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
              ; (add-hook 'haskell-mode-hook 'ghc-init)
              (add-hook 'haskell-mode-hook 'flycheck-haskell-setup)
              (add-hook 'haskell-mode-hook 'flycheck-mode)
@@ -81,6 +90,10 @@
            js2-highlight-external-variables t
            js2-mode-show-parse-errors t
            js2-mode-show-strict-warnings t))
+
+(setq tex-run-command "pdflatex")
+(setq-default tex-run-command "pdflatex")
+(setq-default tex-command tex-run-command)
 
 (use-package lisp-mode
   :commands emacs-lisp-mode
