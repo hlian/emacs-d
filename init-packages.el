@@ -142,3 +142,18 @@
   :config
   (yas-global-mode t)
   (define-key yas-minor-mode-map (kbd "M-/") 'yas-expand))
+
+(use-package smtpmail
+  :defer 1
+  :config
+  (setq
+   user-full-name "Hao Lian"
+   smtpmail-local-domain "haolian.org"
+   user-mail-address (concat "hi@" smtpmail-local-domain)
+   send-mail-function 'smtpmail-send-it
+   smtpmail-smtp-server "smtp.gmail.com"
+   smtpmail-stream-type 'starttls
+   smtpmail-smtp-service 587))
+
+(custom-set-variables
+ '(js-indent-level 2))
