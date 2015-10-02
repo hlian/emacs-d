@@ -27,6 +27,11 @@
                     (lambda()
                       (local-set-key (kbd "C-; C-;") 'ff-find-other-file))))
 
+(use-package go-mode
+  :commands go-mode
+  :config
+  (add-hook 'go-mode-hook 'flycheck-mode))
+
 (use-package hao-mode
   :commands hao-mode
   :load-path "lisp"
@@ -39,36 +44,30 @@
 (use-package ghc
   :commands ghc-init ghc-debug)
 
+(use-package flycheck-haskell
+  :commands flycheck-haskell-setup)
+
 (use-package haskell-mode
   :mode "\\.hs\\'"
   :commands haskell-mode
-  :config (progn
-             (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload)
-             (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload)
-             (define-key haskell-mode-map (kbd "C-`") 'haskell-interactive-bring)
-             (define-key haskell-mode-map (kbd "C-c C-t") 'haskell-process-do-type)
-             (define-key haskell-mode-map (kbd "C-c C-i") 'haskell-process-do-info)
-             (define-key haskell-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
-             (define-key haskell-mode-map (kbd "C-c C-k") 'haskell-interactive-mode-clear)
-             (define-key haskell-mode-map (kbd "C-c c") 'haskell-process-cabal)
-             (define-key haskell-mode-map (kbd "SPC") 'haskell-mode-contextual-space)
+  :config
+  (custom-set-variables
+   '(haskell-ask-also-kill-buffers nil)
+   '(haskell-process-type (quote stack-ghci)))
 
-             (custom-set-variables
-               '(haskell-ask-also-kill-buffers nil)
-               '(haskell-process-type (quote stack-ghci)))
+  (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
+  (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
+  ;;(add-hook 'haskell-mode-hook 'ghc-init)
+  )
 
-             (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
-             ; (add-hook 'haskell-mode-hook 'ghc-init)
-             (add-hook 'haskell-mode-hook 'flycheck-haskell-setup)
-             (add-hook 'haskell-mode-hook 'flycheck-mode)
-             (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
-             ; (add-hook 'haskell-mode-hook 'company-mode)
-             ))
 
 (use-package haskell-interactive-mode
-  :commands haskell-interactive-mode)
+  :commands haskell-interactive-mode
+  :config
+  (define-key haskell-interactive-mode-map (kbd "C-c C-t") nil))
 
 (use-package magit
+  :commands magit-mode
   :config (setq magit-last-seen-setup-instructions "1.4.0"))
 
 (use-package js2-mode
