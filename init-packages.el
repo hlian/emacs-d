@@ -39,6 +39,7 @@
   :config (hao-mode t))
 
 (use-package expand-region
+  :commands er/expand-region
   :bind ("C-=" . er/expand-region))
 
 (use-package ghc
