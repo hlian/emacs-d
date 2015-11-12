@@ -31,3 +31,4 @@
 (depends-on "use-package")
 (depends-on "windmove")
 (depends-on "yasnippet")
+(depends-on "yaml-mode")
