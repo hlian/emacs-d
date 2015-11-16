@@ -156,6 +156,8 @@
    smtpmail-stream-type 'starttls
    smtpmail-smtp-service 587))
 
+(require 'visual-regexp-steroids)
+
 (custom-set-variables
  '(js-indent-level 2))
 

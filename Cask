@@ -29,6 +29,7 @@
 (depends-on "smex")
 (depends-on "solarized-theme")
 (depends-on "use-package")
+(depends-on "visual-regexp-steroids")
 (depends-on "windmove")
 (depends-on "yasnippet")
 (depends-on "yaml-mode")
