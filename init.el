@@ -43,7 +43,7 @@
  tab-width 4
  truncate-lines t
  vc-handled-backends '(Git)
- visible-bell t
+ visible-bell nil
  x-stretch-cursor t ;; Stretch cursor for tab characters.
  )
 
