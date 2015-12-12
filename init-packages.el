@@ -54,11 +54,12 @@
   :config
   (custom-set-variables
    '(haskell-ask-also-kill-buffers nil)
-   '(haskell-process-type (quote stack-ghci)))
+   '(haskell-process-type (quote stack-ghci))
+   '(haskell-interactive-popup-errors nil))
 
   (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
   (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
-  ;;(add-hook 'haskell-mode-hook 'ghc-init)
+  (add-hook 'haskell-mode-hook 'ghc-init)
   )
 
 
