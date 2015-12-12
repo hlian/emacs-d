@@ -15,7 +15,7 @@
     (windmove-default-keybindings)
     (auto-revert-mode 1)
     (recentf-mode 1)
-    (rainbow-delimiters-mode 1)
+    (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
     (popwin-mode 1)
     (drag-stuff-mode 1)
     (exec-path-from-shell-initialize)
