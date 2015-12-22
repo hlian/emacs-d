@@ -10,6 +10,7 @@
 (depends-on "diminish")
 (depends-on "exec-path-from-shell")
 (depends-on "expand-region")
+(depends-on "flx-ido")
 (depends-on "flycheck")
 (depends-on "flycheck-cask")
 (depends-on "flycheck-haskell")

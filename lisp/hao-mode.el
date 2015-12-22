@@ -23,9 +23,14 @@
     (require 'saveplace)
     (require 'uniquify)
     (require 'midnight)
+    (require 'flx-ido)
     (setq-default save-place t)
     (setq-default uniquify-buffer-name-style 'forward)
-    (midnight-delay-set 'midnight-delay "4:30am")))
+    (midnight-delay-set 'midnight-delay "4:30am")
+    (flx-ido-mode 1)
+    (setq ido-enable-flex-matching 1)
+    (setq ido-use-faces nil)
+    (projectile-global-mode 1)))
 
 (provide 'hao-mode)
 

@@ -48,6 +48,9 @@
 (use-package flycheck-haskell
   :commands flycheck-haskell-setup)
 
+(eval-after-load 'flycheck
+  '(add-hook 'flycheck-mode-hook #'flycheck-haskell-setup))
+
 (use-package haskell-mode
   :mode "\\.hs\\'"
   :commands haskell-mode
@@ -59,7 +62,8 @@
 
   (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
   (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
-  (add-hook 'haskell-mode-hook 'ghc-init)
+  (add-hook 'haskell-mode-hook 'flycheck-mode)
+  ; (add-hook 'haskell-mode-hook 'ghc-init)
   )
 
 
