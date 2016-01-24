@@ -66,7 +66,6 @@
   ; (add-hook 'haskell-mode-hook 'ghc-init)
   )
 
-
 (use-package haskell-interactive-mode
   :commands haskell-interactive-mode
   :config
@@ -134,6 +133,9 @@
 
 (use-package popwin
   :commands popwin-mode)
+
+(use-package scala-mode
+  :mode "\\.scala\\'")
 
 (use-package smex
   :commands smex

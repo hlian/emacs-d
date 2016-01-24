@@ -3,6 +3,13 @@
   "Toggle Hao's stuff."
   :init-value nil
   (when hao-mode
+    (require 'saveplace)
+    (require 'uniquify)
+    (require 'midnight)
+    (require 'flx-ido)
+    (require 'diminish)
+    (require 'centered-cursor-mode)
+
     (setq backup-directory-alist `(("." . "~/.saves")))
     (column-number-mode t)
     (delete-selection-mode t)
@@ -19,18 +26,17 @@
     (popwin-mode 1)
     (drag-stuff-mode 1)
     (exec-path-from-shell-initialize)
+    (global-centered-cursor-mode t)
+    (diminish 'centered-cursor-mode)
 
-    (require 'saveplace)
-    (require 'uniquify)
-    (require 'midnight)
-    (require 'flx-ido)
     (setq-default save-place t)
     (setq-default uniquify-buffer-name-style 'forward)
     (midnight-delay-set 'midnight-delay "4:30am")
     (flx-ido-mode 1)
     (setq ido-enable-flex-matching 1)
     (setq ido-use-faces nil)
-    (projectile-global-mode 1)))
+    (projectile-global-mode 1)
+    (diminish 'projectile-mode)))
 
 (provide 'hao-mode)
 
