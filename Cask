@@ -1,7 +1,7 @@
 (source gnu)
 (source melpa)
 
-(depends-on "ace-jump-mode")
+(depends-on "avy")
 (depends-on "cask")
 (depends-on "centered-cursor-mode")
 (depends-on "coffee-mode")

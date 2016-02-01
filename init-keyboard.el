@@ -37,7 +37,7 @@
    ("M-[" backward-paragraph)
    ("M-]" forward-paragraph)
    ("C-." save-buffer)
-   ("C-," ace-jump-mode)
+   ("C-," avy-goto-word-or-subword-1)
 
    ("C-<f11>" my-fill-column)
    ("C-; C-k" (lambda () (interactive) (kill-buffer nil)))
@@ -58,4 +58,4 @@
 
 
 (eval-after-load "latex"
-  '(define-key (LaTex-mode-map) (kbd "C-.") '(lambda () (interactive) (save-buffer) (tex-file) (tex-view))))
+  '(define-key (LaTeX-mode-map) (kbd "C-.") '(lambda () (interactive) (save-buffer) (tex-file) (tex-view))))
