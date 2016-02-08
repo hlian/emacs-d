@@ -131,6 +131,11 @@
    ("C-<" . mc/mark-previous-like-this)
    ("C-c C-<" . mc/mark-all-like-this)))
 
+(use-package mwim
+  :bind
+  (("C-a" . mwim-beginning-of-line-or-code)
+   ("C-e" . mwim-end-of-line-or-code)))
+
 (use-package popwin
   :commands popwin-mode)
 

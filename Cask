@@ -22,6 +22,7 @@
 (depends-on "magit")
 (depends-on "markdown-mode")
 (depends-on "multiple-cursors")
+(depends-on "mwim")
 (depends-on "nyan-mode")
 (depends-on "pallet")
 (depends-on "popwin")
