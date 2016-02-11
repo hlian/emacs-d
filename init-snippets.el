@@ -24,3 +24,14 @@
    ("nose" "import nose; nose.tools.set_trace()" "nose")
    ("main" "if __name__ == '__main__':" "main")
    ))
+
+(yas-define-snippets
+ 'haskell-mode
+ '(("fdefer" "{-# OPTIONS_GHC -fdefer-type-errors #-}" "defer")
+   ("l" "{-# LANGUAGE ${ext} #-}" "l")
+   ("nip" "NoImplicitPrelude" "nip")
+   ("c" "{- ${c} -}" "c")
+   ("i" "import qualified ${m} as ${name}" "i")
+   ("ii" "import ${m} (${names})" "ii")
+   ("iii" "import ${m}" "iii")
+   ))

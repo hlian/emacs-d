@@ -1,0 +1,437 @@
+;;; -*- coding: utf-8 -*-
+
+;; ----- ido-last-directory-list -----
+(
+ ("/Users/hao/w/core/src/somatix_api/" . "Workflow/")
+ ("/Users/hao/w/core/src/" . "cms_assets/")
+ ("/Users/hao/w/core/lib/" . "Products/")
+ ("/Users/hao/w/core/src/cms/" . "Products/")
+ ("/Users/hao/w/core/Kinesis/" . "KCL/")
+ ("/Users/hao/w/core/somatix_web/" . "Unsub/")
+ ("/Users/hao/lab/linklater/examples/app/" . "Toys/")
+ ("/Users/hao/w/core/somatix_event_api/" . "elastic-beanstalk/")
+ ("/Users/hao/w/core/somatix_api/" . "elastic-beanstalk/")
+ ("/Users/hao/w/core/somatix_star_reports/" . "elastic-beanstalk/")
+ ("/Users/hao/w/core/conf/" . "deploy/")
+ ("/Users/hao/w/core/" . "conf/")
+ ("/Users/hao/w/somatix-prototype/email-sender/elastic-beanstalk/" . ".ebextensions/")
+ ("/Users/hao/lab/mathbot/web/" . "src/")
+ ("/Users/hao/lab/mathbot/" . "web/")
+ ("/Users/hao/w/somatix-prototype/email-sender/" . "elastic-beanstalk/")
+ ("/Users/hao/w/somatix-prototype/somatix_star_reports/elastic-beanstalk/" . ".ebextensions/")
+ ("/Users/hao/w/somatix-prototype/somatix_star_reports/" . "elastic-beanstalk/")
+ ("/Users/hao/w/somatix-prototype/somatix_api/elastic-beanstalk/" . ".ebextensions/")
+ ("/Users/hao/w/somatix-prototype/somatix_api/" . "elastic-beanstalk/")
+ ("/Users/hao/w/vimari/" . "vinegar.safariextension/")
+ ("/Volumes/Bonnibel/Downloads/" . "docker-singlecontainer-v1/")
+ ("/Volumes/Bonnibel/" . "Downloads/")
+ ("/Users/hao/w/somatix-prototype/somatix_event_api/" . "elastic-beanstalk/")
+ ("/Users/hao/w/somatix-prototype/somatix_web/" . "elastic-beanstalk/")
+ ("/Users/hao/lab/linklater/examples/asdf/" . "test/")
+ ("/Users/hao/lab/linklater/examples/" . "app/")
+ ("/Users/hao/lab/linklater/Network/" . "Linklater/")
+ ("/Users/hao/lab/linklater/" . "examples/")
+ ("/Users/hao/w/scratch/" . "src/")
+ ("/Users/hao/w/pigeonhole/public/" . "js/")
+ ("/Users/hao/w/pigeonhole/" . "tools/")
+ ("/Users/hao/lab/advent/" . "src/")
+ ("/Users/hao/w/somatix/somatix-persistence/src/main/scala/" . "dynamodb/")
+ ("/Users/hao/w/somatix/somatix-persistence/src/main/" . "scala/")
+ ("/Users/hao/w/somatix/somatix-persistence/src/" . "main/")
+ ("/Users/hao/w/somatix/somatix-persistence/" . "src/")
+ ("/Users/hao/w/somatix/somatix-common/src/test/scala/" . "support/")
+ ("/Users/hao/w/somatix/somatix-common/src/test/" . "scala/")
+ ("/Users/hao/w/somatix/somatix-common/src/main/" . "resources/")
+ ("/Users/hao/w/somatix/somatix-common/src/" . "test/")
+ ("/Users/hao/w/somatix/somatix-common/" . "src/")
+ ("/Users/hao/w/somatix/somatix-data-import/src/" . "main/")
+ ("/Users/hao/w/somatix/somatix-data-import/" . "src/")
+ ("/Users/hao/w/somatix/" . "somatix-customer-info/")
+ ("/Users/hao/w/somatix-prototype/conf/" . "deploy/")
+ ("/Users/hao/w/somatix-prototype/" . "email-sender/")
+ ("/usr/local/" . "etc/")
+ ("/usr/local/Cellar/sbt/" . "0.13.9/")
+ ("/usr/local/Cellar/" . "sbt/")
+ ("/Users/hao/w/" . "scratch/")
+ ("/Users/hao/lab/hao.codes/" . "_posts/")
+ ("/Users/hao/lab/kernelfuffle/" . "_sass/")
+ ("/Users/hao/lab/rails/blog/app/views/" . "articles/")
+ ("/Users/hao/lab/rails/blog/app/" . "views/")
+ ("/Users/hao/lab/rails/blog/" . "app/")
+ ("/Users/hao/lab/rails/" . "blog/")
+ ("/private/tmp/ok/" . "src/")
+ ("/tmp/ok/ok/" . "src/")
+ ("/tmp/ok/" . "src/")
+ ("/Users/hao/lab/gba4ios/Pods/Target Support Files/" . "Pods/")
+ ("/Users/hao/lab/gba4ios/Pods/" . "Target Support Files/")
+ ("/Users/hao/lab/gba4ios/" . "Pods/")
+ ("/Users/hao/lab/ok/" . "src/")
+ ("/Users/hao/lab/kinds-talk/" . "src/")
+ ("/Users/hao/Dropbox/shopkeep/src/hlian/" . "shopkeep/")
+ ("/Users/hao/Downloads/Friends of Jack Slack export Sep 17 2015/" . "haskell/")
+ ("/Users/hao/Downloads/" . "Friends of Jack Slack export Sep 17 2015/")
+ ("/Users/hao/.stack/" . "global-project/")
+ ("/tmp/o/" . "app/")
+ ("/Users/hao/lab/23/" . "app/")
+ ("/Users/hao/lab/afterdark/web/" . "src/")
+ ("/Users/hao/lab/afterdark/src/" . "AD/")
+ ("/Users/hao/lab/afterdark/" . "app/")
+ ("/private/tmp/o/" . "src/")
+ ("/Volumes/EFI/EFI/CLOVER/OEM/" . "SystemProductName/")
+ ("/Users/hao/lab/barnacles/ng/.stack-work/" . "logs/")
+ ("/Users/hao/lab/barnacles/ng/" . ".stack-work/")
+ ("/Users/hao/lab/barnacles/" . "ng/")
+ ("/Users/hao/Dropbox/writing/" . "nanowrimo-2011/")
+ ("/Users/hao/lab/rereddit/src/Network/" . "Rereddit/")
+ ("/Users/hao/lab/rereddit/src/" . "Network/")
+ ("/Users/hao/lab/rereddit/" . "src/")
+ ("/Users/hao/.cabal/" . "libexec/")
+ ("/Users/hao/lab/ghc-mod/Language/Haskell/" . "GhcMod/")
+ ("/Users/hao/lab/ghc-mod/Language/" . "Haskell/")
+ ("/Users/hao/lab/ghc-mod/" . "Language/")
+ ("/Users/hao/lab/punk/" . "src/")
+ ("/Users/hao/lab/ios/Trellis/" . "Base.lproj/")
+ ("/Users/hao/lab/category-theory/" . "notes/")
+ ("/Users/hao/Dropbox/Public/" . "tips/")
+ ("/Users/hao/Dropbox/wiki/" . "etc/")
+ ("/Users/hao/lab/jpg-cli/src/Network/" . "Images/")
+ ("/Users/hao/lab/jpg-cli/src/" . "Network/")
+ ("/Users/hao/lab/jpg-cli/" . "src/")
+ ("/Users/hao/lab/server/app/module/auth/" . "oauth/")
+ ("/Users/hao/lab/server/app/module/" . "auth/")
+ ("/Users/hao/lab/server/app/api/" . "1/")
+ ("/Users/hao/lab/server/app/" . "module/")
+ ("/Users/hao/lab/server/test/integration/" . "api/")
+ ("/Users/hao/lab/server/test/" . "integration/")
+ ("/Users/hao/lab/server/" . "guide/")
+ ("/Users/hao/lab/divine-mercy/" . "divinemercy/")
+ ("/Users/hao/lab/ios3/" . "FCTRestKit/")
+ ("/Users/hao/lab/ios/lib/FCTRestKit/" . "FCTRestKit.xcodeproj/")
+ ("/Users/hao/lab/ios/lib/" . "FCTRestKit/")
+ ("/Users/hao/.emacs.d/" . "lisp/")
+ ("/Users/hao/kernelfuffle/" . "_posts/")
+ ("/Users/hao/Dropbox/bin/" . "hackintosh/")
+ ("/System/Library/Extensions/IO80211Family.kext/Contents/PlugIns/AirPortBrcm4360.kext/" . "Contents/")
+ ("/Volumes/EFI/EFI/CLOVER/kexts/10.10/IO80211Family.kext/Contents/PlugIns/AirPortAtheros40.kext/" . "Contents/")
+ ("/Volumes/EFI/EFI/CLOVER/kexts/10.10/IO80211Family.kext/Contents/PlugIns/" . "AirPortAtheros40.kext/")
+ ("/Volumes/EFI/EFI/CLOVER/kexts/10.10/IO80211Family.kext/Contents/" . "PlugIns/")
+ ("/Volumes/EFI/EFI/CLOVER/kexts/10.10/IO80211Family.kext/" . "Contents/")
+ ("/Users/hao/Desktop/IO80211Family.kext/Contents/PlugIns/AirPortAtheros40.kext/" . "Contents/")
+ ("/Users/hao/Desktop/IO80211Family.kext/Contents/PlugIns/" . "AirPortAtheros40.kext/")
+ ("/Users/hao/Desktop/IO80211Family.kext/Contents/" . "PlugIns/")
+ ("/Users/hao/Desktop/IO80211Family.kext/" . "Contents/")
+ ("/Users/hao/Desktop/Visual Boy Advance/" . "Save States/")
+ ("/Users/hao/Desktop/" . "IO80211Family.kext/")
+ ("/Users/hao/lab/lobsters/app/assets/" . "stylesheets/")
+ ("/Users/hao/lab/lobsters/app/views/" . "layouts/")
+ ("/Users/hao/lab/lobsters/app/" . "models/")
+ ("/Users/hao/lab/lobsters/" . "extras/")
+ ("/Users/hao/lab/computer-club/people/" . "hao/")
+ ("/Users/hao/lab/computer-club/" . "_posts/")
+ ("/private/tmp/" . "ok/")
+ ("/Volumes/EFI/EFI/CLOVER/kexts/10.10/realtekALC.kext/" . "Contents/")
+ ("/Volumes/EFI/EFI/CLOVER/kexts/10.10/" . "IO80211Family.kext/")
+ ("/Volumes/EFI/EFI/CLOVER/kexts/" . "10.10/")
+ ("/Volumes/EFI/EFI/APPLE/" . "EXTENSIONS/")
+ ("/Volumes/EFI/EFI/CLOVER/" . "themes/")
+ ("/Volumes/EFI/EFI/" . "CLOVER/")
+ ("/Volumes/EFI/" . "EFI/")
+ ("/Volumes/" . "Bonnibel/")
+ ("/Users/hao/.oh-my-zsh/" . "themes/")
+ ("/Users/hao/Dropbox/" . "Barnacles_files/")
+ ("/System/Library/Extensions/IO80211Family.kext/Contents/PlugIns/AirPortBrcm4331.kext/" . "Contents/")
+ ("/System/Library/Extensions/IO80211Family.kext/Contents/PlugIns/AirPortAtheros40.kext/" . "Contents/")
+ ("/System/Library/Extensions/IO80211Family.kext/Contents/PlugIns/" . "AirPortBrcm4360.kext/")
+ ("/System/Library/Extensions/IO80211Family.kext/Contents/" . "PlugIns/")
+ ("/System/Library/Extensions/IO80211Family.kext/" . "Contents/")
+ ("/System/Library/Extensions/" . "IO80211Family.kext/")
+ ("/System/Library/" . "Extensions/")
+ ("/System/" . "Library/")
+ ("/Users/hao/lab/ios/FCTUtils/Classes/" . "Strings/")
+ ("/Users/hao/lab/ios/FCTUtils/" . "Classes/")
+ ("/Users/hao/lab/ios/" . "Trellis/")
+ ("/Users/hao/lab/herzog/" . "src/")
+ ("/" . "Volumes/")
+ ("/Users/hao/lab/renderboy/" . "dist/")
+ ("/Users/hao/lab/" . "memegen/")
+ ("/Users/hao/" . "w/")
+ ("/tmp/" . "ok/")
+ ("/private/tmp/ghc/libraries/base/GHC/IO/" . "Handle/")
+ ("/private/tmp/ghc/libraries/base/GHC/" . "IO/")
+ ("/private/tmp/ghc/libraries/base/" . "System/")
+ ("/private/tmp/ghc/libraries/base/System/" . "IO/")
+)
+
+;; ----- ido-work-directory-list -----
+(
+ "/Users/hao/.emacs.d/"
+ "/Users/hao/w/scratch/src/"
+ "/Users/hao/w/core/src/cms/"
+ "/Users/hao/w/core/src/somatix_api/Workflow/"
+ "/Users/hao/w/core/src/cms/Products/"
+ "/Users/hao/"
+ "/Users/hao/w/core/lib/Products/"
+ "/Users/hao/w/core/"
+ "/Users/hao/w/core/test/"
+ "/Users/hao/w/core/lib/"
+ "/Users/hao/w/core/conf/"
+ "/Users/hao/w/core/conf/deploy/"
+ "/Users/hao/lab/memegen/"
+ "/Users/hao/w/scratch/"
+ "/Users/hao/Desktop/"
+ "/Users/hao/w/core/Kinesis/"
+ "/Users/hao/w/core/Kinesis/KCL/"
+ "/Users/hao/w/core/Kinesis/Types/"
+ "/Users/hao/w/core/Kinesis/API/"
+ "/Users/hao/w/core/scripts/"
+ "/Users/hao/w/core/transaction-csv-to-kinesis/"
+ "/Users/hao/w/core/somatix_web/Unsub/"
+ "/Users/hao/w/core/somatix_web/"
+ "/Users/hao/w/core/StarReports/"
+ "/Users/hao/lab/linklater/examples/app/"
+ "/Users/hao/lab/linklater/examples/"
+ "/Users/hao/lab/linklater/examples/app/Toys/"
+ "/Users/hao/w/core/somatix_star_reports/elastic-beanstalk/"
+ "/Users/hao/w/core/somatix_event_api/elastic-beanstalk/"
+ "/Users/hao/w/core/somatix_api/elastic-beanstalk/"
+ "/Users/hao/.stack/global-project/"
+ "/Users/hao/w/core/somatix_star_reports/"
+ "/Users/hao/w/core/Workflow/"
+ "/Users/hao/w/core/somatix_event_api/"
+ "/Users/hao/w/core/email-sender/"
+ "/Users/hao/.emacs.d/lisp/"
+ "/Users/hao/w/core/Metrics/"
+ "/Users/hao/.ghc/"
+ "/Users/hao/lab/linklater/test/"
+ "/Users/hao/lab/linklater/"
+ "/Users/hao/lab/linklater/Network/"
+ "/Users/hao/lab/linklater/Network/Linklater/"
+ "/Users/hao/w/somatix-prototype/email-sender/elastic-beanstalk/"
+ "/Users/hao/w/somatix-prototype/somatix_star_reports/elastic-beanstalk/.ebextensions/"
+ "/Users/hao/w/somatix-prototype/somatix_star_reports/elastic-beanstalk/"
+ "/Users/hao/w/somatix-prototype/somatix_star_reports/"
+ "/Users/hao/w/somatix-prototype/"
+ "/tmp/"
+ "/Users/hao/.stack/"
+ "/Users/hao/w/somatix-prototype/scripts/"
+)
+
+;; ----- ido-work-file-list -----
+(
+ "init.el"
+ "init-packages.el"
+ "Lib.hs"
+ "Main.hs"
+ "Queries.hs"
+ "API.hs"
+ ".ghci"
+ "Types.hs"
+ "SOMATIX.cabal"
+ "BonusStarsTests.hs"
+)
+
+;; ----- ido-dir-file-cache -----
+(
+ ("/Users/hao/.emacs.d/" (22200 35230 0 0) "semanticdb/" "projectile.cache" "projectile-bookmarks.eld" "lisp/" "init.elc" "init.el" "init-snippets.elc" "init-snippets.el" "init-packages.elc" "init-packages.el" "init-keyboard.elc" "init-keyboard.el" "init-here.el~" "init-here.elc" "init-here.el" "init-backup.elc" "init-backup.el" "ido.last~" "ido.last" "custom.el~" "custom.elc" "custom.el" "Cask" "auto-save-list/" ".gitignore" ".git/" ".emacs.desktop" ".cask/" "%backup%~" "../" "./")
+
+ ("/Users/hao/" (22200 35205 0 0) "w/" "VirtualBox VMs/" "stack.tar.gz" "Public/" "Pictures/" "Music/" "Movies/" "Library/" "lab/" "kernelfuffle/" "hao-solarized.itermcolors" "Dropbox/" "Downloads/" "dotfiles/" "Documents/" "Desktop/" "damn.diff~" "damn.diff" "Cask" "asdf.zsh" "Applications/" "10.10.3/" ".zshrc~" ".zshrc-install" ".zshrc-here~" ".zshrc-here" ".zshrc-cask-p" ".zshrc" ".zsh_history~" ".zsh_history" ".zsh-update" ".zcompdump-iMac-5.2" ".zcompdump-iMac-5.0.8" ".zcompdump-iMac-5.0.5" ".zcompdump-Hao’s iMac-5.0.5" ".zcompdump-doorlord-5.0.5" ".Xresources" ".xmonad/" ".vimrc" ".viminfo" ".vim/" ".vagrant.d/" ".v8flags.4.6.85.31.hao.json" ".Trash/" ".subversion/" ".stack/" ".ssh/" ".smex-items" ".sheepshaver_prefs" ".sheepshaver_nvram" ".sbt/" ".saves/" ".rereddit/" ".recentf~" ".recentf" ".python_history" ".putty/" ".psql_history" ".pry_history" ".pia_manager_crash.log" ".oracle_jre_usage/" ".openvpn-connect.json" ".oh-my-zsh/" ".npm/" ".node-gyp/" ".mysql_history.TMP" ".mysql_history" ".mathbb.init" ".mathbb" ".local/" ".lldb/" ".lesshst" ".ivy2/" ".itmstransporter/" ".ido.last~" ".htoprc" ".hgrc" ".haskeline" ".gnupg/" ".gitignore_global~" ".gitignore_global" ".gitconfig.local" ".gitconfig" ".ghci" ".ghc-mod/" ".ghc/" ".gem/" ".fzf.zsh" ".fzf.bash" ".fzf/" ".fpp/" ".erlang.cookie" ".emacs.d/" ".emacs-places" ".DS_Store" ".dropbox/" ".cups/" ".config/" ".cocoapods/" ".CFUserTextEncoding" ".cask/" ".cache/" ".cabal/" ".bundle/" ".bashrc" ".bash_history" ".aws/" ".497918.padl" ".#.ido.last" "../" "./")
+
+ ("/Users/hao/Music/" (22120 18411 0 0) "iTunes/" "iPod/" ".localized" ".DS_Store" "../" "./")
+
+ ("/Users/hao/w/" (22194 57632 0 0) "vimari/" "somatix/" "scratch/" "pigeonhole/" "persistent/" "ops/" "Main.hs" "logfile" "db/" "core/" ".DS_Store" "../" "./")
+
+ ("/Users/hao/w/core/" (22194 59464 0 0) "test/" "stack.yaml" "src/" "somatix_star_reports/" "SOMATIX.cabal" "Setup.hs" "scripts/" "README.md" "LICENSE" "lib/" "lambdas/" "kclmld" "javalib/" "import-transactions.properties" "DEPLOYMENT.md" "conf/" "circle.yml" ".stack-work/" ".projectile" ".gitignore" ".git/" ".elasticbeanstalk/" ".DS_Store" "../" "./")
+
+ ("/Users/hao/w/core/src/cms/Products/" (22194 59515 0 0) "API.hs" ".DS_Store" "../" "./")
+
+ ("/Users/hao/w/core/src/cms_assets/" (22194 35807 0 0) "main.js" "index.html" "fa2772327f55d8198301fdb8bcfc8158.woff" "f4769f9bdb7466be65088239c12046d1.eot" "e18bbf611f2a2e43afc071aa2f4e1512.ttf" "89889688147bd7575d6327160d64e760.svg" "448c34a56d699c29117adc64c43affeb.woff2" "../" "./")
+
+ ("/Users/hao/w/core/src/somatix_api/" (22194 35807 0 0) "Workflow/" "Main.hs" "elastic-beanstalk/" "../" "./")
+
+ ("/Users/hao/w/core/lib/Workflow/" (22194 58525 0 0) "Workflow.hs" "Utils.hs" "Types.hs" "Test/" "Streak/" "Quest/" "OneStarTest/" "MOP/" "Model.hs" "Experiments.hs" "EmailWorker.hs" "Email/" "Discount/" "Deferred.hs" "Dash/" "Config.hs" "BonusStars/" "../" "./")
+
+ ("/Users/hao/w/core/src/somatix_api/Workflow/" (22194 58206 0 0) "Queries.hs" "API.hs" "../" "./")
+
+ ("/tmp/" (22194 56127 0 0) "ExpressVPN-downscript-needs-to-be-run.txt" "ct.shutdown" "com.apple.launchd.td6yhybzCk/" "com.apple.launchd.agO7iuBHvy/" ".s.PGSQL.5432.lock" ".s.PGSQL.5432" ".keystone_install_lock" "../" "./")
+
+ ("/Users/hao/w/core/scripts/" (22194 35807 0 0) "stack-install" "deploy-lambda" "deploy-kclmld" "deploy" "../" "./")
+
+ ("/Users/hao/Desktop/" (22193 29401 0 0) "Visual Boy Advance/" "Untitled" "tutorial.mzn" "susan3.txt" "susan2.txt" "Screen Shot 2016-01-24 at 10.24.06 PM.png" "Screen Shot 2015-10-04 at 2.01.10 PM.png" "Screen Shot 2015-07-25 at 11.26.35 AM.png" "Screen Shot 2015-06-30 at 10.02.58 AM.png" "Screen Shot 2015-06-09 at 8.42.20 PM.png" "Screen Shot 2015-05-19 at 7.57.58 PM.png" "Screen Shot 2015-01-26 at 7.33.49 PM.png" "Portal Old/" "Portal/" "ok.txt" "myCigna_EOB-Medical claim_Nov-21-2015_For-HAO_Ref-8681532499625.pdf" "Kext Wizard.app/" "IO80211Family.kext/" "Inform.app/" "FullSizeRender.jpg" "cornstark/" "config.plist" "Clover_v2.3k_r3193.pkg" "Clover Configurator.app/" "christmas.mp3" "CertificateSigningRequest.certSigningRequest" "beyond-coding.txt" "beta.barnacles.blackfriday.cer" "bell-guy.png" "audio_ALC898-10.10.3/" ".localized" ".DS_Store" "../" "./")
+
+ ("/Users/hao/w/scratch/" (22194 38206 0 0) "test/" "target.docset/" "stack.yaml" "src/" "Setup.hs" "scratch.cabal" "LICENSE" "app/" ".stack-work/" "../" "./")
+
+ ("/Users/hao/w/core/conf/" (22194 39411 0 0) "somatix-star-reports.conf" "somatix-production.conf" "logback.xml" "deploy/" "cms.conf" "../" "./")
+
+ ("/Users/hao/w/core/test/" (22194 55378 0 0) "WorkflowTestUtils.hs" "WorkflowTests.hs" "UnsubTests.hs" "test.hs" "StreakTests.hs" "StarReportsTests.hs" "QuestTests.hs" "OptionTests.hs" "OneStarTestTests.hs" "KinesisFormatTests.hs" "KinesisAPITests.hs" "KCLMessageTests.hs" "DashTests.hs" "CMSTests.hs" "BonusStarsTests.hs" "../" "./")
+
+ ("/Users/hao/w/core/src/cms/" (22194 57635 0 0) "Templates/" "Products/" "Main.hs" "elastic-beanstalk/" ".DS_Store" "../" "./")
+
+ ("/Users/hao/w/core/somatix_star_reports/" (22194 35807 0 0) ".stack-work/" "../" "./")
+
+ ("/Users/hao/w/core/lib/Products/" (22194 57559 0 0) "Types.hs" "Queries.hs" "ComplicatedQueries.hs" "../" "./")
+
+ ("/Users/hao/w/core/lib/" (22194 54693 0 0) "Workflow/" "Utils.hs" "Unsub/" "StarReports/" "Servant/" "Products/" "Model/" "Metrics/" "Mailgun/" "Kinesis/" "Events/" "EmailSender/" "Data/" "CSV/" "Aws/" "Apollo/" ".DS_Store" "../" "./")
+
+ ("/Users/hao/w/core/src/" (22194 54698 0 0) "transaction-csv-to-kinesis/" "transaction-csv-importer/" "somatix_web_assets/" "somatix_web/" "somatix_star_reports/" "somatix_event_api/" "somatix_api_assets/" "somatix_api/" "import-with-kcl/" "import-offer-data/" "event-sender/" "email-sender/" "email-event-receiver/" "cms_assets/" "cms/" "apollo-reports/" "anonymize-data/" ".DS_Store" "../" "./")
+
+ ("/Users/hao/w/core/lib/StarReports/" (22194 51733 0 0) "XML.hs" "Utilities.hs" "Types.hs" "Queries.hs" "Bucket.hs" "../" "./")
+
+ ("/Users/hao/w/core/conf/deploy/" (22194 35819 0 0) "somatix-web.conf" "somatix-star-reports.conf" "somatix-event-api.conf" "somatix-api.conf" "logback.xml" "import-with-kcl.conf" "email-sender.conf" "cms.conf" "../" "./")
+
+ ("/Users/hao/lab/memegen/" (22194 37632 0 0) "templates/" "stack.yaml" "Setup.hs" "screenshot.png" "Rendering.hs" "README.md" "memegen.cabal" "Main.hs" "conf" ".stack-work/" ".gitignore" ".git/" ".DS_Store" "../" "./")
+
+ ("/Users/hao/w/scratch/src/" (22187 36089 0 0) "Lib.hs" "a.json" "../" "./")
+
+ ("/Users/hao/w/core/Kinesis/" (22186 43447 0 0) "Types.hs" "KCL/" "Conversion.hs" "API2.hs" "../" "./")
+
+ ("/Users/hao/w/core/transaction-csv-importer/" (22186 43727 0 0) "Main.hs" "../" "./")
+
+ ("/Users/hao/w/core/email-sender/" (22186 41026 0 0) "Main.hs" "elastic-beanstalk/" "../" "./")
+
+ ("/Users/hao/w/core/somatix_event_api/" (22186 41001 0 0) "Transactions/" "Main.hs" "MailgunEvent/" "Event/" "elastic-beanstalk/" "Debug/" "CustomerInfoUpdate/" "../" "./")
+
+ ("/Users/hao/w/core/somatix_web/" (22186 41116 0 0) "WebUtils.hs" "Unsub/" "OptIn/" "Main.hs" "EmailWebView/" "elastic-beanstalk/" "../" "./")
+
+ ("/Users/hao/w/core/transaction-csv-to-kinesis/" (22186 40935 0 0) "Main.hs" "../" "./")
+
+ ("/Users/hao/w/core/Kinesis/KCL/" (22186 41739 0 0) "Types.hs" "../" "./")
+
+ ("/Users/hao/w/core/Kinesis/Types/" (22186 26101 0 0) "KinesisEnv.hs" "../" "./")
+
+ ("/Users/hao/w/core/Workflow/" (22186 34340 0 0) "Workflow.hs" "Utils.hs" "Types.hs" "Test/" "Streak/" "Quest/" "OneStarTest/" "MOP/" "Model.hs" "EmailWorker.hs" "Email/" "Discount/" "Dash/" "Config.hs" "BonusStars/" "../" "./")
+
+ ("/Users/hao/w/core/somatix_api/elastic-beanstalk/" (22186 9665 0 0) "options.config.prod" "Dockerrun.aws.json" ".ebextensions/" "../" "./")
+
+ ("/Users/hao/w/core/somatix_event_api/elastic-beanstalk/" (22186 9665 0 0) "options.config.prod" "Dockerrun.aws.json" ".ebextensions/" "../" "./")
+
+ ("/Users/hao/w/core/somatix_star_reports/elastic-beanstalk/" (22186 9665 0 0) "options.config.prod" "Dockerrun.aws.json" ".ebextensions/" "../" "./")
+
+ ("/Users/hao/lab/linklater/examples/app/Toys/" (22185 44538 0 0) "SummonPainting.hs" "Hi5.hs" "../" "./")
+
+ ("/Users/hao/lab/linklater/examples/" (22185 43780 0 0) "stack.yaml" "Setup.hs" "linklater-examples.cabal" "app/" ".stack-work/" "../" "./")
+
+ ("/Users/hao/lab/linklater/examples/app/" (22185 44544 0 0) "Utils.hs" "Types.hs" "Toys/" "Stream.hs" "Live.hs" "JointPhotographicExpertsGroupTonga.hs" "HTTP.hs" "../" "./")
+
+ ("/Users/hao/w/core/somatix_web/Unsub/" (22186 34346 0 0) "unsubscribe.html" "API.hs" "../" "./")
+
+ ("/Users/hao/w/core/Kinesis/API/" (22186 39660 0 0) "Types.hs" "Internal.hs" "../" "./")
+
+ ("/Users/hao/w/core/somatix_web/OptIn/" (22186 32578 0 0) "API.hs" "../" "./")
+
+ ("/Users/hao/w/core/event-sender/" (22186 32561 0 0) "Main.hs" "../" "./")
+
+ ("/Users/hao/lab/" (22186 24990 0 0) "w/" "syncopate/" "susanhamilton.online/" "rereddit/" "renderboy/" "rails/" "puppet/" "punk/" "plugins/" "picnic/" "memegen/" "mathbot/" "linklater/" "kinds-talk/" "kernelfuffle/" "jpg-cli/" "huskybot/" "hi5bot/" "herzog/" "hao.codes/" "gba4ios/" "feelings.hs/" "feelings.blackfriday/" "emacs-scratchpad-haskell/" "divine-mercy/" "dismissive/" "cryptohaos/" "computer-club/" "category-theory/" "bloopsaphone/" "basilica/" "barnacles/" "audio_CloverALC/" "afterdark/" "advent/" ".DS_Store" "../" "./")
+
+ ("/Users/hao/w/core/StarReports/" (22186 22468 0 0) "XML.hs" "Utilities.hs" "Types.hs" "Queries.hs" "Bucket.hs" "../" "./")
+
+ ("/Users/hao/.stack/global-project/" (22182 64669 0 0) "stack.yaml" "README.txt" ".stack-work/" "../" "./")
+
+ ("/Users/hao/w/core/Events/" (22181 22382 0 0) "Types.hs" "../" "./")
+
+ ("/Users/hao/w/core/somatix_api/" (22138 53202 0 0) "Workflow/" "Main.hs" "elastic-beanstalk/" "../" "./")
+
+ ("/Users/hao/.ssh/" (22170 43183 0 0) "somatix-ops" "known_hosts" "id_rsa.pub" "id_rsa" "id_ed25519.pub" "id_ed25519" "hao-originate-nyc" "../" "./")
+
+ ("/Users/hao/.emacs.d/lisp/" (22181 23435 0 0) "hao-mode.el~" "hao-mode.elc" "hao-mode.el" "filladapt-mode.elc" "filladapt-mode.el" "../" "./")
+
+ ("/Users/hao/w/core/Metrics/" (22181 22382 0 0) "API.hs" "../" "./")
+
+ ("/Users/hao/w/core/Apollo/" (22171 58561 0 0) "Reports.hs" "Model.hs" "../" "./")
+
+ ("/Users/hao/w/core/EmailSender/" (22171 58106 0 0) "Utilities.hs" "Types.hs" "API.hs" "../" "./")
+
+ ("/Users/hao/lab/advent/" (22163 36569 0 0) "x" "stack.yaml" "src/" "ok.cabal" "LICENSE" "inlined.ps" "b.ps" "a.ps" "a.prof" "a.hp" "a.aux" "a" "6.txt" "25.txt" "23.txt" "19.txt" ".stack-work/" "../" "./")
+
+ ("/Users/hao/lab/hao.codes/_posts/" (22164 41899 0 0) "2016-01-12-unsafePerformIO.md" "2015-12-12-haskell-advent.md" "2015-11-30-haskell-treasure-map.md" "2015-10-22-reflection.md" "2015-05-12-haskell-and-emacs.md" "2015-03-10-arrow-type.md" "2015-02-25-profunctors.md" "2015-02-22-lenses-heart-json.html" "2015-02-15-loopy-io.html" "../" "./")
+
+ ("/Users/hao/Downloads/" (22165 56007 0 0) "Wine_grapes.jpg" "weeklytimesheettemplate.xlsx" "VisualBoyAdvanceM1229.7z" "VisualBoyAdvanceM1229-1/" "VisualBoyAdvance_1.7.6.dmg" "VirtualCD_Imager_v1.0d0 (2).sit" "VirtualCD_Imager_v1.0d0 (1).sit" "tv/" "Trello_crash_files.zip" "Trello_crash_files/" "Trello.mov" "Trello-iOS-helpscout23951.crash" "Trellis-350/" "tomeviewer.sit" "SwitchResX.prefPane/" "stuffit_expander_55.bin" "spin.rkt" "source-sans-pro.zip" "source-sans-pro/" "Soundflower-1.6.6b.dmg" "Silverlight.dmg" "showcase-font-family.zip" "SheepShaver_UB_20140201.zip" "SheepShaver_UB_20140201 (1).zip" "SheepShaver_UB_20140201/" "sdytrees_wp.sql.gz" "sdytrees_wp.sql" "sdytrees_shoulders.sql.gz" "sdytrees_nemo.sql.gz" "sdytrees_dressy.sql.gz" "sdytrees_arch.sql.gz" "r.pdf" "r-2.pdf" "picnic-simulator-1999 (5).mov" "Pertino-480-4598.dmg" "Payload/" "paisley.zip" "o~" "Original Yosemite AppleHDA kext (266.5).dmg" "openvpn-connect-2.0.8.105.dmg" "ok.dsym.zip" "o" "newworld86.rom.zip" "newworld86.rom" "Netscape-MachO.dmg.gz" "myRecording02.wav" "myRecording01.wav" "myRecording00.wav" "movies/" "Mother3_en.zip" "Metal_Gong-Dianakc-109711828.mp3" "libtinfo.tar.gz" "Karabiner-10.6.0.dmg" "JohnMeacham.tar.gz" "JohnMeacham/" "j5SWyl8 - Imgur.png" "istumbler-101.dmg" "Invoice_61786752.pdf" "installer_osx.dmg" "installer_osx-2.dmg" "innuendopoly.zip" "IMG_5681.MOV" "iMessageDebugv2.zip" "iMessageDebug" "image2.JPG" "I7-6L38-OSX-MAS.dmg" "home-tabs.zip" "Guardian Enrollment Form.pdf" "GraphicConverter4.1US68K.smi" "GoodNight.zip" "GGTries.ps.gz" "geometry2.zip" "geometry2/" "gc41us68k.sit" "GaetanLeurent.tar.gz" "GaetanLeurent/" "FullSizeRender.jpg" "Friends of Jack Slack export Sep 17 2015.zip" "Friends of Jack Slack export Sep 17 2015/" "Filth_Android.zip" "fasc6a.ps.gz" "Exterior_bhs_x1.JPG" "expressvpn-install_v4.2.0.390.pkg" "expressvpn-install_v4.1.1.357.pkg" "exbook.tex" "EFI Mounter-v2.zip" "EFI Mounter-v2.app/" "edi - technical design - bcg.doc" "dump.xz" "dump" "DPCIManager_ML.zip" "DPCIManager_ML 2/" "DPCIManager_ML/" "designers-cv-howtotex.zip" "designers-cv-howtotex/" "crossword_forge_osx.dmg" "crossword.puz" "crete-round.zip" "crete-round/" "copyem_paste_helper-v2.0.0.pkg" "confirmation.pdf" "Clover_v2.3k_r3280 (1)/" "Clover_v2.3k_r3280/" "Clover Configurator.app/" "Clover Configurator (Vibrant Edition).zip" "Citrix Online Launcher.dmg" "Card Back Add Menu.mov" "Beautiful Day.mp3" "barnacles_blackfriday.zip" "backup-sdytrees.blogdns.com-3-1-2015.tar.gz" "AVXWord_20121114_Lucido.puz" "AVXWord_20121114_Lucido (1).puz" "AV Club xword 12 31 15 BT.puz" "audio_realtekALC-100_v1.0.4b.command" "audio_realtekALC-100.command.zip" "audio_cloverALC-100_v1.0.4d.command" "audio_cloverALC-100.command.zip" "at-syns.ps.gz.cpgz" "at-syns.ps.gz 2.cpgz" "at-syns.ps 2.gz" "at-syns.ps" "asynch-exns.ps.gz" "alegreya.zip" "alegreya/" "al231osx.dmg" "Aetna Enrollement Form.pdf" "[Guide]_5series-hdmi_audio_(dsdt)_v2.pdf.zip" "92-10.ps.gz" "92-10.ps" "416_building_modern_frameworks.pdf alias" "416_building_modern_frameworks.pdf" "229_whats_new_in_uikit_dynamics_and_visual_effects.pdf" "219_mysteries_of_auto_layout_part_2.pdf-, attachment" "218_mysteries_of_auto_layout_part_1.pdf" "184726__zerolagtime__coach-whistle-cleaned-up.wav" "110415Stulberg.puz" "110215Steinberg.puz" "106_whats_new_in_swift.pdf" "103015bSalners.puz" "102615Fogarty.puz" "03-23-2015.pdf" ".localized" ".DS_Store" "../" "./")
+
+ ("/Users/hao/.aws/" (22139 3010 0 0) "credentials" "../" "./")
+
+ ("/Users/hao/lab/basilica/" (22164 25772 0 0) "Utils.hs" "Types.hs" "stack.yaml" "Sockets.hs" "Setup.hs" "schema.sql" "Routes.hs" "README.md" "ok" "Main.hs" "Mailer.hs" "LICENSE" "Database.hs" "Database/" "conf" "circle.yml" "basilica.cabal" "201" ".stack-work/" ".gitignore" ".git/" "-f/" "../" "./")
+
+ ("/Users/hao/lab/feelings.blackfriday/" (22157 63535 0 0) "stack.yaml" "src/" "README.md" "LICENSE" "feelings.cabal" "dist/" "css/" "cabal.sandbox.config" ".stack-work/" ".gitignore" ".git/" ".cabal-sandbox/" "../" "./")
+
+ ("/Users/hao/lab/feelings.blackfriday/src/" (22157 63468 0 0) "Main.hs" "../" "./")
+
+ ("/Users/hao/.stack/" (22163 4956 0 0) "snapshots/" "setup-exe-cache/" "programs/" "precompiled/" "indices/" "global-project/" "config.yaml" "build-plan-cache/" "build-plan/" "../" "./")
+
+ ("/Users/hao/lab/linklater/Network/Linklater/" (22179 55043 0 0) "Types.hs" "../" "./")
+
+ ("/Users/hao/lab/linklater/" (22179 56086 0 0) "ugh.py" "test/" "stack.yaml" "Setup.hs" "README.md" "Network/" "linklater.cabal" "LICENSE" "examples/" "corgi.jpg" "changelog" ".stack-work/" ".projectile" ".gitignore" ".git/" "../" "./")
+
+ ("/Users/hao/.ghc/" (21824 18809 0 0) "x86_64-darwin-7.8.3/" "x86_64-darwin-7.10.1/" "ghci_history" "../" "./")
+
+ ("/Users/hao/lab/linklater/test/" (22179 56141 0 0) "Main.hs" "../" "./")
+
+ ("/Users/hao/lab/linklater/Network/" (22179 55227 0 0) "Linklater.hs" "Linklater/" "../" "./")
+
+ ("/Users/hao/w/somatix/" (22170 45539 0 0) "target/" "somatix-unsub-import/" "somatix-streams/" "somatix-shared-daos/" "somatix-redshift-flush/" "somatix-persistence/" "somatix-mailgun-webhooks/" "somatix-mailer/" "somatix-lambda-import-trigger/" "somatix-lambda-firehose/" "somatix-frontend-api/" "somatix-domain-models/" "somatix-data-import/" "somatix-customer-info/" "somatix-common/" "somatix-aws/" "scripts/" "scalastyle-config.xml" "requirements.txt" "README.md" "project/" "lib/" "jsonpaths/" "circle.yml" "build.sbt" "api-docs/" ".projectile" ".gitignore" ".gitattributes" ".git/" ".fix-imports.yml" ".editorconfig" "../" "./")
+
+ ("/Users/hao/w/somatix-prototype/somatix_star_reports/elastic-beanstalk/" (22163 12118 0 0) "options.config.hl-star-reports" "Dockerrun.aws.json" ".ebextensions/" "../" "./")
+
+ ("/Users/hao/w/somatix-prototype/email-sender/elastic-beanstalk/.ebextensions/" (22138 53202 0 0) ".gitkeep" "../" "./")
+
+ ("/Users/hao/w/somatix-prototype/email-sender/elastic-beanstalk/" (22138 53202 0 0) "options.config.test" "options.config.master" "Dockerrun.aws.json" ".ebextensions/" "../" "./")
+
+ ("/Users/hao/w/somatix-prototype/" (22163 10680 0 0) "Workflow/" "Utils.hs" "transaction-csv-to-kinesis/" "transaction-csv-importer/" "test/" "StarReports/" "stack.yaml" "somatix_web_assets/" "somatix_web/" "somatix_star_reports/" "somatix_event_api/" "somatix_api_assets/" "somatix_api/" "SOMATIX.cabal" "Setup.hs" "Servant/" "SendGrid/" "scripts/" "README.md" "Model/" "Mailgun/" "LICENSE" "Kinesis/" "kclmld" "javalib/" "import-with-kcl/" "import-transactions.properties" "import-offer-data/" "Events/" "event-sender/" "email-sender/" "email-event-receiver/" "DEPLOYMENT.md" "conf/" "cms_assets/" "cms/" "circle.yml" "Aws/" "apollo-reports/" "Apollo/" ".stack-work/" ".projectile" ".gitignore" ".git/" "../" "./")
+
+ ("/Users/hao/w/somatix-prototype/somatix_star_reports/" (22163 11939 0 0) "README.md" "Main.hs" "Every.hs" "elastic-beanstalk/" "../" "./")
+
+ ("/Users/hao/w/somatix-prototype/somatix_star_reports/elastic-beanstalk/.ebextensions/" (22159 20714 0 0) "environment.config" ".gitkeep" "../" "./")
+
+ ("/Users/hao/w/somatix-prototype/email-sender/" (22159 15918 0 0) "Main.hs" "EmailSender/" "elastic-beanstalk/" "../" "./")
+
+ ("/Users/hao/w/somatix-prototype/StarReports/" (22163 5550 0 0) "Types.hs" "../" "./")
+
+ ("/Users/hao/w/somatix-prototype/test/" (22163 6141 0 0) "WorkflowTests.hs" "test.hs" "StarReportsTests.hs" "QuestTests.hs" "OptionTests.hs" "KCLMessageTests.hs" "DashTests.hs" "BonusStarsTests.hs" "../" "./")
+
+ ("/Users/hao/w/somatix-prototype/scripts/" (22159 15954 0 0) "deploy-kclmld" "deploy" "../" "./")
+
+ ("/Users/hao/.stack/global/" (22138 48869 0 0) "stack.yaml" ".stack-work/" "../" "./")
+
+ ("/Users/hao/lab/mathbot/web/src/" (22157 56481 0 0) "Main.hs" "../" "./")
+
+ ("/Users/hao/lab/mathbot/web/" (22157 56459 0 0) "texbooth.cabal" "stack.yaml" "src/" "Setup.hs" "LICENSE" "../" "./")
+
+ ("/Users/hao/lab/mathbot/src/" (22157 56459 0 0) "template.tex" "build.sh" "../" "./")
+
+ ("/Users/hao/lab/mathbot/" (22157 56459 0 0) "zsh_history.txt" "web/" "test/" "src/" "README.md" ".gitignore" ".git/" "../" "./")
+
+ ("/Users/hao/w/somatix-prototype/import-with-kcl/" (22154 42291 0 0) "Main.hs" "elastic-beanstalk/" "../" "./")
+
+ ("/Users/hao/w/somatix-prototype/email-sender/EmailSender/" (22156 22720 0 0) "Worker.hs" "KinesisWorker.hs" "API.hs" "../" "./")
+
+ ("/Users/hao/w/somatix-prototype/transaction-csv-to-kinesis/" (22154 42291 0 0) "Main.hs" "../" "./")
+
+ ("/Users/hao/lab/emacs-scratchpad-haskell/" (22153 41264 0 0) "RUNME.sh" "README.md" "init.el" "Cask" ".gitignore" ".git/" ".cask/" "../" "./")
+
+ ("/Users/hao/w/vimari/docs/" (22155 16882 0 0) "README-raw.md" "../" "./")
+
+ ("/Users/hao/w/somatix-prototype/somatix_api/elastic-beanstalk/.ebextensions/" (22138 53202 0 0) ".gitkeep" "../" "./")
+
+ ("/Users/hao/w/somatix-prototype/somatix_api/elastic-beanstalk/" (22138 53202 0 0) "options.config.test" "options.config.master" "Dockerrun.aws.json" ".ebextensions/" "../" "./")
+
+ ("/Users/hao/w/somatix-prototype/somatix_api/" (22138 53202 0 0) "Workflow/" "Main.hs" "elastic-beanstalk/" "../" "./")
+
+ ("/Users/hao/w/vimari/" (22155 17310 0 0) "vinegar.safariextension/" "README.md" "public/" "MIT-LICENSE.txt" "docs/" "CHANGELOG.md" ".git/" "../" "./")
+
+ ("/Users/hao/w/vimari/vinegar.safariextension/" (22155 17354 0 0) "vimium-scripts.js" "vimari.tiff" "Settings.plist" "mousetrap.js" "linkHints.js" "keyboardUtils.js" "injectedcss.css" "injected.js" "Info.plist" "Icon@96.png" "Icon@128.png" "Icon.png" "global.js" "global.html" "../" "./")
+
+ ("/Users/hao/w/vimari/vimari.safariextension/" (22155 15384 0 0) "vimium-scripts.js" "vimari.tiff" "Settings.plist" "mousetrap.js" "linkHints.js" "keyboardUtils.js" "injectedcss.css" "injected.js" "Info.plist" "Icon@96.png" "Icon@128.png" "Icon.png" "global.js" "global.html" "../" "./")
+
+ ("/Volumes/Bonnibel/Downloads/docker-singlecontainer-v1/" (22154 61142 0 0) "Dockerrun.aws.json" "Dockerfile" "cron.yaml" "application.py" "../" "./")
+
+ ("/Volumes/Bonnibel/Downloads/" (22154 61142 0 0) "ZoomInstaller.pkg" "VisualBoyAdvanceM1229/" "VirtualCD_Imager_v1.0d0 (2).sit" "VirtualCD_Imager_v1.0d0 (1).sit" "unnamed.png" "UNDERTALE.app/" "trello.html" "tomeviewer.sit" "TMBG/" "TailLogs-1451940014347.out" "stuffit_expander_55.bin" "Spectacle.shortcuts.pdf" "SheepShaver_UB_20140201/" "sdytrees_wp.sql.gz" "sdytrees_shoulders.sql.gz" "sdytrees_nemo.sql.gz" "sdytrees_dressy.sql.gz" "sdytrees_arch.sql.gz" "paisley.zip" "OS9General.dmg" "newworld86.rom.zip" "newworld86.rom" "Netscape-MachO.dmg.gz" "MyVideoBuzz_v2_0_0.zip" "MyVideoBuzz_v2_0_0/" "Mother3_en.gba" "MiniZincIDE-2.0.10-bundled.dmg" "license.dash-license" "latest.html" "ios.html" "hao-originate-nyc.pem.txt" "grid.pdf" "GraphicConverter4.1US68K.smi" "gc41us68k.sit" "f.lux-xcode-master/" "expressvpn-install_v4.3.401.pkg" "docker-singlecontainer-v1/" "DirectLinks.safariextz" "com.apple.launchd.ARFbwQZ1pq/" "COIV4.0.1+/" "Cisco_WebEx_Add-On.dmg" "CCHandbook/" "backup-sdytrees.blogdns.com-3-1-2015/" "attosplit-0.1.0.0.tar" "[Guide]_5series-hdmi_audio_(dsdt)_v2.pdf" "794ThemelessMonday.puz" "5d227bdf3f96682b7a94834e8914a1117800cd66.pdf" "408_protocoloriented_programming_in_swift.pdf" "201_ios_accessibility.pdf-, attachment" "110215Peterson.puz" ".DS_Store" "../" "./")
+
+ ("/Volumes/Bonnibel/" (22135 25941 0 0) "tv/" "music/" "movies/" "itunes/" "Downloads/" ".Trashes/" ".TemporaryItems/" ".Spotlight-V100/" ".fseventsd/" ".DS_Store" ".DocumentRevisions-V100/" "../" "./")
+
+ ("/Volumes/" (22149 21195 0 0) "Untitled/" "Door Lord/" "Bonnibel/" ".DS_Store" "../" "./")
+
+ ("/Users/hao/w/somatix-prototype/conf/" (22154 52969 0 0) "somatix-production.conf" "logback.xml" "deploy/" "../" "./")
+
+ ("/Users/hao/w/somatix-prototype/somatix_event_api/elastic-beanstalk/" (22138 53202 0 0) "options.config.test" "options.config.master" "Dockerrun.aws.json" ".ebextensions/" "../" "./")
+)
+
+;; ----- ido-unc-hosts-cache -----
+t

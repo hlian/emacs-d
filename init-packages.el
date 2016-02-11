@@ -163,6 +163,12 @@
    smtpmail-stream-type 'starttls
    smtpmail-smtp-service 587))
 
+(use-package yasnippet
+  :init
+  (setq yas-verbosity 3)
+  (yas-global-mode 1)
+  (load (concat dotfiles-dir "init-snippets.el")))
+
 (require 'visual-regexp-steroids)
 
 (custom-set-variables
