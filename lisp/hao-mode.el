@@ -9,6 +9,7 @@
     (require 'flx-ido)
     (require 'diminish)
     (require 'centered-cursor-mode)
+    (require 'darkroom)
 
     (setq backup-directory-alist `(("." . "~/.saves")))
     (column-number-mode t)

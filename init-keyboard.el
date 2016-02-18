@@ -56,6 +56,5 @@
 (setq sentence-end "[.?!][]\"')}]*\\($\\|[ \t]\\)[ \t\n]*")
 (setq sentence-end-double-space nil)
 
-
 (eval-after-load "latex"
   '(define-key (LaTeX-mode-map) (kbd "C-.") '(lambda () (interactive) (save-buffer) (tex-file) (tex-view))))
