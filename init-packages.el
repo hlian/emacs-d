@@ -149,6 +149,10 @@
 (use-package subword
   :commands subword-forward)
 
+(use-package tex-mode
+  :config
+  (bind-key "C-." '(lambda () (interactive) (save-buffer) (tex-file) (tex-view)) latex-mode-map))
+
 (use-package yasnippet
   :diminish yas-minor-mode
   :defer 1

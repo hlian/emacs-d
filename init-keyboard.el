@@ -42,7 +42,7 @@
    ("C-<f11>" my-fill-column)
    ("C-; C-k" (lambda () (interactive) (kill-buffer nil)))
    ("C-; C-b" electric-buffer-list)
-   ("C-; C-f" auto-fill-mode)
+   ("C-; C-f" projectile-find-file)
    ("C-; C-<return>" unfill-paragraph)
    ("C-; C-r" ido-recentf)
    ("C-; C-m" make-directory)
@@ -55,6 +55,3 @@
 ;; Real men end follow periods with one space only.
 (setq sentence-end "[.?!][]\"')}]*\\($\\|[ \t]\\)[ \t\n]*")
 (setq sentence-end-double-space nil)
-
-(eval-after-load "latex"
-  '(define-key (LaTeX-mode-map) (kbd "C-.") '(lambda () (interactive) (save-buffer) (tex-file) (tex-view))))
