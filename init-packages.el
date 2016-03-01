@@ -115,6 +115,10 @@
             (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
             (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)))
 
+(use-package org
+  :config
+  (setq org-src-fontify-natively t))
+
 (use-package recentf
   :commands recentf-mode
   :defer 2
