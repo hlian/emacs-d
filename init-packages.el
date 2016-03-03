@@ -51,9 +51,16 @@
 (eval-after-load 'flycheck
   '(add-hook 'flycheck-mode-hook #'flycheck-haskell-setup))
 
+(defun fix-imports ()
+  "fixes imports"
+  (interactive)
+  (sort-lines nil (region-beginning) (region-end))
+  (align-regexp (region-beginning) (region-end) "\\(\\s-*\\)#-"))
+
 (use-package haskell-mode
   :mode "\\.hs\\'"
   :commands haskell-mode
+  :bind ("C-c C-s" . fix-imports)
   :config
   (custom-set-variables
    '(haskell-ask-also-kill-buffers nil)
