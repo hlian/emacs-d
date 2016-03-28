@@ -78,10 +78,6 @@
   :config
   (define-key haskell-interactive-mode-map (kbd "C-c C-t") nil))
 
-(use-package magit
-  :commands magit-mode
-  :config (setq magit-last-seen-setup-instructions "1.4.0"))
-
 (use-package js2-mode
   :mode "\\.js\\'"
   :commands js2-mode
@@ -189,10 +185,11 @@
   (yas-global-mode 1)
   (load (concat dotfiles-dir "init-snippets.el")))
 
-(require 'visual-regexp-steroids)
-
 (custom-set-variables
  '(js-indent-level 2))
 
 (use-package yaml-mode
   :mode "\\.yaml\\'")
+
+(provide 'init-packages)
+;;; init-packages.el ends here

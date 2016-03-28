@@ -1,3 +1,7 @@
+;;; package --- Summary
+;;; Commentary:
+;;; Code:
+
 ;;;###autoload
 (define-minor-mode hao-mode
   "Toggle Hao's stuff."
@@ -10,6 +14,7 @@
     (require 'diminish)
     (require 'centered-cursor-mode)
     (require 'darkroom)
+    (require 'visual-regexp-steroids)
 
     (setq backup-directory-alist `(("." . "~/.saves")))
     (column-number-mode t)
