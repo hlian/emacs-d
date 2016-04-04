@@ -3,7 +3,6 @@
 
 (depends-on "avy")
 (depends-on "cask")
-(depends-on "centered-cursor-mode")
 (depends-on "coffee-mode")
 (depends-on "company-ghc")
 (depends-on "darkroom")

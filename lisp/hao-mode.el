@@ -12,7 +12,6 @@
     (require 'midnight)
     (require 'flx-ido)
     (require 'diminish)
-    (require 'centered-cursor-mode)
     (require 'darkroom)
     (require 'visual-regexp-steroids)
 
@@ -34,8 +33,6 @@
     (drag-stuff-mode 1)
     (diminish 'drag-stuff-mode)
     (exec-path-from-shell-initialize)
-    (global-centered-cursor-mode t)
-    (diminish 'centered-cursor-mode)
 
     (setq-default save-place t)
     (setq-default uniquify-buffer-name-style 'forward)
