@@ -193,3 +193,6 @@
 
 (provide 'init-packages)
 ;;; init-packages.el ends here
+
+(progn (define-key key-translation-map (kbd ";") (kbd ":"))
+       (define-key key-translation-map (kbd ":") (kbd ";")))
