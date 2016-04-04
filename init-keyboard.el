@@ -48,7 +48,10 @@
    ("C-; C-t" ido-recentf)
    ("C-; C-m" make-directory)
    ("M-/" hippie-expand)
+   ("C-i" indent-rigidly)
    ))
+
+(global-unset-key (kbd "C-x TAB"))
 
 (set-keyboard-coding-system 'utf-8-unix)
 (prefer-coding-system 'utf-8-unix)
