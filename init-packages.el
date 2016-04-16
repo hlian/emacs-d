@@ -196,3 +196,5 @@
 
 (progn (define-key key-translation-map (kbd ";") (kbd ":"))
        (define-key key-translation-map (kbd ":") (kbd ";")))
+(progn (define-key key-translation-map (kbd "\"") (kbd "'"))
+       (define-key key-translation-map (kbd "'") (kbd "\"")))
