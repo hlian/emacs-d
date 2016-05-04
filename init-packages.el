@@ -2,6 +2,7 @@
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.org/packages/") t)
 (package-initialize)
+(setq exec-path-from-shell-arguments '("-l"))
 (exec-path-from-shell-initialize)
 
 (defun select-current-line ()
@@ -35,7 +36,7 @@
 (use-package hao-mode
   :commands hao-mode
   :load-path "lisp"
-  :defer 1
+  :defer 2
   :config (hao-mode t))
 
 (use-package expand-region
@@ -102,11 +103,9 @@
 (setq-default tex-run-command "pdflatex")
 (setq-default tex-command tex-run-command)
 
-(use-package lisp-mode
-  :commands emacs-lisp-mode
-  :config (add-hook 'emacs-lisp-mode-hook
-                    '(lambda ()
-                       (add-hook 'after-save-hook 'emacs-lisp-byte-compile t t))))
+(add-hook 'emacs-lisp-mode-hook
+'(lambda ()
+   (add-hook 'after-save-hook 'emacs-lisp-byte-compile t t)))
 
 (use-package markdown-mode
   :mode "\\.md\\'")
@@ -119,6 +118,7 @@
             (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)))
 
 (use-package org
+  :defer 10
   :config
   (setq org-src-fontify-natively t))
 
@@ -140,8 +140,7 @@
 
 (use-package mwim
   :bind
-  (("C-a" . mwim-beginning-of-line-or-code)
-   ("C-e" . mwim-end-of-line-or-code)))
+  (("C-a" . mwim-beginning-of-line-or-code)))
 
 (use-package popwin
   :commands popwin-mode)
@@ -156,15 +155,23 @@
 (use-package subword
   :commands subword-forward)
 
-(use-package tex-mode
-  :config
-  (bind-key "C-." '(lambda () (interactive) (save-buffer) (tex-file) (tex-view)) latex-mode-map))
+(defun compile-and-save ()
+  (interactive)
+  (save-buffer)
+  (tex-file)
+  (tex-view))
+
+(use-package latex-mode
+  :bind
+  ("C-." . compile-and-save))
 
 (use-package yasnippet
   :diminish yas-minor-mode
-  :defer 1
+  :defer 5
   :config
   (yas-global-mode t)
+  (setq yas-verbosity 3)
+  (load (concat dotfiles-dir "init-snippets.el"))
   (define-key yas-minor-mode-map (kbd "M-/") 'yas-expand))
 
 (use-package smtpmail
@@ -178,12 +185,6 @@
    smtpmail-smtp-server "smtp.gmail.com"
    smtpmail-stream-type 'starttls
    smtpmail-smtp-service 587))
-
-(use-package yasnippet
-  :init
-  (setq yas-verbosity 3)
-  (yas-global-mode 1)
-  (load (concat dotfiles-dir "init-snippets.el")))
 
 (custom-set-variables
  '(js-indent-level 2))
