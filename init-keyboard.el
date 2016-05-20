@@ -47,6 +47,7 @@
    ("C-; C-r" helm-projectile-recentf)
    ("C-; C-t" ido-recentf)
    ("C-; C-m" make-directory)
+   ("C-x C-i" fix-imports)
    ("M-/" hippie-expand)
    ("C-i" indent-rigidly)
    ))

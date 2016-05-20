@@ -49,8 +49,11 @@
 (use-package flycheck-haskell
   :commands flycheck-haskell-setup)
 
+;; (eval-after-load 'flycheck
+;;   '(add-hook 'flycheck-mode-hook #'flycheck-haskell-setup))
+
 (eval-after-load 'flycheck
-  '(add-hook 'flycheck-mode-hook #'flycheck-haskell-setup))
+  '(require 'flycheck-hdevtools))
 
 (defun fix-imports ()
   "fixes imports"
