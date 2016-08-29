@@ -74,6 +74,7 @@
   (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
   (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
   (add-hook 'haskell-mode-hook 'flycheck-mode)
+  (add-hook 'before-save-hook 'haskell-mode-format-imports nil t)
   ; (add-hook 'haskell-mode-hook 'ghc-init)
   )
 

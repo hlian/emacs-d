@@ -39,13 +39,16 @@
  require-final-newline t
  scroll-preserve-screen-position t
  sgml-basic-offset 2
- show-trailing-whitespace t
  tab-width 4
  truncate-lines t
  vc-handled-backends '(Git)
  visible-bell nil
  x-stretch-cursor t ;; Stretch cursor for tab characters.
  )
+
+(add-hook 'prog-mode-hook (lambda () (setq show-trailing-whitespace t)))
+
+(set-fontset-font t 'unicode "Apple Color Emoji" nil 'prepend)
 
 (setq-default
  mac-option-key-is-meta nil

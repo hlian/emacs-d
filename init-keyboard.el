@@ -45,6 +45,7 @@
    ("C-; C-f" projectile-find-file)
    ("C-; C-<return>" unfill-paragraph)
    ("C-; C-r" helm-projectile-recentf)
+   ("C-c C-f" helm-projectile-ag)
    ("C-; C-t" ido-recentf)
    ("C-; C-m" make-directory)
    ("C-x C-i" fix-imports)
