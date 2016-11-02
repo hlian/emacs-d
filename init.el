@@ -1,6 +1,8 @@
 ;; Cask!
+; (package-initialize)
+
 (require 'cask "~/.cask/cask.el")
-(cask-initialize)
+(cask-initialize "~/.emacs.d")
 
 ;; Sweet setup from emacs-starter-kit.
 (defvar dotfiles-dir (file-name-directory

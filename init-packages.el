@@ -1,9 +1,6 @@
-(require 'package)
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.org/packages/") t)
-(package-initialize)
-(setq exec-path-from-shell-arguments '("-l"))
-(exec-path-from-shell-initialize)
+(when (memq window-system '(mac ns))
+  (setq exec-path-from-shell-arguments '("-l"))
+  (exec-path-from-shell-initialize))
 
 (defun select-current-line ()
   "Select the current line"
