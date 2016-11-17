@@ -16,6 +16,7 @@
 (depends-on "flycheck-cask")
 (depends-on "flycheck-haskell")
 (depends-on "flycheck-hdevtools")
+(depends-on "go-mode")
 (depends-on "haskell-mode")
 (depends-on "helm")
 (depends-on "helm-projectile")
