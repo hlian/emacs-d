@@ -1,3 +1,7 @@
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.org/packages/") t)
+(package-initialize)
+
 (when (memq window-system '(mac ns))
   (setq exec-path-from-shell-arguments '("-l"))
   (exec-path-from-shell-copy-env "GOPATH")
@@ -29,7 +33,10 @@
 (use-package go-mode
   :commands go-mode
   :config
-  (add-hook 'go-mode-hook 'flycheck-mode))
+  (add-hook 'go-mode-hook 'flycheck-mode)
+  (add-hook 'go-mode-hook (lambda () (progn
+                                       (setq gofmt-command "goimports")
+                                       (add-hook 'before-save-hook 'gofmt-before-save)))))
 
 (use-package hao-mode
   :commands hao-mode
@@ -72,7 +79,7 @@
   (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
   (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
   (add-hook 'haskell-mode-hook 'flycheck-mode)
-  (add-hook 'before-save-hook 'haskell-mode-format-imports nil t)
+  (add-hook 'haskell-mode-hook (lambda () (add-hook 'before-save-hook 'haskell-mode-format-imports nil t)))
   ; (add-hook 'haskell-mode-hook 'ghc-init)
   )
 
@@ -148,7 +155,10 @@
   :commands popwin-mode)
 
 (use-package scala-mode
-  :mode "\\.scala\\'")
+  :interpreter
+  ("scala" . scala-mode)
+  :config
+  (add-hook 'scala-mode-hook 'flycheck-mode))
 
 (use-package smex
   :commands smex

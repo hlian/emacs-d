@@ -16,21 +16,6 @@
   (message "fill column set to 50")
   (setq fill-column 50))
 
-;; From xsteve. Thants, xsteve.
-(defun ido-recentf ()
-  "Use ido to select a recently opened file from the `recentf-list'"
-  (interactive)
-  (recentf-mode t)
-  (let
-      ((home (expand-file-name (getenv "HOME"))))
-    (find-file
-     (ido-completing-read
-      "Recentf open: "
-      (mapcar (lambda (path)
-                (replace-regexp-in-string home "~" path))
-              recentf-list)
-      nil t))))
-
 (global-set-keys
  '(("C-<backspace>" backward-kill-word)
 
@@ -44,9 +29,9 @@
    ("C-; C-b" electric-buffer-list)
    ("C-; C-f" projectile-find-file)
    ("C-; C-<return>" unfill-paragraph)
-   ("C-; C-r" helm-projectile-recentf)
+   ("C-; C-r" helm-projectile)
    ("C-c C-f" helm-projectile-ag)
-   ("C-; C-t" ido-recentf)
+   ("C-; C-t" helm-recentf)
    ("C-; C-m" make-directory)
    ("C-c C-i" fix-imports)
    ("C-c k" helm-projectile-ag)

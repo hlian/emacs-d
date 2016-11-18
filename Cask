@@ -19,6 +19,7 @@
 (depends-on "go-mode")
 (depends-on "haskell-mode")
 (depends-on "helm")
+(depends-on "helm-ag")
 (depends-on "helm-projectile")
 (depends-on "idle-highlight-mode")
 (depends-on "js2-mode")
