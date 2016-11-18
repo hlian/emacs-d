@@ -3,7 +3,8 @@
 (package-initialize)
 
 (when (memq window-system '(mac ns))
-  (setq exec-path-from-shell-arguments '("-l"))
+  (custom-set-variables
+   '(exec-path-from-shell-arguments "-l"))
   (exec-path-from-shell-copy-env "GOPATH")
   (exec-path-from-shell-initialize))
 
@@ -186,17 +187,17 @@
   (load (concat dotfiles-dir "init-snippets.el"))
   (define-key yas-minor-mode-map (kbd "M-/") 'yas-expand))
 
-(use-package smtpmail
-  :defer 1
-  :config
-  (setq
-   user-full-name "Hao Lian"
-   smtpmail-local-domain "haolian.org"
-   user-mail-address (concat "hi@" smtpmail-local-domain)
-   send-mail-function 'smtpmail-send-it
-   smtpmail-smtp-server "smtp.gmail.com"
-   smtpmail-stream-type 'starttls
-   smtpmail-smtp-service 587))
+;; (use-package smtpmail
+;;   :defer 1
+;;   :config
+;;   (setq
+;;    user-full-name "Hao Lian"
+;;    smtpmail-local-domain "haolian.org"
+;;    user-mail-address (concat "hi@" smtpmail-local-domain)
+;;    send-mail-function 'smtpmail-send-it
+;;    smtpmail-smtp-server "smtp.gmail.com"
+;;    smtpmail-stream-type 'starttls
+;;    smtpmail-smtp-service 587))
 
 (custom-set-variables
  '(js-indent-level 2))
