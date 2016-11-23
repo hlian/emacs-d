@@ -4,7 +4,8 @@
 
 (when (memq window-system '(mac ns))
   (custom-set-variables
-   '(exec-path-from-shell-arguments "-l"))
+   '(exec-path-from-shell-arguments (list "-l"))
+   '(exec-path-fromm-shell-debug t))
   (exec-path-from-shell-copy-env "GOPATH")
   (exec-path-from-shell-initialize))
 
