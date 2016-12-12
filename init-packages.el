@@ -3,6 +3,7 @@
 (package-initialize)
 
 (when (memq window-system '(mac ns))
+  (set-fontset-font t 'unicode "Apple Color Emoji" nil 'prepend)
   (custom-set-variables
    '(exec-path-from-shell-arguments (list "-l"))
    '(exec-path-fromm-shell-debug t))
