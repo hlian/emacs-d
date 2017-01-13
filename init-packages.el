@@ -3,7 +3,6 @@
 (package-initialize)
 
 (when (memq window-system '(mac ns))
-  (set-fontset-font t 'unicode "Apple Color Emoji" nil 'prepend)
   (custom-set-variables
    '(exec-path-from-shell-arguments (list "-l"))
    '(exec-path-fromm-shell-debug t))
@@ -94,22 +93,29 @@
 (use-package js2-mode
   :mode "\\.js\\'"
   :commands js2-mode
-  :config (setq-default
-           js2-auto-indent-flag nil
-           js2-basic-offset 4
-           js2-electric-keys nil
-           js2-enter-indents-newline nil
-           js2-mirror-mode nil
-           js2-mode-show-parse-errors nil
-           js2-mode-show-strict-warnings nil
-           js2-mode-squeeze-spaces t
-           js2-strict-missing-semi-warning nil
-           js2-strict-trailing-comma-warning nil
-           js2-bounce-indent-p t
-           js2-global-externs (list "$" "ko" "_")
-           js2-highlight-external-variables t
-           js2-mode-show-parse-errors t
-           js2-mode-show-strict-warnings t))
+  :config
+  (setq-default
+   js2-auto-indent-flag nil
+   js2-basic-offset 4
+   js2-electric-keys nil
+   js2-enter-indents-newline nil
+   js2-mirror-mode nil
+   js2-mode-show-parse-errors nil
+   js2-mode-show-strict-warnings nil
+   js2-mode-squeeze-spaces t
+   js2-strict-missing-semi-warning nil
+   js2-strict-trailing-comma-warning nil
+   js2-bounce-indent-p t
+   js2-global-externs (list "$" "ko" "_")
+   js2-highlight-external-variables t
+   js2-mode-show-parse-errors t
+   js2-mode-show-strict-warnings t)
+  (add-hook 'js2-mode-hook 'flycheck-mode))
+
+(use-package json-mode
+  :mode "\\.json\\'"
+  :config
+  (add-hook 'json-mode-hook 'flycheck-mode))
 
 (setq tex-run-command "pdflatex")
 (setq-default tex-run-command "pdflatex")

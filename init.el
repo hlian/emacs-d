@@ -50,6 +50,8 @@
 
 (add-hook 'prog-mode-hook (lambda () (setq show-trailing-whitespace t)))
 
+(set-fontset-font t 'unicode "Apple Color Emoji" nil 'prepend)
+
 (setq-default
  mac-option-key-is-meta nil
  mac-command-key-is-meta t

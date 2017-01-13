@@ -43,7 +43,7 @@ Version 2016-12-27"
    ("C-; C-f" projectile-find-file)
    ("C-; C-<return>" unfill-paragraph)
    ("C-; C-r" helm-projectile)
-   ("C-c C-f" helm-projectile-ag)
+   ("C-S-k C-S-k" helm-projectile-ag)
    ("C-; C-t" helm-recentf)
    ("C-; C-m" make-directory)
    ("C-c C-i" fix-imports)
