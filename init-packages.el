@@ -32,6 +32,11 @@
                     (lambda()
                       (local-set-key (kbd "C-; C-;") 'ff-find-other-file))))
 
+(use-package css-mode
+  :config
+  (custom-set-variables
+   '(css-indent-offset 2)))
+
 (use-package go-mode
   :commands go-mode
   :config
@@ -45,6 +50,10 @@
   :load-path "lisp"
   :defer 2
   :config (hao-mode t))
+
+(use-package hindent
+  :commands hindent-mode
+  :load-path "lisp")
 
 (use-package expand-region
   :commands er/expand-region
@@ -81,8 +90,10 @@
   (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
   (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
   (add-hook 'haskell-mode-hook 'flycheck-mode)
-  (add-hook 'haskell-mode-hook (lambda () (add-hook 'before-save-hook 'haskell-mode-format-imports nil t)))
-  ; (add-hook 'haskell-mode-hook 'ghc-init)
+  (add-hook 'haskell-mode-hook 'hindent-mode)
+  (add-hook 'haskell-mode-hook (lambda ()
+                                 (add-hook 'before-save-hook 'haskell-mode-format-imports nil t)
+                                 (add-hook 'before-save-hook 'hindent-reformat-buffer)))
   )
 
 (use-package haskell-interactive-mode
@@ -126,7 +137,7 @@
    (add-hook 'after-save-hook 'emacs-lisp-byte-compile t t)))
 
 (use-package markdown-mode
-  :mode "\\.md\\'")
+  :mode ("\\.md\\'" . gfm-mode))
 
 (use-package multiple-cursors
   :defer 2
@@ -176,17 +187,19 @@
 (use-package subword
   :commands subword-forward)
 
-(defun compile-and-save ()
-  (interactive)
-  (save-buffer)
-  (tex-file)
-  (tex-view))
-
-(use-package latex-mode
-  :bind
-  ("C-." . compile-and-save))
+;; (use-package tex-mode
+;;   :bind
+;;   ("C-." . compile-and-save)
+;;   :config
+;;   (add-hook 'latex-mode-hook (lambda ()
+;;                                (defun compile-and-save ()
+;;                                  (interactive)
+;;                                  (save-buffer)
+;;                                  (tex-file)
+;;                                  (tex-view)))))
 
 (use-package yasnippet
+  :functions yas-global-mode
   :diminish yas-minor-mode
   :defer 5
   :config

@@ -31,8 +31,6 @@ Version 2016-12-27"
 (global-set-keys
  '(("C-<backspace>" backward-kill-word)
 
-   ("M-[" backward-paragraph)
-   ("M-]" forward-paragraph)
    ("C-." save-buffer)
    ("C-," avy-goto-word-or-subword-1)
 

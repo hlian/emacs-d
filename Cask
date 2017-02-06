@@ -17,6 +17,8 @@
 (depends-on "flycheck-haskell")
 (depends-on "flycheck-hdevtools")
 (depends-on "go-mode")
+(depends-on "scala-mode")
+(depends-on "json-mode")
 (depends-on "haskell-mode")
 (depends-on "helm")
 (depends-on "helm-ag")
