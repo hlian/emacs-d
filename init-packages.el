@@ -43,6 +43,8 @@
   (add-hook 'go-mode-hook 'flycheck-mode)
   (add-hook 'go-mode-hook (lambda () (progn
                                        (setq gofmt-command "goimports")
+                                       (set (make-local-variable 'company-backends) '(company-go))
+                                       (company-mode)
                                        (add-hook 'before-save-hook 'gofmt-before-save)))))
 
 (use-package hao-mode
