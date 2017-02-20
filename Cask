@@ -43,3 +43,5 @@
 (depends-on "windmove")
 (depends-on "yasnippet")
 (depends-on "yaml-mode")
+(depends-on "psc-ide")
+(depends-on "purescript-mode")

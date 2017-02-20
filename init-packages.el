@@ -222,6 +222,15 @@
 ;;    smtpmail-stream-type 'starttls
 ;;    smtpmail-smtp-service 587))
 
+(use-package purescript-mode
+  :mode "\\.purs\\'"
+  :config
+  (add-hook 'purescript-mode-hook (lambda ()
+                                    (psc-ide-mode)
+                                    (company-mode)
+                                    (flycheck-mode)
+                                    (turn-on-purescript-indentation))))
+
 (custom-set-variables
  '(js-indent-level 2))
 
