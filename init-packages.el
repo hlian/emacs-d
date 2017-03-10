@@ -244,3 +244,6 @@
        (define-key key-translation-map (kbd ":") (kbd ";")))
 (progn (define-key key-translation-map (kbd "\"") (kbd "'"))
        (define-key key-translation-map (kbd "'") (kbd "\"")))
+
+(add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
+(add-to-list 'comint-output-filter-functions 'ansi-color-process-output)
