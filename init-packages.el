@@ -176,11 +176,21 @@
 (use-package popwin
   :commands popwin-mode)
 
-(use-package scala-mode
-  :interpreter
-  ("scala" . scala-mode)
-  :config
-  (add-hook 'scala-mode-hook 'flycheck-mode))
+;; (use-package scala-mode
+;;   :interpreter
+;;   ("scala" . scala-mode)
+;;   :config
+;;   (add-hook 'scala-mode-hook 'flycheck-mode))
+
+(use-package ensime
+  :commands ensime
+  :init
+  (setq-default ensime-startup-notification nil)
+  (setq-default ensime-startup-snapshot-notification nil))
+
+(use-package sbt-mode)
+
+(use-package scala-mode)
 
 (use-package smex
   :commands smex
@@ -208,7 +218,7 @@
   (yas-global-mode t)
   (setq yas-verbosity 3)
   (load (concat dotfiles-dir "init-snippets.el"))
-  (define-key yas-minor-mode-map (kbd "M-/") 'yas-expand))
+  (define-key yas-minor-mode-map (kbd "M-/") 'hippie-expand))
 
 ;; (use-package smtpmail
 ;;   :defer 1
