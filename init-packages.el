@@ -211,7 +211,7 @@
 ;;                                  (tex-view)))))
 
 (use-package yasnippet
-  :functions yas-global-mode
+  :functions yas-global-mode yas-expand
   :diminish yas-minor-mode
   :defer 5
   :config
@@ -219,6 +219,18 @@
   (setq yas-verbosity 3)
   (load (concat dotfiles-dir "init-snippets.el"))
   (define-key yas-minor-mode-map (kbd "M-/") 'hippie-expand))
+
+(use-package hippie-expand
+  :init
+  (setq hippie-expand-try-functions-list
+        '(yas-expand
+          try-complete-file-name-partially
+          try-complete-file-name
+          try-expand-dabbrev
+          try-expand-dabbrev-all-buffers
+          try-expand-dabbrev-from-kill))
+  :bind
+  ("M-/" . hippie-expand))
 
 ;; (use-package smtpmail
 ;;   :defer 1

@@ -16,6 +16,8 @@
     (require 'visual-regexp-steroids)
 
     (setq backup-directory-alist `(("." . "~/.saves")))
+    (setq auto-save-file-name-transforms `(("." "~/.saves" t)))
+    (setq create-lockfiles nil)
     (column-number-mode t)
     (delete-selection-mode t)
     (global-hl-line-mode t)
@@ -40,7 +42,7 @@
     (flx-ido-mode 1)
     (setq ido-enable-flex-matching 1)
     (setq ido-use-faces nil)
-    (projectile-global-mode 1)
+    (projectile-mode 1)
     (diminish 'projectile-mode)))
 
 (provide 'hao-mode)

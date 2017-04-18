@@ -46,7 +46,6 @@ Version 2016-12-27"
    ("C-; C-m" make-directory)
    ("C-c C-i" fix-imports)
    ("C-c k" helm-projectile-ag)
-   ("M-/" hippie-expand)
    ("C-i" indent-rigidly)
    ))
 
