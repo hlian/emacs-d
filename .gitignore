@@ -17,3 +17,9 @@ tramp
 eshell/
 url/
 semanticdb/
+.*.el
+.sx/
+ido.*
+places
+recentf
+smex-items
