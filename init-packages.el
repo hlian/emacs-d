@@ -41,11 +41,17 @@
   :commands go-mode
   :config
   (add-hook 'go-mode-hook 'flycheck-mode)
+  (add-hook 'go-mode-hook 'smartparens-mode)
   (add-hook 'go-mode-hook (lambda () (progn
                                        (setq gofmt-command "goimports")
-                                       (set (make-local-variable 'company-backends) '(company-go))
-                                       (company-mode)
-                                       (add-hook 'before-save-hook 'gofmt-before-save)))))
+                                       (auto-complete-mode 1)
+                                       (add-hook 'before-save-hook 'gofmt-before-save nil 'local)))))
+
+(use-package go-autocomplete)
+
+(use-package fuzzy)
+
+(use-package smartparens)
 
 (use-package hao-mode
   :commands hao-mode
@@ -94,8 +100,7 @@
   (add-hook 'haskell-mode-hook 'flycheck-mode)
   (add-hook 'haskell-mode-hook 'hindent-mode)
   (add-hook 'haskell-mode-hook (lambda ()
-                                 (add-hook 'before-save-hook 'haskell-mode-format-imports nil t)
-                                 (add-hook 'before-save-hook 'hindent-reformat-buffer)))
+                                 (add-hook 'before-save-hook 'haskell-mode-format-imports nil 'local)))
   )
 
 (use-package haskell-interactive-mode
@@ -232,26 +237,25 @@
   :bind
   ("M-/" . hippie-expand))
 
-;; (use-package smtpmail
-;;   :defer 1
+;; (use-package purescript-mode
+;;   :mode "\\.purs\\'"
 ;;   :config
-;;   (setq
-;;    user-full-name "Hao Lian"
-;;    smtpmail-local-domain "haolian.org"
-;;    user-mail-address (concat "hi@" smtpmail-local-domain)
-;;    send-mail-function 'smtpmail-send-it
-;;    smtpmail-smtp-server "smtp.gmail.com"
-;;    smtpmail-stream-type 'starttls
-;;    smtpmail-smtp-service 587))
+;;   (add-hook 'purescript-mode-hook (lambda ()
+;;                                     (psc-ide-mode)
+;;                                     (company-mode)
+;;                                     (flycheck-mode)
+;;                                     (turn-on-purescript-indentation))))
 
-(use-package purescript-mode
-  :mode "\\.purs\\'"
+(use-package rust-mode
+  :mode "\\.rs\\'"
   :config
-  (add-hook 'purescript-mode-hook (lambda ()
-                                    (psc-ide-mode)
-                                    (company-mode)
-                                    (flycheck-mode)
-                                    (turn-on-purescript-indentation))))
+  (setq rust-format-on-save t)
+  (add-hook 'rust-mode-hook 'racer-mode)
+  (add-hook 'racer-mode-hook 'eldoc-mode)
+  (add-hook 'rust-mode-hook 'company-mode)
+  (add-hook 'rust-mode-hook 'flycheck-mode)
+  (add-hook 'flycheck-mode-hook 'flycheck-rust-setup)
+  (setq company-tooltip-align-annotations t))
 
 (custom-set-variables
  '(js-indent-level 2))

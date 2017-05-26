@@ -36,7 +36,7 @@ Version 2016-12-27"
 
    ("C-<f11>" my-fill-column)
    ("C-; C-k" (lambda () (interactive) (kill-buffer nil)))
-   ("C-; C-b" electric-buffer-list)
+   ("C-; C-b" helm-mini)
    ("C-S-j C-S-j" xah-new-empty-buffer)
    ("C-; C-f" projectile-find-file)
    ("C-; C-<return>" unfill-paragraph)
@@ -45,6 +45,8 @@ Version 2016-12-27"
    ("C-; C-t" helm-recentf)
    ("C-; C-m" make-directory)
    ("C-c C-i" fix-imports)
+   ("C-x C-j" replace-string)
+   ("C-x C-k" vr/query-replace)
    ("C-c k" helm-projectile-ag)
    ("C-i" indent-rigidly)
    ))
