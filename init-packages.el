@@ -51,6 +51,11 @@
 
 (use-package fuzzy)
 
+(use-package helm
+  :init
+  (setq helm-recentf-fuzzy-match t)
+  (setq helm-buffers-fuzzy-matching t))
+
 (use-package smartparens)
 
 (use-package hao-mode
