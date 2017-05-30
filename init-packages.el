@@ -44,10 +44,7 @@
   (add-hook 'go-mode-hook 'smartparens-mode)
   (add-hook 'go-mode-hook (lambda () (progn
                                        (setq gofmt-command "goimports")
-                                       (auto-complete-mode 1)
                                        (add-hook 'before-save-hook 'gofmt-before-save nil 'local)))))
-
-(use-package go-autocomplete)
 
 (use-package fuzzy)
 
