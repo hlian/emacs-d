@@ -14,11 +14,13 @@
     (require 'darkroom)
     (require 'visual-regexp-steroids)
     (require 'key-chord)
+    (require 'key-seq)
 
-    (key-chord-define-global "jj" 'helm-mini)
-    (key-chord-define-global "jf" 'helm-projectile)
-    (key-chord-define-global "j," 'helm-find-files)
-    (key-chord-define-global "jx" 'smex)
+    (key-seq-define-global "jj" 'helm-mini)
+    (key-seq-define-global "jf" 'helm-projectile)
+    (key-seq-define-global "j," 'helm-find-files)
+    (key-seq-define-global "jx" 'smex)
+    (key-seq-define-global "jk" '(lambda () (interactive) (kill-buffer nil)))
     (key-chord-mode t)
 
     (setq backup-directory-alist `(("." . "~/.saves")))

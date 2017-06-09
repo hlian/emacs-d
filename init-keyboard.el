@@ -11,11 +11,6 @@
   (let ((fill-column (point-max)))
     (fill-paragraph nil)))
 
-(defun my-fill-column ()
-  (interactive)
-  (message "fill column set to 50")
-  (setq fill-column 50))
-
 (defun xah-new-empty-buffer ()
   "Create a new empty buffer.
 New buffer will be named “untitled” or “untitled<2>”, “untitled<3>”, etc.
@@ -34,9 +29,6 @@ Version 2016-12-27"
    ("C-." save-buffer)
    ("C-," avy-goto-word-or-subword-1)
 
-   ("C-<f11>" my-fill-column)
-   ("C-; C-k" (lambda () (interactive) (kill-buffer nil)))
-   ("C-; C-b" helm-mini)
    ("C-S-j C-S-j" xah-new-empty-buffer)
    ("C-; C-f" projectile-find-file)
    ("C-; C-<return>" unfill-paragraph)
@@ -59,3 +51,9 @@ Version 2016-12-27"
 ;; Real men end follow periods with one space only.
 (setq sentence-end "[.?!][]\"')}]*\\($\\|[ \t]\\)[ \t\n]*")
 (setq sentence-end-double-space nil)
+
+(defun open-terminal-here ()
+  (interactive)
+  (let ((current default-directory))
+    (shell-command (concat "open -a iTerm.app \"" current "\" 2>&1 > /dev/null & disown") nil nil)
+    (kill-buffer "*Shell Command Output*")))

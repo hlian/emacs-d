@@ -36,7 +36,7 @@
  inhibit-startup-message t
  initial-scratch-message nil
  kill-do-not-save-duplicates t
- line-spacing 2
+ line-spacing 1
  major-mode 'text-mode
  require-final-newline t
  scroll-preserve-screen-position t
