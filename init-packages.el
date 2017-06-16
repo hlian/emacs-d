@@ -69,15 +69,6 @@
   :commands er/expand-region
   :bind ("C-=" . er/expand-region))
 
-;; (use-package ghc
-;;   :commands ghc-init ghc-debug)
-
-(use-package flycheck-haskell
-  :commands flycheck-haskell-setup)
-
-;; (eval-after-load 'flycheck
-;;   '(add-hook 'flycheck-mode-hook #'flycheck-haskell-setup))
-
 (eval-after-load 'flycheck
   '(require 'flycheck-hdevtools))
 

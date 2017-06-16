@@ -64,3 +64,14 @@
 ;;    '(sml/filename ((t (:foreground "black" :weight bold))))))
 ;; e
 ;;; hao-mode.el ends here
+
+;; (custom-set-faces
+;;  ;; custom-set-faces was added by Custom.
+;;  ;; If you edit it by hand, you could mess it up, so be careful.
+;;  ;; Your init file should contain only one such instance.
+;;  ;; If there is more than one, they won't work right.
+;;  '(default ((t (:inherit nil :height 140 :family "Fira Code"))))
+;;  '(mode-line ((t (:background "#bbeeff" :foreground "black" :box (:line-width 3 :color "#bbeeff" :style unspecified) :overline nil :underline nil :height 120))))
+;;  '(mode-line-inactive ((t (:background "#ede6cc" :foreground "#93a1a1" :box (:line-width 3 :color "#ede6cc" :style unspecified) :overline nil :underline nil :height 120))))
+;;  '(sml/filename ((t (:foreground "#cc0099"))))
+;;  '(font-lock-doc-face ((t (:foreground "magenta3" :slant normal :weight bold)))))

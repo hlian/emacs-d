@@ -39,6 +39,7 @@
 (depends-on "shm")
 (depends-on "smart-mode-line")
 (depends-on "smex")
+(depends-on "smart-mode-line")
 (depends-on "smartparens")
 (depends-on "solarized-theme")
 (depends-on "use-package")
