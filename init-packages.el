@@ -197,8 +197,6 @@
 
 (use-package sbt-mode)
 
-(use-package scala-mode)
-
 (use-package smex
   :commands smex
   :bind ("M-x" . smex))

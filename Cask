@@ -37,6 +37,7 @@
 (depends-on "racer")
 (depends-on "rust-mode")
 (depends-on "shm")
+(depends-on "smart-mode-line")
 (depends-on "smex")
 (depends-on "smartparens")
 (depends-on "solarized-theme")
