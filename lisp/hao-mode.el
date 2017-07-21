@@ -16,7 +16,8 @@
     (require 'key-chord)
     (require 'key-seq)
 
-    (sml/setup)
+    (if (not (eq window-system nil))
+        (sml/setup))
 
     (key-seq-define-global "jj" 'helm-mini)
     (key-seq-define-global "jf" 'helm-projectile)
