@@ -30,7 +30,6 @@
  delete-old-versions t ;; Old backups that is.
  disabled-command-function nil ;; Unhide the power functions.
  enable-local-variables :all
- filladapt-mode-line-string " F!"
  indent-tabs-mode nil
  indicate-empty-lines t
  inhibit-startup-message t
