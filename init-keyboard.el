@@ -1,12 +1,13 @@
+;;; -*- lexical-binding: t -*-
+
 (defun global-set-keys (alist) nil
   (mapcar (lambda (a) nil
             (setcar a (read-kbd-macro (car a)))
             (apply 'global-set-key a)) alist))
 
-;; Stefan Monnier <foo at acm.org>. It is the opposite of
-;; fill-paragraph: Takes a multi-line paragraph and makes it into a
-;; single line of text.
+;; Stefan Monnier <foo at acm.org>
 (defun unfill-paragraph ()
+  "Take a multi-line paragraph and make it into a single line of text."
   (interactive)
   (let ((fill-column (point-max)))
     (fill-paragraph nil)))
@@ -53,7 +54,20 @@ Version 2016-12-27"
 (setq sentence-end-double-space nil)
 
 (defun open-terminal-here ()
+  "Open terminal in buffer file's directory."
   (interactive)
   (let ((current default-directory))
     (shell-command (concat "open -a iTerm.app \"" current "\" 2>&1 > /dev/null & disown") nil nil)
     (kill-buffer "*Shell Command Output*")))
+
+(defun select-current-line ()
+  "Select the current line."
+  (interactive)
+  (end-of-line) ; move to end of line
+  (set-mark (line-beginning-position)))
+(global-set-key (kbd "C-\\") 'comment-region)
+(global-set-key (kbd "C-M-\\") 'uncomment-region)
+(global-set-key (kbd "C-8") 'select-current-line)
+
+(provide 'init-keyboard)
+;;; init-keyboard.el ends here

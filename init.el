@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t -*-
+
 ;; Cask!
 ; (package-initialize)
 
@@ -19,10 +21,6 @@
 (defalias 'qqr 'query-replace-regexp)
 (defalias 'rs 'replace-string)
 (defalias 'xp 'replace-regexp)
-(defalias 'is 'ispell)
-(defalias 'll 'longlines-mode)
-(defalias 'rsub 'replace-regexp-in-string)
-(defalias 'bc 'byte-compile-file)
 
 ;; Bring sanity into the world
 (setq-default

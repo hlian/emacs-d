@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t -*-
+
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.org/packages/") t)
 (package-initialize)
@@ -8,15 +10,6 @@
    '(exec-path-fromm-shell-debug t))
   (exec-path-from-shell-copy-env "GOPATH")
   (exec-path-from-shell-initialize))
-
-(defun select-current-line ()
-  "Select the current line"
-  (interactive)
-  (end-of-line) ; move to end of line
-  (set-mark (line-beginning-position)))
-(global-set-key (kbd "C-\\") 'comment-region)
-(global-set-key (kbd "C-M-\\") 'uncomment-region)
-(global-set-key (kbd "C-8") 'select-current-line)
 
 (eval-when-compile
   (defvar use-package-verbose t)
@@ -33,6 +26,7 @@
                       (local-set-key (kbd "C-; C-;") 'ff-find-other-file))))
 
 (use-package css-mode
+  :mode "\\.css\\'"
   :config
   (custom-set-variables
    '(css-indent-offset 2)))
@@ -46,14 +40,19 @@
                                        (setq gofmt-command "goimports")
                                        (add-hook 'before-save-hook 'gofmt-before-save nil 'local)))))
 
-(use-package fuzzy)
-
 (use-package helm
+  :defer 2
   :init
-  (setq helm-recentf-fuzzy-match t)
-  (setq helm-buffers-fuzzy-matching t))
+  (custom-set-variables
+   '(helm-recentf-fuzzy-match t)
+   '(helm-buffers-fuzzy-matching t))
+  (helm-flx-mode t))
 
-(use-package smartparens)
+(use-package helm-flx
+  :commands helm-flx-mode)
+
+(use-package smartparens
+  :defer 2)
 
 (use-package hao-mode
   :commands hao-mode
@@ -139,18 +138,6 @@
 (use-package markdown-mode
   :mode ("\\.md\\'" . gfm-mode))
 
-(use-package multiple-cursors
-  :defer 2
-  :config (progn
-            (global-set-key (kbd "C->") 'mc/mark-next-like-this)
-            (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-            (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)))
-
-(use-package org
-  :defer 10
-  :config
-  (setq org-src-fontify-natively t))
-
 (use-package recentf
   :commands recentf-mode
   :defer 2
@@ -160,12 +147,6 @@
   :commands rainbow-delimiters-mode
   :defer 2
   :config (rainbow-delimiters-mode t))
-
-(use-package multiple-cursors
-  :bind
-  (("C->" . mc/mark-next-like-this)
-   ("C-<" . mc/mark-previous-like-this)
-   ("C-c C-<" . mc/mark-all-like-this)))
 
 (use-package mwim
   :bind
@@ -185,8 +166,6 @@
   :init
   (setq-default ensime-startup-notification nil)
   (setq-default ensime-startup-snapshot-notification nil))
-
-(use-package sbt-mode)
 
 (use-package smex
   :commands smex
@@ -254,9 +233,6 @@
 (use-package yaml-mode
   :mode "\\.yaml\\'")
 
-(provide 'init-packages)
-;;; init-packages.el ends here
-
 (progn (define-key key-translation-map (kbd ";") (kbd ":"))
        (define-key key-translation-map (kbd ":") (kbd ";")))
 (progn (define-key key-translation-map (kbd "\"") (kbd "'"))
@@ -264,3 +240,6 @@
 
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 (add-to-list 'comint-output-filter-functions 'ansi-color-process-output)
+
+(provide 'init-packages)
+;;; init-packages.el ends here
