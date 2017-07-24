@@ -153,7 +153,9 @@
   (("C-a" . mwim-beginning-of-line-or-code)))
 
 (use-package popwin
-  :commands popwin-mode)
+  :commands popwin-mode
+  :config
+  (push '(flycheck-error-list-mode :stick t :dedicated t :noselect t) popwin:special-display-config))
 
 ;; (use-package scala-mode
 ;;   :interpreter
