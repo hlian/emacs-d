@@ -1,25 +1,6 @@
-*~
 *.elc
-.emacs.desktop
-.emacs.desktop.lock
-projectile*
-
-.cask/
-
-auto-save-list/
-packages/
-tops/
 custom.el
 init-here.el
-init-warp.el
-tramp
 
-eshell/
-url/
-semanticdb/
-.*.el
-.sx/
-ido.*
-places
-recentf
-smex-items
+.cask/
+var/

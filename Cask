@@ -29,7 +29,7 @@
 (depends-on "markdown-mode")
 (depends-on "multiple-cursors")
 (depends-on "mwim")
-(depends-on "nyan-mode")
+(depends-on "no-littering")
 (depends-on "pallet")
 (depends-on "popwin")
 (depends-on "projectile")
@@ -51,3 +51,8 @@
 (depends-on "sbt-mode")
 (depends-on "scala-mode")
 (depends-on "ensime")
+
+;; Local Variables:
+;; mode: lisp
+;; compile-command: "make"
+;; End:

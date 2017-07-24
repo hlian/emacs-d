@@ -4,6 +4,8 @@
 (require 'cask "~/.cask/cask.el")
 (cask-initialize "~/.emacs.d")
 
+(require 'no-littering)
+
 ;; Sweet setup from emacs-starter-kit.
 (defvar dotfiles-dir (file-name-directory
                       (or (buffer-file-name) load-file-name)))
