@@ -5,10 +5,6 @@
    ("token" "USE [fogbugz];\nDELETE FROM PluginKeyValue WHERE sKey LIKE '%kilnsecurity%';\nUSE [kiln-$1]; DELETE FROM Setting WHERE sKey LIKE '%RequirementsMissing%'" "token")))
 
 (yas-define-snippets
- 'text-mode
- '(("loc" "# Local Variables:\n#   mode: filladapt\n#   fill-column: 50\n# End:\n" "loc")))
-
-(yas-define-snippets
  'cperl-mode
  '(("use" "use strict; use warnings; use 5.010;\n" "use")
    ("env" "#!/usr/bin/env perl\n" "env")))

@@ -1,6 +1,8 @@
 (source gnu)
 (source melpa)
 
+(files "*.el" "lisp/*.el")
+
 (depends-on "auto-complete")
 (depends-on "cask")
 (depends-on "coffee-mode")

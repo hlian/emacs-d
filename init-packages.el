@@ -198,6 +198,7 @@
   (define-key yas-minor-mode-map (kbd "M-/") 'hippie-expand))
 
 (use-package hippie-expand
+  :commands hippie-expand
   :init
   (setq hippie-expand-try-functions-list
         '(yas-expand
