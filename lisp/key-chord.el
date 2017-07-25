@@ -337,7 +337,7 @@ Please ignore that."
               (when (bound-and-true-p eldoc-mode)
                 (eldoc-pre-command-refresh-echo-area))
 
-	      (sit-for delay 0 'no-redisplay))
+	      (sit-for delay 'no-redisplay))
 	    (progn
 	      (setq key-chord-last-unmatched nil)
 	      (list first-char))
