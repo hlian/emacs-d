@@ -17,7 +17,16 @@
     (require 'key-seq)
 
     (if (not (eq window-system nil))
-        (sml/setup))
+        (progn
+          (custom-set-variables
+           '(sml/name-width '(40 . 100))
+           '(sml/mode-width 'right)
+           '(sml/modified-char " ⬢ "))
+          (sml/setup)
+          (custom-set-faces
+           '(sml/modified ((t (:foreground "#dd0099" :weight bold))))
+           '(sml/vc ((t (:foreground "#dd0099" :weight bold))))
+           '(sml/vc-edited ((t (:foreground "#dd0099" :weight bold)))))))
 
     (key-seq-define-global "jj" 'helm-mini)
     (key-seq-define-global "jf" 'helm-projectile)
