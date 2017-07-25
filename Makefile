@@ -6,3 +6,6 @@ install:
 
 update:
 	~/.cask/bin/cask update
+
+build:
+	~/.cask/bin/cask build
