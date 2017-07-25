@@ -1,3 +1,5 @@
+; -*- lexical-binding: t -*-
+
 ;;; package --- Summary
 ;;; Commentary:
 ;;; Code:
@@ -35,6 +37,14 @@
     (key-seq-define-global "jk" '(lambda () (interactive) (kill-buffer nil)))
     (key-seq-define-global "js" 'magit-status)
     (key-chord-mode t)
+
+    (setq hippie-expand-try-functions-list
+          '(yas-expand
+            try-complete-file-name-partially
+            try-complete-file-name
+            try-expand-dabbrev
+            try-expand-dabbrev-all-buffers
+            try-expand-dabbrev-from-kill))
 
     (setq backup-directory-alist `(("." . "~/.saves")))
     (setq auto-save-file-name-transforms `(("." "~/.saves" t)))

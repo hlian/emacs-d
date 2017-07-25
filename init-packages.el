@@ -58,7 +58,9 @@
   :commands hao-mode
   :load-path "lisp"
   :defer 2
-  :config (hao-mode t))
+  :config (hao-mode t)
+  :bind
+  ("M-/" . hippie-expand))
 
 (use-package hindent
   :commands hindent-mode
@@ -187,28 +189,16 @@
 ;;                                  (tex-file)
 ;;                                  (tex-view)))))
 
-(use-package yasnippet
-  :functions yas-global-mode yas-expand
-  :diminish yas-minor-mode
-  :defer 5
-  :config
-  (yas-global-mode t)
-  (setq yas-verbosity 3)
-  (load (concat dotfiles-dir "init-snippets.el"))
-  (define-key yas-minor-mode-map (kbd "M-/") 'hippie-expand))
-
-(use-package hippie-expand
-  :commands hippie-expand
-  :init
-  (setq hippie-expand-try-functions-list
-        '(yas-expand
-          try-complete-file-name-partially
-          try-complete-file-name
-          try-expand-dabbrev
-          try-expand-dabbrev-all-buffers
-          try-expand-dabbrev-from-kill))
-  :bind
-  ("M-/" . hippie-expand))
+;; (use-package yasnippet
+;;   :functions yas-global-mode yas-expand
+;;   :diminish yas-minor-mode
+;;   :defer 5
+;;   :config
+;;   (defvar dotfiles-dir)
+;;   (yas-global-mode t)
+;;   (setq yas-verbosity 3)
+;;   (load (concat dotfiles-dir "init-snippets.el"))
+;;   (define-key yas-minor-mode-map (kbd "M-/") 'hippie-expand))
 
 ;; (use-package purescript-mode
 ;;   :mode "\\.purs\\'"
