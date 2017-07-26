@@ -108,7 +108,7 @@
   :config
   (setq-default
    js2-auto-indent-flag nil
-   js2-basic-offset 4
+   js2-basic-offset 2
    js2-electric-keys nil
    js2-enter-indents-newline nil
    js2-mirror-mode nil

@@ -35,7 +35,7 @@
     (key-seq-define-global "j," 'helm-find-files)
     (key-seq-define-global "jx" 'smex)
     (key-seq-define-global "jk" '(lambda () (interactive) (kill-buffer nil)))
-    (key-seq-define-global "js" 'magit-status)
+    (key-seq-define-global "j." 'magit-status)
     (key-chord-mode t)
 
     (setq hippie-expand-try-functions-list
