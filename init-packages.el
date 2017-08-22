@@ -103,7 +103,7 @@
   (define-key haskell-interactive-mode-map (kbd "C-c C-t") nil))
 
 (use-package js2-mode
-  :mode "\\.js\\'"
+  :mode (("\\.js\\'" . js2-mode) ("\\.jsx\\'" . js2-mode))
   :commands js2-mode
   :config
   (setq-default
@@ -189,16 +189,16 @@
 ;;                                  (tex-file)
 ;;                                  (tex-view)))))
 
-;; (use-package yasnippet
-;;   :functions yas-global-mode yas-expand
-;;   :diminish yas-minor-mode
-;;   :defer 5
-;;   :config
-;;   (defvar dotfiles-dir)
-;;   (yas-global-mode t)
-;;   (setq yas-verbosity 3)
-;;   (load (concat dotfiles-dir "init-snippets.el"))
-;;   (define-key yas-minor-mode-map (kbd "M-/") 'hippie-expand))
+(use-package yasnippet
+  :functions yas-global-mode yas-expand
+  :diminish yas-minor-mode
+  :defer 5
+  :config
+  (defvar dotfiles-dir)
+  (yas-global-mode t)
+  (setq yas-verbosity 3)
+  (load (concat dotfiles-dir "init-snippets.el"))
+  (define-key yas-minor-mode-map (kbd "M-/") 'hippie-expand))
 
 ;; (use-package purescript-mode
 ;;   :mode "\\.purs\\'"
