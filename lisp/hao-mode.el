@@ -36,6 +36,8 @@
     (key-seq-define-global "jx" 'smex)
     (key-seq-define-global "jk" '(lambda () (interactive) (kill-buffer nil)))
     (key-seq-define-global "j." 'magit-status)
+    (key-seq-define-global "88" 'er/expand-region)
+    (key-seq-define-global "87" 'er/contract-region)
     (key-chord-mode t)
 
     (setq hippie-expand-try-functions-list
