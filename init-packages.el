@@ -77,7 +77,9 @@
   :bind ("C-=" . er/expand-region))
 
 (eval-after-load 'flycheck
-  '(require 'flycheck-hdevtools))
+  '(progn
+     (require 'flycheck-hdevtools)
+     (flycheck-add-mode 'javascript-eslint 'web-mode)))
 
 (defun fix-imports ()
   "fixes imports"
