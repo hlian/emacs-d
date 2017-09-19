@@ -3,6 +3,7 @@
 
 (files "*.el" "lisp/*.el")
 
+(depends-on "avy")
 (depends-on "auto-complete")
 (depends-on "cask")
 (depends-on "coffee-mode")
@@ -27,7 +28,6 @@
 (depends-on "helm-flx")
 (depends-on "helm-projectile")
 (depends-on "idle-highlight-mode")
-(depends-on "js2-mode")
 (depends-on "magit")
 (depends-on "markdown-mode")
 (depends-on "mwim")
@@ -46,6 +46,7 @@
 (depends-on "solarized-theme")
 (depends-on "use-package")
 (depends-on "visual-regexp-steroids")
+(depends-on "web-mode")
 (depends-on "windmove")
 (depends-on "yasnippet")
 (depends-on "yaml-mode")
