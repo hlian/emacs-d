@@ -52,7 +52,13 @@
   :commands helm-flx-mode)
 
 (use-package smartparens
-  :defer 2)
+  :defer 2
+  :diminish smartparens-mode
+  :config
+  (require 'smartparens-config)
+  (setq-default sp-autoinsert-pair nil)
+  (smartparens-global-mode 't)
+  (smartparens-strict-mode 't))
 
 (use-package hao-mode
   :commands hao-mode
@@ -107,6 +113,7 @@
   :commands web-mode
   :config
   (setq-default web-mode-code-indent-offset 2)
+  (setq-default web-mode-enable-auto-quoting nil)
   (add-hook 'web-mode-hook 'flycheck-mode))
 
 (use-package json-mode
