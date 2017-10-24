@@ -31,3 +31,9 @@
    ("ii" "import ${m} (${names})" "ii")
    ("iii" "import ${m}" "iii")
    ))
+
+(yas-define-snippets
+ 'web-mode
+ '(("cw" "console.warn(${warn})" "cw")
+   ("de" "(()=>{debugger;})()" "dw")
+   ))

@@ -115,8 +115,26 @@
   :commands web-mode
   :config
   (setq-default web-mode-code-indent-offset 2)
-  (setq-default web-mode-enable-auto-quoting nil)
-  (add-hook 'web-mode-hook 'flycheck-mode))
+  (setq-default web-mode-markup-indent-offset 2)
+  (setq-default web-mode-enable-auto-pairing nil)
+  (setq-default web-mode-enable-auto-indentation nil)
+  (setq-default web-mode-auto-quote-style 2)
+  (defun my/use-eslint-from-node-modules ()
+    (let* ((root (locate-dominating-file
+                  (or (buffer-file-name) default-directory)
+                  "node_modules"))
+           (eslint (and root
+                        (expand-file-name "node_modules/eslint/bin/eslint.js"
+                                          root))))
+      (when (and eslint (file-executable-p eslint))
+        (setq-local flycheck-javascript-eslint-executable eslint))))
+
+  (add-hook 'flycheck-mode-hook #'my/use-eslint-from-node-modules)
+  (add-hook 'web-mode-hook
+            (defun my-js2-mode-setup ()
+              (flycheck-mode t)
+              (when (executable-find "eslint")
+                (flycheck-select-checker 'javascript-eslint)))))
 
 (use-package json-mode
   :mode "\\.json\\'"
