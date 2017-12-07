@@ -59,9 +59,6 @@
  ns-pop-up-frames nil
  )
 
-(if (null window-system)
-    (define-key key-translation-map (kbd "C-\\") (kbd "C-;")))
-
 (load (concat dotfiles-dir "init-keyboard.el"))
 (load (concat dotfiles-dir "init-here.el"))
 

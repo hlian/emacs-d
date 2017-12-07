@@ -40,6 +40,12 @@
                                        (setq gofmt-command "goimports")
                                        (add-hook 'before-save-hook 'gofmt-before-save nil 'local)))))
 
+(use-package groovy-mode
+  :mode "\\.groovy\\'"
+  :config
+  (custom-set-variables
+   '(groovy-indent-offset 2)))
+
 (use-package helm
   :defer 2
   :init
@@ -183,10 +189,6 @@
   (setq-default ensime-startup-notification nil)
   (setq-default ensime-startup-snapshot-notification nil))
 
-(use-package smex
-  :commands smex
-  :bind ("M-x" . smex))
-
 (use-package subword
   :commands subword-forward)
 
@@ -221,6 +223,11 @@
 ;;                                     (flycheck-mode)
 ;;                                     (turn-on-purescript-indentation))))
 
+(use-package ruby-mode
+  :mode "\\.rb\\'"
+  :config
+  (add-hook 'ruby-mode-hook 'flycheck-mode))
+
 (use-package rust-mode
   :mode "\\.rs\\'"
   :config
@@ -240,8 +247,6 @@
 
 (progn (define-key key-translation-map (kbd ";") (kbd ":"))
        (define-key key-translation-map (kbd ":") (kbd ";")))
-(progn (define-key key-translation-map (kbd "\"") (kbd "'"))
-       (define-key key-translation-map (kbd "'") (kbd "\"")))
 
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 (add-to-list 'comint-output-filter-functions 'ansi-color-process-output)

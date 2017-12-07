@@ -33,7 +33,7 @@
     (key-seq-define-global "jj" 'helm-mini)
     (key-seq-define-global "jf" 'helm-projectile)
     (key-seq-define-global "j," 'helm-find-files)
-    (key-seq-define-global "jx" 'smex)
+    (key-seq-define-global "jx" 'helm-M-x)
     (key-seq-define-global "jk" '(lambda () (interactive) (kill-buffer nil)))
     (key-seq-define-global "j." 'magit-status)
     (key-seq-define-global "88" 'er/expand-region)
