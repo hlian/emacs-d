@@ -17,11 +17,7 @@
 (depends-on "flycheck")
 (depends-on "flycheck-cask")
 (depends-on "flycheck-hdevtools")
-(depends-on "flycheck-rust")
 (depends-on "fuzzy")
-(depends-on "go-autocomplete")
-(depends-on "go-mode")
-(depends-on "json-mode")
 (depends-on "haskell-mode")
 (depends-on "helm")
 (depends-on "helm-ag")
@@ -51,9 +47,15 @@
 (depends-on "yasnippet")
 (depends-on "yaml-mode")
 
-(depends-on "sbt-mode")
-(depends-on "scala-mode")
-(depends-on "ensime")
+;; (depends-on "sbt-mode")
+;; (depends-on "scala-mode")
+;; (depends-on "ensime")
+
+;; (depends-on "flycheck-rust")
+;; (depends-on "go-autocomplete")
+;; (depends-on "go-mode")
+
+(depends-on "tide")
 
 ;; Local Variables:
 ;; mode: lisp

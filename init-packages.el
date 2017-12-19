@@ -15,6 +15,24 @@
   (defvar use-package-verbose t)
   (require 'use-package))
 
+(defun setup-tide-mode ()
+  (interactive)
+  (tide-setup)
+  (flycheck-mode +1)
+  (setq flycheck-check-syntax-automatically '(save mode-enabled))
+  (eldoc-mode +1)
+  (tide-hl-identifier-mode +1)
+  ;; company is an optional dependency. You have to
+  ;; install it separately via package-install
+  ;; `M-x package-install [ret] company`
+  (company-mode +1))
+
+(defun fix-imports ()
+  "fixes imports"
+  (interactive)
+  (sort-lines nil (region-beginning) (region-end))
+  (align-regexp (region-beginning) (region-end) "\\(\\s-*\\)#-"))
+
 (use-package coffee-mode
   :commands coffee-mode
   :mode "\\.coffee\\'")
@@ -82,16 +100,14 @@
   :commands er/expand-region
   :bind ("C-=" . er/expand-region))
 
+(use-package flycheck
+  :config
+  (flycheck-add-mode 'typescript-tslint 'web-mode)
+  (flycheck-add-mode 'javascript-eslint 'web-mode))
+
 (eval-after-load 'flycheck
   '(progn
-     (require 'flycheck-hdevtools)
-     (flycheck-add-mode 'javascript-eslint 'web-mode)))
-
-(defun fix-imports ()
-  "fixes imports"
-  (interactive)
-  (sort-lines nil (region-beginning) (region-end))
-  (align-regexp (region-beginning) (region-end) "\\(\\s-*\\)#-"))
+     (require 'flycheck-hdevtools)))
 
 (use-package haskell-mode
   :mode "\\.hs\\'"
@@ -117,7 +133,11 @@
   (define-key haskell-interactive-mode-map (kbd "C-c C-t") nil))
 
 (use-package web-mode
-  :mode (("\\.js\\'" . web-mode) ("\\.jsx\\'" . web-mode))
+  :mode (("\\.js\\'" . web-mode)
+         ("\\.jsx\\'" . web-mode)
+         ("\\.ts\\'" . web-mode)
+         ("\\.tsx\\'" . web-mode)
+         ("\\.json\\'" . web-mode))
   :commands web-mode
   :config
   (setq-default web-mode-code-indent-offset 2)
@@ -137,15 +157,24 @@
 
   (add-hook 'flycheck-mode-hook #'my/use-eslint-from-node-modules)
   (add-hook 'web-mode-hook
-            (defun my-js2-mode-setup ()
-              (flycheck-mode t)
-              (when (executable-find "eslint")
-                (flycheck-select-checker 'javascript-eslint)))))
-
-(use-package json-mode
-  :mode "\\.json\\'"
-  :config
-  (add-hook 'json-mode-hook 'flycheck-mode))
+            (lambda ()
+              (when
+                  (or
+                   (string-equal "jsx" (file-name-extension buffer-file-name))
+                   (string-equal "js" (file-name-extension buffer-file-name)))
+                (flycheck-select-checker 'javascript-eslint))))
+  (add-hook 'web-mode-hook
+            (lambda ()
+              (when (string-equal "jsx" (file-name-extension buffer-file-name))
+                (setup-tide-mode))))
+  (add-hook 'web-mode-hook
+            (lambda ()
+              (when
+                  (or
+                   (string-equal "tsx" (file-name-extension buffer-file-name))
+                   (string-equal "ts" (file-name-extension buffer-file-name)))
+                (setup-tide-mode))))
+  )
 
 (setq tex-run-command "pdflatex")
 (setq-default tex-run-command "pdflatex")
@@ -177,31 +206,18 @@
   :config
   (push '(flycheck-error-list-mode :stick t :dedicated t :noselect t) popwin:special-display-config))
 
-;; (use-package scala-mode
-;;   :interpreter
-;;   ("scala" . scala-mode)
-;;   :config
-;;   (add-hook 'scala-mode-hook 'flycheck-mode))
-
-(use-package ensime
-  :commands ensime
-  :init
-  (setq-default ensime-startup-notification nil)
-  (setq-default ensime-startup-snapshot-notification nil))
+(use-package python
+  :mode ("\\.py\\'" . python-mode)
+  :interpreter ("python" . python-mode)
+  :config
+  (add-hook 'python-mode-hook
+            (lambda () (progn
+                         (setq tab-width 2)
+                         (setq whitespace-style '(tab-mark))
+                         (whitespace-mode)))))
 
 (use-package subword
   :commands subword-forward)
-
-;; (use-package tex-mode
-;;   :bind
-;;   ("C-." . compile-and-save)
-;;   :config
-;;   (add-hook 'latex-mode-hook (lambda ()
-;;                                (defun compile-and-save ()
-;;                                  (interactive)
-;;                                  (save-buffer)
-;;                                  (tex-file)
-;;                                  (tex-view)))))
 
 (use-package yasnippet
   :functions yas-global-mode yas-expand
@@ -213,15 +229,6 @@
   (setq yas-verbosity 3)
   (load (concat dotfiles-dir "init-snippets.el"))
   (define-key yas-minor-mode-map (kbd "M-/") 'hippie-expand))
-
-;; (use-package purescript-mode
-;;   :mode "\\.purs\\'"
-;;   :config
-;;   (add-hook 'purescript-mode-hook (lambda ()
-;;                                     (psc-ide-mode)
-;;                                     (company-mode)
-;;                                     (flycheck-mode)
-;;                                     (turn-on-purescript-indentation))))
 
 (use-package ruby-mode
   :mode "\\.rb\\'"
@@ -238,9 +245,6 @@
   (add-hook 'rust-mode-hook 'flycheck-mode)
   (add-hook 'flycheck-mode-hook 'flycheck-rust-setup)
   (setq company-tooltip-align-annotations t))
-
-(custom-set-variables
- '(js-indent-level 2))
 
 (use-package yaml-mode
   :mode "\\.yaml\\'")
