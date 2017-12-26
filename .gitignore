@@ -4,3 +4,4 @@ init-here.el
 
 .cask/
 var/
+etc/
