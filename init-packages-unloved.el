@@ -30,3 +30,8 @@
 ;;                                     (flycheck-mode)
 ;;                                     (turn-on-purescript-indentation))))
 
+;; (use-package groovy-mode
+;;   :mode "\\.groovy\\'"
+;;   :config
+;;   (custom-set-variables
+;;    '(groovy-indent-offset 2)))

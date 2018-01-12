@@ -58,12 +58,6 @@
                                        (setq gofmt-command "goimports")
                                        (add-hook 'before-save-hook 'gofmt-before-save nil 'local)))))
 
-(use-package groovy-mode
-  :mode "\\.groovy\\'"
-  :config
-  (custom-set-variables
-   '(groovy-indent-offset 2)))
-
 (use-package helm
   :defer 2
   :init
