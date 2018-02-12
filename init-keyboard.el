@@ -1,5 +1,19 @@
 ;;; -*- lexical-binding: t -*-
 
+(require 'key-chord)
+(require 'key-seq)
+
+(key-seq-define-global "jj" 'helm-mini)
+(key-seq-define-global "jf" 'helm-projectile)
+(key-seq-define-global "jd" 'helm-projectile-ag)
+(key-seq-define-global "j," 'helm-find-files)
+(key-seq-define-global "jx" 'helm-M-x)
+(key-seq-define-global "jk" '(lambda () (interactive) (kill-buffer nil)))
+(key-seq-define-global "j." 'magit-status)
+(key-seq-define-global "88" 'er/expand-region)
+(key-seq-define-global "87" 'er/contract-region)
+(key-chord-mode t)
+
 (defun global-set-keys (alist) nil
   (mapcar (lambda (a) nil
             (setcar a (read-kbd-macro (car a)))

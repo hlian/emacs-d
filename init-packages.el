@@ -1,8 +1,14 @@
 ;;; -*- lexical-binding: t -*-
 
 (add-to-list 'package-archives
-             '("melpa" . "http://melpa.org/packages/") t)
+             '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
+
+;; (use-package benchmark-init
+;;   :ensure t
+;;   :config
+;;   ;; To disable collection of benchmark data after init is done.
+;;   (add-hook 'after-init-hook 'benchmark-init/deactivate))
 
 (when (memq window-system '(mac ns))
   (custom-set-variables
@@ -95,6 +101,7 @@
   :bind ("C-=" . er/expand-region))
 
 (use-package flycheck
+  :defer 1
   :config
   (flycheck-add-mode 'typescript-tslint 'web-mode)
   (flycheck-add-mode 'javascript-eslint 'web-mode))
@@ -126,12 +133,23 @@
   :config
   (define-key haskell-interactive-mode-map (kbd "C-c C-t") nil))
 
+(defun my/use-eslint-from-node-modules ()
+  (let* ((root (locate-dominating-file
+                (or (buffer-file-name) default-directory)
+                "node_modules"))
+         (eslint (and root
+                      (expand-file-name "node_modules/eslint/bin/eslint.js"
+                                        root))))
+    (when (and eslint (file-executable-p eslint))
+      (setq-local flycheck-javascript-eslint-executable eslint))))
+
 (use-package web-mode
   :mode (("\\.js\\'" . web-mode)
          ("\\.jsx\\'" . web-mode)
          ("\\.ts\\'" . web-mode)
          ("\\.tsx\\'" . web-mode)
          ("\\.json\\'" . web-mode))
+  :interpreter ("node" . web-mode)
   :commands web-mode
   :config
   (setq-default web-mode-code-indent-offset 2)
@@ -139,28 +157,18 @@
   (setq-default web-mode-enable-auto-pairing nil)
   (setq-default web-mode-enable-auto-indentation nil)
   (setq-default web-mode-auto-quote-style 2)
-  (defun my/use-eslint-from-node-modules ()
-    (let* ((root (locate-dominating-file
-                  (or (buffer-file-name) default-directory)
-                  "node_modules"))
-           (eslint (and root
-                        (expand-file-name "node_modules/eslint/bin/eslint.js"
-                                          root))))
-      (when (and eslint (file-executable-p eslint))
-        (setq-local flycheck-javascript-eslint-executable eslint))))
 
-  (add-hook 'flycheck-mode-hook #'my/use-eslint-from-node-modules)
   (add-hook 'web-mode-hook
             (lambda ()
               (when
                   (or
                    (string-equal "jsx" (file-name-extension buffer-file-name))
                    (string-equal "js" (file-name-extension buffer-file-name)))
-                (flycheck-select-checker 'javascript-eslint))))
-  (add-hook 'web-mode-hook
-            (lambda ()
-              (when (string-equal "jsx" (file-name-extension buffer-file-name))
-                (setup-tide-mode))))
+                (progn
+                  (my/use-eslint-from-node-modules)
+                  (flycheck-select-checker 'javascript-eslint)
+                  (flycheck-mode)
+                  ))))
   (add-hook 'web-mode-hook
             (lambda ()
               (when
@@ -183,12 +191,12 @@
 
 (use-package recentf
   :commands recentf-mode
-  :defer 2
+  :defer 1
   :config (progn (recentf-mode t) (setq-default recentf-max-saved-items 1000)))
 
 (use-package rainbow-delimiters
   :commands rainbow-delimiters-mode
-  :defer 2
+  :defer 1
   :config (rainbow-delimiters-mode t))
 
 (use-package mwim
