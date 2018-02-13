@@ -48,13 +48,11 @@ Version 2016-12-27"
    ("C-; C-f" projectile-find-file)
    ("C-; C-<return>" unfill-paragraph)
    ("C-; C-r" helm-projectile)
-   ("C-S-k C-S-k" helm-projectile-ag)
    ("C-; C-t" helm-recentf)
    ("C-; C-m" make-directory)
    ("C-c C-i" fix-imports)
    ("C-x C-j" replace-string)
    ("C-x C-k" vr/query-replace)
-   ("C-c k" helm-projectile-ag)
    ("C-i" indent-rigidly)
    ))
 
