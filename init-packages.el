@@ -59,7 +59,6 @@
   :commands go-mode
   :config
   (add-hook 'go-mode-hook 'flycheck-mode)
-  (add-hook 'go-mode-hook 'smartparens-mode)
   (add-hook 'go-mode-hook (lambda () (progn
                                        (setq gofmt-command "goimports")
                                        (add-hook 'before-save-hook 'gofmt-before-save nil 'local)))))
@@ -75,14 +74,9 @@
 (use-package helm-flx
   :commands helm-flx-mode)
 
-(use-package smartparens
-  :defer 2
-  :diminish smartparens-mode
-  :config
-  (require 'smartparens-config)
-  (setq-default sp-autoinsert-pair nil)
-  (smartparens-global-mode 't)
-  (smartparens-strict-mode 't))
+(use-package helm-ag
+  :ensure helm-ag
+  :commands (helm-ag helm-projectile-ag))
 
 (use-package hao-mode
   :commands hao-mode
@@ -100,15 +94,30 @@
   :commands er/expand-region
   :bind ("C-=" . er/expand-region))
 
+;; https://github.com/flycheck/flycheck/issues/1398
+(defun flycheck-define-checker-macro-workaround ()
+  (not (flycheck-buffer-empty-p)))
+
 (use-package flycheck
   :defer 1
   :config
+  (flycheck-define-checker web-mode-python-json
+    "A JSON syntax checker using Python json.tool module.
+
+  See URL `https://docs.python.org/3.5/library/json.html#command-line-interface'."
+    :command ("python" "-m" "json.tool" source
+              ;; Send the pretty-printed output to the null device
+              null-device)
+    :error-patterns
+    ((error line-start
+            (message) ": line " line " column " column
+            ;; Ignore the rest of the line which shows the char position.
+            (one-or-more not-newline)
+            line-end))
+    :modes web-mode
+    :predicate flycheck-define-checker-macro-workaround)
   (flycheck-add-mode 'typescript-tslint 'web-mode)
   (flycheck-add-mode 'javascript-eslint 'web-mode))
-
-(eval-after-load 'flycheck
-  '(progn
-     (require 'flycheck-hdevtools)))
 
 (use-package haskell-mode
   :mode "\\.hs\\'"
@@ -148,6 +157,7 @@
          ("\\.jsx\\'" . web-mode)
          ("\\.ts\\'" . web-mode)
          ("\\.tsx\\'" . web-mode)
+         ("\\.html\\'" . web-mode)
          ("\\.json\\'" . web-mode))
   :interpreter ("node" . web-mode)
   :commands web-mode
@@ -156,7 +166,7 @@
   (setq-default web-mode-markup-indent-offset 2)
   (setq-default web-mode-enable-auto-pairing nil)
   (setq-default web-mode-enable-auto-indentation nil)
-  (setq-default web-mode-auto-quote-style 2)
+  (setq-default web-mode-enable-auto-quoting nil)
 
   (add-hook 'web-mode-hook
             (lambda ()
@@ -167,6 +177,14 @@
                 (progn
                   (my/use-eslint-from-node-modules)
                   (flycheck-select-checker 'javascript-eslint)
+                  (flycheck-mode)
+                  ))))
+  (add-hook 'web-mode-hook
+            (lambda ()
+              (when
+                  (string-equal "json" (file-name-extension buffer-file-name))
+                (progn
+                  (flycheck-select-checker 'web-mode-python-json)
                   (flycheck-mode)
                   ))))
   (add-hook 'web-mode-hook

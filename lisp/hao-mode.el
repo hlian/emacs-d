@@ -66,6 +66,7 @@
     (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
     (popwin-mode 1)
     (drag-stuff-mode 1)
+    (drag-stuff-define-keys)
     (diminish 'drag-stuff-mode)
     (exec-path-from-shell-initialize)
     (setq-default save-place t)
