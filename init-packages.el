@@ -68,7 +68,8 @@
   :init
   (custom-set-variables
    '(helm-recentf-fuzzy-match t)
-   '(helm-buffers-fuzzy-matching t))
+   '(helm-buffers-fuzzy-matching t)
+   '(helm-M-x-fuzzy-match t))
   (helm-flx-mode t))
 
 (use-package helm-flx

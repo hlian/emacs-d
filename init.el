@@ -44,6 +44,7 @@
  vc-handled-backends '(Git)
  visible-bell nil
  x-stretch-cursor t ;; Stretch cursor for tab characters.
+ auto-window-vscroll t ;; https://emacs.stackexchange.com/questions/28736/emacs-pointcursor-movement-lag/28746
  )
 
 (add-hook 'prog-mode-hook (lambda () (setq show-trailing-whitespace t)))

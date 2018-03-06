@@ -8,6 +8,7 @@
 (key-seq-define-global "jd" 'helm-projectile-ag)
 (key-seq-define-global "j," 'helm-find-files)
 (key-seq-define-global "jx" 'helm-M-x)
+(key-seq-define-global "jt" 'tide-project-errors)
 (key-seq-define-global "jk" '(lambda () (interactive) (kill-buffer nil)))
 (key-seq-define-global "j." 'magit-status)
 (key-seq-define-global "88" 'er/expand-region)
