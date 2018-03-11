@@ -1,7 +1,9 @@
 ;;; -*- lexical-binding: t -*-
 
-;; Cask!
-; (package-initialize)
+;; https://github.com/hlissner/doom-emacs/wiki/FAQ#how-is-dooms-startup-so-fast
+(setq gc-cons-threshold 402653184
+      gc-cons-percentage 0.6)
+(setq file-name-handler-alist nil)
 
 (require 'cask "~/.cask/cask.el")
 (cask-initialize "~/.emacs.d")
@@ -64,3 +66,10 @@
 
 (menu-bar-mode 0)
 (tool-bar-mode -1)
+
+
+(defun restore-default-settings ()
+  (setq gc-cons-threshold 16777216
+        gc-cons-percentage 0.1))
+
+(add-hook 'emacs-startup-hook #'restore-default-settings)
