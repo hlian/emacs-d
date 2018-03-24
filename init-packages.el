@@ -69,15 +69,17 @@
   (custom-set-variables
    '(helm-recentf-fuzzy-match t)
    '(helm-buffers-fuzzy-matching t)
-   '(helm-M-x-fuzzy-match t))
-  (helm-flx-mode t))
-
-(use-package helm-flx
-  :commands helm-flx-mode)
+   '(helm-M-x-fuzzy-match t)))
 
 (use-package helm-ag
   :ensure helm-ag
   :commands (helm-ag helm-projectile-ag))
+
+(use-package swoop
+  :commands swoop-pcre-regexp)
+
+(use-package helm-swoop
+  :commands helm-swoop)
 
 (use-package hao-mode
   :commands hao-mode

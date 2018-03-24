@@ -11,6 +11,7 @@
 (key-seq-define-global "jt" 'tide-project-errors)
 (key-seq-define-global "jk" '(lambda () (interactive) (kill-buffer nil)))
 (key-seq-define-global "j." 'magit-status)
+(key-seq-define-global "jr" 'helm-regexp)
 (key-seq-define-global "88" 'er/expand-region)
 (key-seq-define-global "87" 'er/contract-region)
 (key-chord-mode t)
@@ -53,7 +54,6 @@ Version 2016-12-27"
    ("C-; C-m" make-directory)
    ("C-c C-i" fix-imports)
    ("C-x C-j" replace-string)
-   ("C-x C-k" vr/query-replace)
    ("C-i" indent-rigidly)
    ))
 
