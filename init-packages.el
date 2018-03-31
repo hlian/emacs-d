@@ -67,6 +67,7 @@
   :defer 2
   :init
   (custom-set-variables
+   '(helm-follow-mode-persistent t)
    '(helm-recentf-fuzzy-match t)
    '(helm-buffers-fuzzy-matching t)
    '(helm-M-x-fuzzy-match t)))
