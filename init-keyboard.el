@@ -5,6 +5,8 @@
 
 (key-seq-define-global "jj" 'helm-mini)
 (key-seq-define-global "jf" 'helm-projectile)
+(key-seq-define-global "js" 'vr/replace)
+(key-seq-define-global "jS" 'vr/query-replace)
 (key-seq-define-global "jd" 'helm-projectile-ag)
 (key-seq-define-global "j," 'helm-find-files)
 (key-seq-define-global "jx" 'helm-M-x)
