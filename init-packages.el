@@ -28,9 +28,6 @@
   (setq flycheck-check-syntax-automatically '(save mode-enabled))
   (eldoc-mode +1)
   (tide-hl-identifier-mode +1)
-  ;; company is an optional dependency. You have to
-  ;; install it separately via package-install
-  ;; `M-x package-install [ret] company`
   (company-mode +1))
 
 (defun fix-imports ()
@@ -42,6 +39,15 @@
 (use-package coffee-mode
   :commands coffee-mode
   :mode "\\.coffee\\'")
+
+(use-package company
+  :commands company-mode
+  :ensure t
+  :config
+  (company-tng-configure-default)
+  (setq company-dabbrev-downcase nil)
+  (setq company-show-numbers t)
+  (setq company-idle-delay 0))
 
 (use-package cc-mode
   :commands c-mode
@@ -123,6 +129,13 @@
   (flycheck-add-mode 'typescript-tslint 'web-mode)
   (flycheck-add-mode 'javascript-eslint 'web-mode))
 
+(use-package flycheck-posframe
+  :ensure t
+  :after flycheck
+  :config
+  (add-hook 'flycheck-mode-hook #'flycheck-posframe-mode)
+  (flycheck-posframe-configure-pretty-defaults))
+
 (use-package haskell-mode
   :mode "\\.hs\\'"
   :commands haskell-mode
@@ -162,6 +175,7 @@
          ("\\.ts\\'" . web-mode)
          ("\\.tsx\\'" . web-mode)
          ("\\.html\\'" . web-mode)
+         ("\\.vue\\'" . web-mode)
          ("\\.json\\'" . web-mode))
   :interpreter ("node" . web-mode)
   :commands web-mode
@@ -178,11 +192,12 @@
                   (or
                    (string-equal "jsx" (file-name-extension buffer-file-name))
                    (string-equal "js" (file-name-extension buffer-file-name)))
-                (progn
-                  (my/use-eslint-from-node-modules)
-                  (flycheck-select-checker 'javascript-eslint)
-                  (flycheck-mode)
-                  ))))
+                (if (flycheck-may-use-checcker 'javascript-eslint)
+                    (progn
+                      (my/use-eslint-from-node-modules)
+                      (flycheck-select-checker 'javascript-eslint)
+                      (flycheck-mode)
+                      )))))
   (add-hook 'web-mode-hook
             (lambda ()
               (when

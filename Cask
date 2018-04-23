@@ -16,7 +16,7 @@
 (depends-on "expand-region")
 (depends-on "flycheck")
 (depends-on "flycheck-cask")
-(depends-on "flycheck-hdevtools")
+(depends-on "flycheck-posframe")
 (depends-on "fuzzy")
 (depends-on "go-mode")
 (depends-on "haskell-mode")
