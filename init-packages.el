@@ -28,7 +28,8 @@
   (setq flycheck-check-syntax-automatically '(save mode-enabled))
   (eldoc-mode +1)
   (tide-hl-identifier-mode +1)
-  (company-mode +1))
+  (company-mode +1)
+  (company-tng-configure-default))
 
 (defun fix-imports ()
   "fixes imports"
@@ -282,7 +283,6 @@
   (add-hook 'racer-mode-hook 'eldoc-mode)
   (add-hook 'rust-mode-hook 'company-mode)
   (add-hook 'rust-mode-hook 'flycheck-mode)
-  (add-hook 'flycheck-mode-hook 'flycheck-rust-setup)
   (setq company-tooltip-align-annotations t))
 
 (use-package yaml-mode
