@@ -21,7 +21,8 @@
     (custom-set-variables
      '(js2-basic-offset 2)
      '(sh-indentation 2)
-     '(line-spacing 0))
+     '(line-spacing 0)
+     '(cursor-type 'hollow))
 
     (if (not (eq window-system nil))
         (progn

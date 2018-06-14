@@ -42,6 +42,11 @@ Version 2016-12-27"
     (funcall initial-major-mode)
     (setq buffer-offer-save t)))
 
+(defun backward-whitespace ()
+  "Move to the last non-whitespace character in the current line."
+  (interactive)
+  (re-search-backward "^\\|[^[:space:]]"))
+
 (global-set-keys
  '(("C-<backspace>" backward-kill-word)
 

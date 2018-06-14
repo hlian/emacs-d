@@ -36,4 +36,6 @@
  'web-mode
  '(("cw" "console.warn(${warn})" "cw")
    ("de" "(()=>{debugger;})()" "dw")
+   ("re" "import * as React from 'react'" "re")
+   ("rn" "import {${x}} from 'react-native'" "rn")
    ))
