@@ -9,6 +9,7 @@
 (use-package evil
   :straight t
   :config
+  (setq evil-search-module 'evil-search)
   (evil-mode t))
 
 (use-package evil-surround
@@ -38,7 +39,10 @@
   :config
   (setq custom-safe-themes '("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default))
   (if (not (eq window-system nil))
-      (load-theme 'solarized-light)))
+      (progn
+        (custom-set-faces
+         '(default ((t (:height 130 :family "Fira Mono" :foreground "#112")))))
+        (load-theme 'solarized-light))))
 
 (use-package evil-escape
   :straight t
@@ -81,6 +85,10 @@
   :config
   (general-define-key
    :states '(normal visual insert emacs)
+   "C-d" 'evil-scroll-down
+   "M-d" 'evil-scroll-up)
+  (general-define-key
+   :states '(normal visual insert emacs)
    :prefix "SPC"
    :non-normal-prefix "M-SPC"
    "TAB" '(switch-to-prev-buffer :which-key "previous buffer")
@@ -118,3 +126,130 @@
   (setq recentf-max-menu-items 1000)
   (recentf-mode t)
   (run-at-time nil (* 5 60) 'recentf-save-list))
+
+(use-package popwin
+  :straight t
+  :commands popwin-mode
+  :config
+  (push '(flycheck-error-list-mode :stick t :dedicated t :noselect t) popwin:special-display-config)
+  (popwin-mode t))
+
+;; TypeScript
+
+(straight-use-package 'tide)
+
+;; https://github.com/flycheck/flycheck/issues/1398
+(defun flycheck-define-checker-macro-workaround ()
+  (not (flycheck-buffer-empty-p)))
+
+(defun my/use-eslint-from-node-modules ()
+  (let* ((root (locate-dominating-file
+                (or (buffer-file-name) default-directory)
+                "node_modules"))
+         (eslint (and root
+                      (expand-file-name "node_modules/eslint/bin/eslint.js"
+                                        root))))
+    (when (and eslint (file-executable-p eslint))
+      (setq-local flycheck-javascript-eslint-executable eslint))))
+
+(defun setup-tide-mode ()
+  (interactive)
+  (tide-setup)
+  (flycheck-mode +1)
+  (setq flycheck-check-syntax-automatically '(save mode-enabled))
+  (eldoc-mode +1)
+  (tide-hl-identifier-mode +1)
+  (company-mode +1)
+  (company-tng-configure-default))
+
+(use-package company
+  :straight t
+  :commands company-mode
+  :config
+  (company-tng-configure-default)
+  (setq company-dabbrev-downcase nil)
+  (setq company-show-numbers t)
+  (setq company-idle-delay 0))
+
+(use-package flycheck
+  :straight t
+  :defer 1
+  :config
+  (flycheck-define-checker web-mode-python-json
+    "A JSON syntax checker using Python json.tool module.
+
+  See URL `https://docs.python.org/3.5/library/json.html#command-line-interface'."
+    :command ("python" "-m" "json.tool" source
+              ;; Send the pretty-printed output to the null device
+              null-device)
+    :error-patterns
+    ((error line-start
+            (message) ": line " line " column " column
+            ;; Ignore the rest of the line which shows the char position.
+            (one-or-more not-newline)
+            line-end))
+    :modes web-mode
+    :predicate flycheck-define-checker-macro-workaround)
+  (flycheck-add-mode 'typescript-tslint 'web-mode)
+  (flycheck-add-mode 'javascript-eslint 'web-mode))
+
+(use-package flycheck-posframe
+  :straight t
+  :after flycheck
+  :config
+  (add-hook 'flycheck-mode-hook #'flycheck-posframe-mode)
+  (flycheck-posframe-configure-pretty-defaults))
+
+(use-package web-mode
+  :straight t
+  :mode (("\\.js\\'" . web-mode)
+         ("\\.jsx\\'" . web-mode)
+         ("\\.ts\\'" . web-mode)
+         ("\\.tsx\\'" . web-mode)
+         ("\\.html\\'" . web-mode)
+         ("\\.vue\\'" . web-mode)
+         ("\\.json\\'" . web-mode))
+  :interpreter ("node" . web-mode)
+  :commands web-mode
+  :config
+  (setq-default web-mode-code-indent-offset 2)
+  (setq-default web-mode-markup-indent-offset 2)
+  (setq-default web-mode-enable-auto-pairing nil)
+  (setq-default web-mode-enable-auto-indentation nil)
+  (setq-default web-mode-enable-auto-quoting nil)
+
+  (add-hook 'web-mode-hook
+            (lambda ()
+              (when
+                  (or
+                   (string-equal "jsx" (file-name-extension buffer-file-name))
+                   (string-equal "js" (file-name-extension buffer-file-name)))
+                (if (flycheck-may-use-checker 'javascript-eslint)
+                    (progn
+                      (my/use-eslint-from-node-modules)
+                      (flycheck-select-checker 'javascript-eslint)
+                      (flycheck-mode)
+                      )))))
+  (add-hook 'web-mode-hook
+            (lambda ()
+              (when
+                  (string-equal "json" (file-name-extension buffer-file-name))
+                (progn
+                  (flycheck-select-checker 'web-mode-python-json)
+                  (flycheck-mode)
+                  ))))
+  (add-hook 'web-mode-hook
+            (lambda ()
+              (when
+                  (or
+                   (string-equal "tsx" (file-name-extension buffer-file-name))
+                   (string-equal "ts" (file-name-extension buffer-file-name)))
+                (setup-tide-mode))))
+ )
+
+(use-package rainbow-delimiters
+  :straight t
+  :commands rainbow-delimiters-mode)
+
+(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+
