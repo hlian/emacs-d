@@ -66,6 +66,12 @@
    ivy-use-virtual-buffers t
    enable-recursive-minibuffers t))
 
+(use-package ivy-posframe
+  :straight t
+  :config
+  (setq ivy-display-function #'ivy-posframe-display)
+  (ivy-posframe-enable))
+
 (use-package swiper
   :straight t)
 
