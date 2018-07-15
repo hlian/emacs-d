@@ -12,11 +12,10 @@
     (require 'saveplace)
     (require 'uniquify)
     (require 'midnight)
-    (require 'diminish)
-    (require 'darkroom)
-    (require 'visual-regexp-steroids)
-    (require 'key-chord)
-    (require 'key-seq)
+    ;; (require 'diminish)
+    ;; (require 'visual-regexp-steroids)
+    ;; (require 'key-chord)
+    ;; (require 'key-seq)
 
     (custom-set-variables
      '(js2-basic-offset 2)
@@ -34,20 +33,20 @@
            '(solarized-use-more-italic t)
            '(sml/name-width '(40 . 100))
            '(sml/mode-width 'right)
-           '(sml/modified-char " ⬢ "))
-          (sml/setup)
-          (custom-set-faces
-           '(sml/modified ((t (:foreground "#dd0099" :weight bold))))
-           '(sml/vc ((t (:foreground "#dd0099" :weight bold))))
-           '(sml/vc-edited ((t (:foreground "#dd0099" :weight bold)))))))
+           '(sml/modified-char " ⬢ "))))
+    ;;       (sml/setup)
+    ;;       (custom-set-faces
+    ;;        '(sml/modified ((t (:foreground "#dd0099" :weight bold))))
+    ;;        '(sml/vc ((t (:foreground "#dd0099" :weight bold))))
+    ;;        '(sml/vc-edited ((t (:foreground "#dd0099" :weight bold)))))))
 
-    (setq hippie-expand-try-functions-list
-          '(yas-expand
-            try-complete-file-name-partially
-            try-complete-file-name
-            try-expand-dabbrev
-            try-expand-dabbrev-all-buffers
-            try-expand-dabbrev-from-kill))
+    ;; (setq hippie-expand-try-functions-list
+    ;;       '(yas-expand
+    ;;         try-complete-file-name-partially
+    ;;         try-complete-file-name
+    ;;         try-expand-dabbrev
+    ;;         try-expand-dabbrev-all-buffers
+    ;;         try-expand-dabbrev-from-kill))
 
     (setq backup-directory-alist `(("." . "~/.saves")))
     (setq auto-save-file-name-transforms `(("." "~/.saves" t)))
@@ -60,20 +59,16 @@
     (tool-bar-mode -1)
     (toggle-scroll-bar -1)
     (show-paren-mode t)
-    (windmove-default-keybindings)
-    (auto-revert-mode 1)
+    ;; (windmove-default-keybindings)
     (diminish 'auto-revert-mode)
     (recentf-mode 1)
     (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
-    (popwin-mode 1)
-    (drag-stuff-mode 1)
-    (drag-stuff-define-keys)
-    (diminish 'drag-stuff-mode)
-    (exec-path-from-shell-initialize)
+    ;; (popwin-mode 1)
+    ;; (drag-stuff-mode 1)
+    ;; (drag-stuff-define-keys)
+    ;; (diminish 'drag-stuff-mode)
     (setq-default save-place t)
     (setq-default uniquify-buffer-name-style 'forward)
-    (midnight-delay-set 'midnight-delay "4:30am")
-    (projectile-mode 1)
-    (diminish 'projectile-mode)))
+    (midnight-delay-set 'midnight-delay "4:30am")))
 
 (provide 'hao-mode)

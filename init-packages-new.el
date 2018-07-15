@@ -1,3 +1,26 @@
+;;; -*- lexical-binding: t -*-
+
+(use-package exec-path-from-shell
+  :straight t
+  :init
+  (when (memq window-system '(mac ns))
+    (custom-set-variables
+ '(initial-frame-alist (quote ((fullscreen . maximized)))))
+    (exec-path-from-shell-initialize)))
+
+(use-package benchmark-init
+  :straight t
+  :demand t
+  :config
+  ;; To disable collection of benchmark data after init is done.
+  (add-hook 'after-init-hook 'benchmark-init/deactivate))
+
+(use-package smex
+  :straight t)
+
+(use-package wgrep
+  :straight t) 
+
 (use-package diminish
   :straight t)
 
@@ -8,6 +31,8 @@
 
 (use-package evil
   :straight t
+  :init
+  (setq evil-want-integration nil)
   :config
   (setq evil-search-module 'evil-search)
   (evil-mode t))
@@ -16,6 +41,12 @@
   :straight t
   :config
   (global-evil-surround-mode t))
+
+(use-package evil-collection
+  :straight t
+  :defer t
+  :custom (evil-collection-setup-minibuffer t)
+  :init (evil-collection-init))
 
 (use-package telephone-line
   :straight t
@@ -34,15 +65,22 @@
   (telephone-line-mode t)
   )
 
+(use-package hao-mode
+  :commands hao-mode
+  :load-path "lisp"
+  :defer 2
+  :config (hao-mode t))
+
 (use-package solarized-theme
   :straight t
-  :config
-  (setq custom-safe-themes '("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default))
+  :defer t
+  :init
+  (setq show-paren-when-point-inside-paren t)
   (if (not (eq window-system nil))
       (progn
         (custom-set-faces
-         '(default ((t (:height 130 :family "Fira Mono" :foreground "#112")))))
-        (load-theme 'solarized-light))))
+        '(ivy-posframe ((t (:inherit default :background "white" :foreground "#111111"))))
+        '(ivy-posframe-cursor ((t (:inherit cursor :background "blue" :foreground "white"))))))))
 
 (use-package evil-escape
   :straight t
@@ -59,8 +97,9 @@
 
 (use-package ivy
   :straight t
+  :defer t
   :diminish ivy-mode
-  :config
+  :init
   (ivy-mode t)
   (setq
    ivy-use-virtual-buffers t
@@ -68,14 +107,22 @@
 
 (use-package ivy-posframe
   :straight t
-  :config
-  (setq ivy-display-function #'ivy-posframe-display)
-  (ivy-posframe-enable))
+  :defer t
+  :init
+  (setq ivy-display-function #'ivy-posframe-display-at-point)
+  (ivy-posframe-enable)
+  (if (not (eq window-system nil))
+      (progn
+        (custom-set-faces
+        '(ivy-posframe ((t (:inherit default :background "white" :foreground "#111111"))))
+        '(ivy-posframe-cursor ((t (:inherit cursor :background "blue" :foreground "white"))))))))
 
 (use-package swiper
+  :defer t
   :straight t)
 
 (use-package counsel
+  :defer t
   :straight t)
 
 (use-package projectile
@@ -84,7 +131,8 @@
   (projectile-mode t))
 
 (use-package counsel-projectile
-  :straight t)
+  :defer t
+  :straight t)  
 
 (use-package general
   :straight t
@@ -107,7 +155,7 @@
    "fs" '(save-buffer :which-key "save file")
    "fk" '(kill-this-buffer :which-key "kill file")
    ;; Projectile
-   "jf" '(counsel-projectile-find-file :which-key "projectile find file")
+   "k" '(counsel-projectile-find-file :which-key "projectile find file")
    ;; Window
    "wl"  '(windmove-right :which-key "move right")
    "wh"  '(windmove-left :which-key "move left")
@@ -139,6 +187,17 @@
   :config
   (push '(flycheck-error-list-mode :stick t :dedicated t :noselect t) popwin:special-display-config)
   (popwin-mode t))
+
+(use-package magit
+  :defer t
+  :straight t)
+
+(use-package desktop+
+  :straight t
+  :defer t
+  :init
+(setq desktop-load-locked-desktop t)
+  (desktop+-load "octopus"))
 
 ;; TypeScript
 
@@ -256,6 +315,3 @@
 (use-package rainbow-delimiters
   :straight t
   :commands rainbow-delimiters-mode)
-
-(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
-
