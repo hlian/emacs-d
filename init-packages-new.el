@@ -198,14 +198,14 @@
   :defer t
   :straight t)
 
-(use-package desktop+
-  :straight t
-  :defer 2
-  :config
-  (when (memq window-system '(mac ns))
-    (setq desktop-load-locked-desktop t)
-    (desktop+-load "octopus")
-    (set-frame-parameter nil 'fullscreen 'maximized)))
+;; (use-package desktop+
+;;   :straight t
+;;   :defer 2
+;;   :config
+;;   (when (not noninteractive)
+;;     (setq desktop-load-locked-desktop t)
+;;     (desktop+-load "octopus")
+;;     (set-frame-parameter nil 'fullscreen 'maximized)))
 
 ;; TypeScript
 
