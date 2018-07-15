@@ -17,10 +17,12 @@
   (add-hook 'after-init-hook 'benchmark-init/deactivate))
 
 (use-package smex
-  :straight t)
+  :straight t
+  :defer t)
 
 (use-package wgrep
-  :straight t) 
+  :straight t
+  :defer t) 
 
 (use-package diminish
   :straight t)
@@ -40,18 +42,19 @@
 
 (use-package evil-surround
   :straight t
-  :config
+  :init
   (global-evil-surround-mode t))
 
 (use-package evil-collection
   :straight t
-  :defer t
+  :defer 3
   :custom (evil-collection-setup-minibuffer t)
-  :init (evil-collection-init))
+  :config (evil-collection-init))
 
 (use-package telephone-line
   :straight t
-  :config
+  :defer t
+  :init
   (setq telephone-line-primary-left-separator 'telephone-line-nil
         telephone-line-secondary-left-separator 'telephone-line-nil
         telephone-line-primary-right-separator 'telephone-line-nil
@@ -128,7 +131,8 @@
 
 (use-package projectile
   :straight t
-  :config
+  :defer t
+  :init
   (projectile-mode t))
 
 (use-package counsel-projectile
@@ -144,6 +148,7 @@
    "M-d" 'evil-scroll-up)
   (general-define-key
    :states '(normal visual insert emacs)
+   :keymaps 'override
    :prefix "SPC"
    :non-normal-prefix "M-SPC"
    "TAB" '(switch-to-prev-buffer :which-key "previous buffer")
@@ -153,7 +158,7 @@
    ;; Buffers
    "b" '(ivy-switch-buffer :which-key "ivy buffers")
    ;; File
-   "fs" '(save-buffer :which-key "save file")
+   "." '(save-buffer :which-key "save file")
    "fk" '(kill-this-buffer :which-key "kill file")
    ;; Projectile
    "k" '(counsel-projectile-find-file :which-key "projectile find file")
@@ -161,10 +166,7 @@
    "wl"  '(windmove-right :which-key "move right")
    "wh"  '(windmove-left :which-key "move left")
    "wk"  '(windmove-up :which-key "move up")
-   "wj"  '(windmove-down :which-key "move bottom")
-   "w/"  '(split-window-right :which-key "split right")
-   "w-"  '(split-window-below :which-key "split bottom")
-   "wx"  '(delete-window :which-key "delete window")))
+   "wj"  '(windmove-down :which-key "move bottom")))
 
 (use-package lisp-mode
   :commands emacs-lisp-mode
@@ -197,9 +199,9 @@
   :straight t
   :defer 2
   :config
-  (setq desktop-load-locked-desktop t)
-  (desktop+-load "octopus")
-  (toggle-frame-maximized))
+  (when (memq window-system '(mac ns))
+    (setq desktop-load-locked-desktop t)
+    (desktop+-load "octopus")))
 
 ;; TypeScript
 
