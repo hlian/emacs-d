@@ -97,8 +97,9 @@
 
 (use-package which-key
   :straight t
+  :defer t
   :diminish which-key-mode
-  :config
+  :init
   (which-key-mode t))
 
 (use-package ivy
