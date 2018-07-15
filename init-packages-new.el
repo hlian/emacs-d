@@ -1,12 +1,14 @@
 ;;; -*- lexical-binding: t -*-
 
+(custom-set-variables
+ '(initial-frame-alist (quote ((fullscreen . maximized))))
+ '(default-frame-alist (quote ((fullscreen . maximized)))))
+
 (use-package exec-path-from-shell
+  :demand t
   :straight t
   :init
   (when (memq window-system '(mac ns))
-    (custom-set-variables
- '(initial-frame-alist (quote ((fullscreen . maximized))))
- '(default-frame-alist (quote ((fullscreen . maximized)))))
     (exec-path-from-shell-initialize)))
 
 (use-package benchmark-init
@@ -201,7 +203,8 @@
   :config
   (when (memq window-system '(mac ns))
     (setq desktop-load-locked-desktop t)
-    (desktop+-load "octopus")))
+    (desktop+-load "octopus")
+    (set-frame-parameter nil 'fullscreen 'maximized)))
 
 ;; TypeScript
 
@@ -318,4 +321,5 @@
 
 (use-package rainbow-delimiters
   :straight t
+  :ghook 'prog-mode-hook
   :commands rainbow-delimiters-mode)
