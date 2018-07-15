@@ -5,7 +5,8 @@
   :init
   (when (memq window-system '(mac ns))
     (custom-set-variables
- '(initial-frame-alist (quote ((fullscreen . maximized)))))
+ '(initial-frame-alist (quote ((fullscreen . maximized))))
+ '(default-frame-alist (quote ((fullscreen . maximized)))))
     (exec-path-from-shell-initialize)))
 
 (use-package benchmark-init
@@ -194,10 +195,11 @@
 
 (use-package desktop+
   :straight t
-  :defer t
-  :init
-(setq desktop-load-locked-desktop t)
-  (desktop+-load "octopus"))
+  :defer 2
+  :config
+  (setq desktop-load-locked-desktop t)
+  (desktop+-load "octopus")
+  (toggle-frame-maximized))
 
 ;; TypeScript
 
