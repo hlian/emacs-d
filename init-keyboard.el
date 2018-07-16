@@ -7,6 +7,8 @@
 (key-seq-define-global "jf" 'helm-projectile)
 (key-seq-define-global "jS" 'vr/replace)
 (key-seq-define-global "jD" 'vr/query-replace)
+;; (key-seq-define-global "jm" '(lambda () (interactive) (progn (save-buffer) (browser-refresh) )))
+(key-seq-define-global "jm" 'helm-resume)
 (key-seq-define-global "jd" 'helm-projectile-ag)
 (key-seq-define-global "j," 'helm-find-files)
 (key-seq-define-global "jx" 'helm-M-x)

@@ -24,7 +24,7 @@
 
 (use-package wgrep
   :straight t
-  :defer t) 
+  :defer t)
 
 (use-package diminish
   :straight t)
@@ -81,12 +81,7 @@
   :straight t
   :defer t
   :init
-  (setq show-paren-when-point-inside-paren t)
-  (if (not (eq window-system nil))
-      (progn
-        (custom-set-faces
-        '(ivy-posframe ((t (:inherit default :background "white" :foreground "#111111"))))
-        '(ivy-posframe-cursor ((t (:inherit cursor :background "blue" :foreground "white"))))))))
+  (setq show-paren-when-point-inside-paren t))
 
 (use-package evil-escape
   :straight t
@@ -117,12 +112,13 @@
   :defer t
   :init
   (setq ivy-display-function #'ivy-posframe-display-at-point)
-  (ivy-posframe-enable)
+  (setq ivy-posframe-border-width 10)
   (if (not (eq window-system nil))
       (progn
         (custom-set-faces
         '(ivy-posframe ((t (:inherit default :background "white" :foreground "#111111"))))
-        '(ivy-posframe-cursor ((t (:inherit cursor :background "blue" :foreground "white"))))))))
+        '(ivy-posframe-cursor ((t (:inherit cursor :background "blue" :foreground "white")))))))
+  (ivy-posframe-enable))
 
 (use-package swiper
   :defer t
@@ -140,7 +136,7 @@
 
 (use-package counsel-projectile
   :defer t
-  :straight t)  
+  :straight t)
 
 (use-package general
   :straight t
@@ -159,10 +155,11 @@
    "/" '(swiper :which-key "swiper")
    "r" '(ivy-resume :which-key "ivy-resume")
    ;; Buffers
-   "b" '(ivy-switch-buffer :which-key "ivy buffers")
+   "f" '(ivy-switch-buffer :which-key "ivy buffers")
+   "d" '(counsel-projectile-ag :which-key "counsel projectile ag")
    ;; File
    "." '(save-buffer :which-key "save file")
-   "fk" '(kill-this-buffer :which-key "kill file")
+   "ak" '(kill-this-buffer :which-key "kill file")
    ;; Projectile
    "k" '(counsel-projectile-find-file :which-key "projectile find file")
    ;; Window
