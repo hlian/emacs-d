@@ -11,12 +11,12 @@
   (when (memq window-system '(mac ns))
     (exec-path-from-shell-initialize)))
 
-(use-package benchmark-init
-  :straight t
-  :demand t
-  :config
-  ;; To disable collection of benchmark data after init is done.
-  (add-hook 'after-init-hook 'benchmark-init/deactivate))
+;; (use-package benchmark-init
+;;   :straight t
+;;   :demand t
+;;   :config
+;;   ;; To disable collection of benchmark data after init is done.
+;;   (add-hook 'after-init-hook 'benchmark-init/deactivate))
 
 (use-package smex
   :straight t
@@ -177,7 +177,7 @@
 
 (use-package recentf
   :commands recentf-mode
-  :defer 1
+  :defer 2
   :config
   (setq recentf-max-saved-items 1000)
   (setq recentf-max-menu-items 1000)
@@ -193,6 +193,9 @@
 
 (use-package magit
   :defer t
+  :straight t)
+
+(use-package git-commit
   :straight t)
 
 ;; (use-package desktop+
@@ -321,3 +324,12 @@
   :straight t
   :ghook 'prog-mode-hook
   :commands rainbow-delimiters-mode)
+
+;;; Programming in general
+
+(use-package company
+  :straight t
+  :diminish company-mode
+  :commands company-mode
+  :init
+  (add-hook 'prog-mode-hook 'company-mode))
