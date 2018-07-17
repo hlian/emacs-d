@@ -193,10 +193,10 @@
 
 (use-package magit
   :defer t
-  :straight t)
+  :straight (magit :type git :host github :repo "magit/magit" :branch "fix-3516"))
 
 (use-package git-commit
-  :straight t)
+  :straight (magit :type git :host github :repo "magit/magit" :branch "fix-3516"))
 
 ;; (use-package desktop+
 ;;   :straight t
