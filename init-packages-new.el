@@ -5,6 +5,7 @@
  '(default-frame-alist (quote ((fullscreen . maximized)))))
 
 (use-package exec-path-from-shell
+  :commands exec-path-from-shell-initialize
   :demand t
   :straight t
   :init
@@ -27,6 +28,7 @@
   :defer t)
 
 (use-package diminish
+  :commands diminish
   :straight t)
 
 (eval-after-load "eldoc"
@@ -46,19 +48,26 @@
 
 (use-package evil-surround
   :straight t
+  :commands global-evil-surround-mode
   :init
   (global-evil-surround-mode t))
 
 (use-package evil-collection
   :straight t
+  :commands evil-collection-init
   :defer 3
   :custom (evil-collection-setup-minibuffer t)
   :config (evil-collection-init))
 
 (use-package telephone-line
   :straight t
+  :commands telephone-line-mode
   :defer t
   :init
+  (custom-set-faces
+   '(telephone-line-accent-active ((t (:inherit mode-line :background "honeydew1"))))
+   '(telephone-line-accent-inactive ((t (:inherit mode-line-inactive)))))
+
   (setq telephone-line-primary-left-separator 'telephone-line-nil
         telephone-line-secondary-left-separator 'telephone-line-nil
         telephone-line-primary-right-separator 'telephone-line-nil
@@ -70,8 +79,12 @@
                      telephone-line-process-segment))
           (nil    . (telephone-line-minor-mode-segment
                      telephone-line-buffer-segment))))
-  (telephone-line-mode t)
-  )
+  (setq telephone-line-rhs
+        '((nil    . (telephone-line-flycheck-segment
+                     telephone-line-misc-info-segment))
+          (accent . (telephone-line-major-mode-segment))
+          (nil . (telephone-line-airline-position-segment))))
+  (telephone-line-mode t))
 
 (use-package hao-mode
   :commands hao-mode
@@ -87,14 +100,19 @@
 
 (use-package evil-escape
   :straight t
+  :commands evil-escape-mode
   :diminish evil-escape-mode
-  :config
-  (setq-default evil-escape-key-sequence "jk")
+  :defer t
+  :init
+  (setq-default
+   evil-escape-unordered-key-sequence t
+   evil-escape-key-sequence "jk")
   (evil-escape-mode t))
 
 (use-package which-key
   :straight t
   :defer t
+  :commands which-key-mode
   :diminish which-key-mode
   :init
   (which-key-mode t))
@@ -102,6 +120,7 @@
 (use-package ivy
   :straight t
   :defer t
+  :commands ivy-mode
   :diminish ivy-mode
   :init
   (ivy-mode t)
@@ -111,6 +130,7 @@
 
 (use-package ivy-posframe
   :straight t
+  :commands (ivy-posframe-enable ivy-posframe-display-at-point)
   :defer t
   :init
   (setq ivy-display-function #'ivy-posframe-display-at-point)
@@ -120,6 +140,7 @@
         (custom-set-faces
         '(ivy-posframe ((t (:inherit default :background "white" :foreground "#111111"))))
         '(ivy-posframe-cursor ((t (:inherit cursor :background "blue" :foreground "white")))))))
+  :config
   (ivy-posframe-enable))
 
 (use-package swiper
@@ -135,10 +156,10 @@
 (use-package projectile
   :straight t
   :defer t
+  :commands projectile-mode
   :init
-  (projectile-mode t)
-  :config
-  (setq projectile-git-command "~/.emacs.d/bin/git-projectile-command"))
+  (setq projectile-git-command "~/.emacs.d/bin/git-projectile-command")
+  (projectile-mode t))
 
 (use-package counsel-projectile
   :defer t
@@ -146,11 +167,12 @@
 
 (use-package general
   :straight t
-  :config
+  :commands general-define-key 
+  :init
   (general-define-key
    :states '(normal visual insert emacs)
-   "C-d" 'evil-scroll-down
-   "M-d" 'evil-scroll-up)
+   "C-d" 'scroll-up-command
+   "M-d" 'scroll-down-command)
   (general-define-key
    :states '(normal visual insert emacs)
    :keymaps 'override
@@ -202,7 +224,11 @@
   :straight (magit :type git :host github :repo "magit/magit" :branch "fix-3516"))
 
 (use-package git-commit
-  :straight (magit :type git :host github :repo "magit/magit" :branch "fix-3516"))
+  :defer t
+  :commands global-git-commit-mode
+  :straight (magit :type git :host github :repo "magit/magit" :branch "fix-3516")
+  :init
+  (global-git-commit-mode t))
 
 ;; (use-package desktop+
 ;;   :straight t
@@ -252,6 +278,7 @@
 
 (use-package flycheck
   :straight t
+  :commands (flycheck-define-checker flycheck-add-mode flycheck-define-command-checker)
   :defer 1
   :config
   (flycheck-define-checker web-mode-python-json
@@ -274,6 +301,9 @@
 
 (use-package flycheck-posframe
   :straight t
+  :commands (flycheck-posframe-mode
+             flycheck-posframe-configure-pretty-defaults flycheck-mode
+             flycheck-select-checker flycheck-may-use-checker)
   :after flycheck
   :config
   (add-hook 'flycheck-mode-hook #'flycheck-posframe-mode)
@@ -328,7 +358,7 @@
 
 (use-package rainbow-delimiters
   :straight t
-  :ghook 'prog-mode-hook
+  :hook 'prog-mode-hook
   :commands rainbow-delimiters-mode)
 
 ;;; Programming in general
