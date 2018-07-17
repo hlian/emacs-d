@@ -1,0 +1,2 @@
+#!/usr/bin/env sh
+git ls-files -co --exclude-standard | grep -v __snapshots__ | tr '\n' '\0'

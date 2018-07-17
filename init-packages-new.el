@@ -39,7 +39,9 @@
   :init
   (setq evil-want-integration nil)
   :config
-  (setq evil-search-module 'evil-search)
+  (setq
+   evil-search-module 'evil-search
+   evil-want-fine-undo t)
   (evil-mode t))
 
 (use-package evil-surround
@@ -126,13 +128,17 @@
 
 (use-package counsel
   :defer t
-  :straight t)
+  :straight t
+  :config
+  (setq counsel-ag-base-command "ag -W100 --nocolor --nogroup %s"))
 
 (use-package projectile
   :straight t
   :defer t
   :init
-  (projectile-mode t))
+  (projectile-mode t)
+  :config
+  (setq projectile-git-command "~/.emacs.d/bin/git-projectile-command"))
 
 (use-package counsel-projectile
   :defer t
