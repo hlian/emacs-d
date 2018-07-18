@@ -241,7 +241,14 @@
 
 ;; TypeScript
 
-(straight-use-package 'tide)
+(use-package tide
+  :straight t
+  :commands (tide-hl-identifier-mode tide-setup)
+  :diminish tide-mode
+  :config
+  (setq flycheck-check-syntax-automatically '(save mode-enabled))
+  (flycheck-mode t)
+  (tide-hl-identifier-mode t))
 
 ;; https://github.com/flycheck/flycheck/issues/1398
 (defun flycheck-define-checker-macro-workaround ()
@@ -259,13 +266,7 @@
 
 (defun setup-tide-mode ()
   (interactive)
-  (tide-setup)
-  (flycheck-mode +1)
-  (setq flycheck-check-syntax-automatically '(save mode-enabled))
-  (eldoc-mode +1)
-  (tide-hl-identifier-mode +1)
-  (company-mode +1)
-  (company-tng-configure-default))
+  (tide-setup))
 
 (use-package company
   :straight t
