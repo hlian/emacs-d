@@ -60,21 +60,11 @@ For hindent versions lower than 5, you must set this to a non-nil string."
   :type 'string
   :safe #'stringp)
 
-(defcustom hindent-line-length
-  80
-  "Optionally override the line length."
+(defcustom hindent-extra-args nil
+  "Extra arguments to give to hindent"
   :group 'hindent
-  :type '(choice (const :tag "Default: 80" 80)
-                 (integer :tag "Override" 120))
-  :safe (lambda (val) (or (integerp val) (not val))))
-
-(defcustom hindent-indent-size
-  2
-  "Optionally override the indent size."
-  :group 'hindent
-  :type '(choice (const :tag "Default: 2" 2)
-                 (integer :tag "Override" 4))
-  :safe (lambda (val) (or (integerp val) (not val))))
+  :type 'sexp
+  :safe #'listp)
 
 (defcustom hindent-reformat-buffer-on-save nil
   "Set to t to run `hindent-reformat-buffer' when a buffer in `hindent-mode' is saved."
@@ -158,24 +148,25 @@ cause the text to be justified, as per `fill-paragraph'."
 If DROP-NEWLINE is non-nil, don't require a newline at the end of
 the file."
   (interactive "r")
-  (if (= (save-excursion (goto-char beg)
-                         (line-beginning-position))
-         beg)
-      (hindent-reformat-region-as-is beg end drop-newline)
-    (let* ((column (- beg (line-beginning-position)))
-           (string (buffer-substring-no-properties beg end))
-           (new-string (with-temp-buffer
-                         (insert (make-string column ? ) string)
-                         (hindent-reformat-region-as-is (point-min)
-                                                        (point-max)
-                                                        drop-newline)
-                         (delete-region (point-min) (1+ column))
-                         (buffer-substring (point-min)
-                                           (point-max)))))
-      (save-excursion
-        (goto-char beg)
-        (delete-region beg end)
-        (insert new-string)))))
+  (let ((inhibit-read-only t))
+    (if (= (save-excursion (goto-char beg)
+                           (line-beginning-position))
+           beg)
+        (hindent-reformat-region-as-is beg end drop-newline)
+      (let* ((column (- beg (line-beginning-position)))
+             (string (buffer-substring-no-properties beg end))
+             (new-string (with-temp-buffer
+                           (insert (make-string column ? ) string)
+                           (hindent-reformat-region-as-is (point-min)
+                                                          (point-max)
+                                                          drop-newline)
+                           (delete-region (point-min) (1+ column))
+                           (buffer-substring (point-min)
+                                             (point-max)))))
+        (save-excursion
+          (goto-char beg)
+          (delete-region beg end)
+          (insert new-string))))))
 
 ;;;###autoload
 (define-obsolete-function-alias 'hindent/reformat-decl 'hindent-reformat-decl)
@@ -318,8 +309,11 @@ work."
    (when (boundp 'haskell-language-extensions)
      haskell-language-extensions)
    (when hindent-style
-     (list "--style" hindent-style))))
+     (list "--style" hindent-style))
+   (when hindent-extra-args
+     hindent-extra-args)))
 
 (provide 'hindent)
 
 ;;; hindent.el ends here
+
