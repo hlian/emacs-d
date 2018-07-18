@@ -362,6 +362,27 @@
   :hook 'prog-mode-hook
   :commands rainbow-delimiters-mode)
 
+;;; Haskell
+
+(use-package hindent
+  :load-path "lisp"
+  :hook haskell-mode
+  :commands hindent-mode)
+
+(use-package haskell-mode
+  :straight t
+  :mode "\\.hs\\'"
+  :commands haskell-mode
+  :diminish interactive-haskell-mode
+  :config
+  (custom-set-variables
+   '(haskell-ask-also-kill-buffers nil)
+   '(haskell-process-type (quote stack-ghci))
+   '(haskell-interactive-popup-errors nil))
+  (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
+  (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
+  (add-hook 'haskell-mode-hook 'flycheck-mode))
+
 ;;; Programming in general
 
 (use-package company
