@@ -19,6 +19,9 @@
 ;;   ;; To disable collection of benchmark data after init is done.
 ;;   (add-hook 'after-init-hook 'benchmark-init/deactivate))
 
+(use-package doom-themes
+  :straight t)
+
 (use-package smex
   :straight t
   :defer t)
@@ -64,30 +67,39 @@
   :commands telephone-line-mode
   :defer t
   :init
+  (telephone-line-defsegment* position-segment ()
+    `("(%l, %c)"))
+
+  (telephone-line-defsegment* vc-segment ()
+    (replace-regexp-in-string "Git:" "" (telephone-line-raw vc-mode t)))
+
   (custom-set-faces
-   '(telephone-line-accent-active ((t (:inherit mode-line :background "honeydew1"))))
+   '(telephone-line-accent-active ((t (:inherit mode-line))))
    '(telephone-line-accent-inactive ((t (:inherit mode-line-inactive)))))
 
   (setq telephone-line-primary-left-separator 'telephone-line-nil
         telephone-line-secondary-left-separator 'telephone-line-nil
         telephone-line-primary-right-separator 'telephone-line-nil
         telephone-line-secondary-right-separator 'telephone-line-nil)
+
   (setq telephone-line-lhs
         '((evil   . (telephone-line-evil-tag-segment))
-          (accent . (telephone-line-vc-segment
+          (accent . (vc-segment
                      telephone-line-erc-modified-channels-segment
                      telephone-line-process-segment))
           (nil    . (telephone-line-minor-mode-segment
                      telephone-line-buffer-segment))))
+
   (setq telephone-line-rhs
         '((nil    . (telephone-line-flycheck-segment
                      telephone-line-misc-info-segment))
           (accent . (telephone-line-major-mode-segment))
-          (nil . (telephone-line-airline-position-segment))))
+          (nil . (position-segment))))
+
   (telephone-line-mode t))
 
 (use-package hao-mode
-  :commands hao-mode
+  :commands (open-terminal-here hao-mode)
   :load-path "lisp"
   :defer 2
   :config (hao-mode t))
@@ -155,6 +167,7 @@
 
 (use-package projectile
   :straight t
+  :diminish projectile-mode
   :defer t
   :commands projectile-mode
   :init
@@ -167,7 +180,7 @@
 
 (use-package general
   :straight t
-  :commands general-define-key 
+  :commands general-define-key
   :init
   (general-define-key
    :states '(normal visual insert emacs)
@@ -182,11 +195,13 @@
    "SPC" '(counsel-M-x :which-key "M-x")
    "/" '(swiper :which-key "swiper")
    "r" '(ivy-resume :which-key "ivy-resume")
+   "t" '(tide-project-errors :which-key "tide errors")
    ;; Buffers
-   "f" '(ivy-switch-buffer :which-key "ivy buffers")
+   "f" '(counsel-projectile :which-key "counsel projectile")
    "d" '(counsel-projectile-ag :which-key "counsel projectile ag")
    ;; File
    "." '(save-buffer :which-key "save file")
+   "at" '(open-terminal-here :which-key "open terminal here")
    "ak" '(kill-this-buffer :which-key "kill file")
    ;; Projectile
    "k" '(counsel-projectile-find-file :which-key "projectile find file")
@@ -228,7 +243,9 @@
   :commands global-git-commit-mode
   :straight (magit :type git :host github :repo "magit/magit" :branch "fix-3516")
   :init
-  (global-git-commit-mode t))
+  (global-git-commit-mode t)
+  :config
+  (defun git-commit-turn-on-auto-fill ()))
 
 ;; (use-package desktop+
 ;;   :straight t
@@ -246,9 +263,10 @@
   :commands (tide-hl-identifier-mode tide-setup)
   :diminish tide-mode
   :config
-  (setq flycheck-check-syntax-automatically '(save mode-enabled))
-  (flycheck-mode t)
-  (tide-hl-identifier-mode t))
+  (add-hook 'tide-mode-hook (lambda ()
+                              (setq flycheck-check-syntax-automatically '(save mode-enabled))
+                              (flycheck-mode t)
+                              (tide-hl-identifier-mode t))))
 
 ;; https://github.com/flycheck/flycheck/issues/1398
 (defun flycheck-define-checker-macro-workaround ()
@@ -264,10 +282,6 @@
     (when (and eslint (file-executable-p eslint))
       (setq-local flycheck-javascript-eslint-executable eslint))))
 
-(defun setup-tide-mode ()
-  (interactive)
-  (tide-setup))
-
 (use-package company
   :straight t
   :commands company-mode
@@ -279,6 +293,7 @@
 
 (use-package flycheck
   :straight t
+  :diminish flycheck-mode
   :commands (flycheck-define-checker flycheck-add-mode flycheck-define-command-checker)
   :defer 1
   :config
@@ -354,7 +369,7 @@
                   (or
                    (string-equal "tsx" (file-name-extension buffer-file-name))
                    (string-equal "ts" (file-name-extension buffer-file-name)))
-                (setup-tide-mode))))
+                (tide-setup))))
  )
 
 (use-package rainbow-delimiters

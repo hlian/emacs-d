@@ -4,6 +4,15 @@
 ;;; Commentary:
 ;;; Code:
 
+(defun open-terminal-here ()
+  "Opens iTerm here."
+  (interactive)
+  (shell-command
+   (format "open -a /Applications/iTerm.app \"%s\""
+       (if (buffer-file-name)
+           (file-name-directory (buffer-file-name))
+         (expand-file-name default-directory)))))
+
 ;;;###autoload
 (define-minor-mode hao-mode
   "Toggle Hao's stuff."
@@ -23,10 +32,11 @@
      '(line-spacing 0)
      '(cursor-type 'hollow))
 
+    (load-theme 'doom-peacock t)
+
     (if (not (eq window-system nil))
         (progn
           (custom-set-variables
-           '(custom-enabled-themes (quote (solarized-light)))
            '(solarized-distinct-fringe-background t)
            '(solarized-emphasize-indicators nil)
            '(solarized-high-contrast-mode-line t)
@@ -34,11 +44,6 @@
            '(sml/name-width '(40 . 100))
            '(sml/mode-width 'right)
            '(sml/modified-char " ⬢ "))))
-    ;;       (sml/setup)
-    ;;       (custom-set-faces
-    ;;        '(sml/modified ((t (:foreground "#dd0099" :weight bold))))
-    ;;        '(sml/vc ((t (:foreground "#dd0099" :weight bold))))
-    ;;        '(sml/vc-edited ((t (:foreground "#dd0099" :weight bold)))))))
 
     ;; (setq hippie-expand-try-functions-list
     ;;       '(yas-expand
@@ -59,13 +64,8 @@
     (tool-bar-mode -1)
     (toggle-scroll-bar -1)
     (show-paren-mode t)
-    ;; (windmove-default-keybindings)
     (diminish 'auto-revert-mode)
     (recentf-mode 1)
-    ;; (popwin-mode 1)
-    ;; (drag-stuff-mode 1)
-    ;; (drag-stuff-define-keys)
-    ;; (diminish 'drag-stuff-mode)
     (setq-default save-place t)
     (setq-default uniquify-buffer-name-style 'forward)
     (midnight-delay-set 'midnight-delay "4:30am")))
