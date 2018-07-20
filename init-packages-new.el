@@ -221,7 +221,7 @@
 (use-package recentf
   :commands recentf-mode
   :defer 2
-  :config
+  :init
   (setq recentf-max-saved-items 1000)
   (setq recentf-max-menu-items 1000)
   (recentf-mode t)
