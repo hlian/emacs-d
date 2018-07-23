@@ -21,10 +21,7 @@
     (require 'saveplace)
     (require 'uniquify)
     (require 'midnight)
-    ;; (require 'diminish)
     ;; (require 'visual-regexp-steroids)
-    ;; (require 'key-chord)
-    ;; (require 'key-seq)
 
     (custom-set-variables
      '(js2-basic-offset 2)
@@ -32,26 +29,13 @@
      '(line-spacing 0)
      '(cursor-type 'hollow))
 
-    (load-theme 'doom-peacock t)
-
-    (if (not (eq window-system nil))
-        (progn
-          (custom-set-variables
-           '(solarized-distinct-fringe-background t)
-           '(solarized-emphasize-indicators nil)
-           '(solarized-high-contrast-mode-line t)
-           '(solarized-use-more-italic t)
-           '(sml/name-width '(40 . 100))
-           '(sml/mode-width 'right)
-           '(sml/modified-char " ⬢ "))))
-
-    ;; (setq hippie-expand-try-functions-list
-    ;;       '(yas-expand
-    ;;         try-complete-file-name-partially
-    ;;         try-complete-file-name
-    ;;         try-expand-dabbrev
-    ;;         try-expand-dabbrev-all-buffers
-    ;;         try-expand-dabbrev-from-kill))
+    (setq hippie-expand-try-functions-list
+          '(yas-expand
+            try-complete-file-name-partially
+            try-complete-file-name
+            try-expand-dabbrev
+            try-expand-dabbrev-all-buffers
+            try-expand-dabbrev-from-kill))
 
     (setq backup-directory-alist `(("." . "~/.saves")))
     (setq auto-save-file-name-transforms `(("." "~/.saves" t)))

@@ -20,7 +20,10 @@
 ;;   (add-hook 'after-init-hook 'benchmark-init/deactivate))
 
 (use-package doom-themes
-  :straight t)
+  :defer 2
+  :straight t
+  :config
+  (load-theme 'doom-peacock t))
 
 (use-package smex
   :straight t
@@ -66,7 +69,7 @@
   :straight t
   :commands telephone-line-mode
   :defer t
-  :init
+  :config
   (telephone-line-defsegment* position-segment ()
     `("(%l, %c)"))
 
@@ -104,11 +107,11 @@
   :defer 2
   :config (hao-mode t))
 
-(use-package solarized-theme
-  :straight t
-  :defer t
-  :init
-  (setq show-paren-when-point-inside-paren t))
+;; (use-package solarized-theme
+;;   :straight t
+;;   :defer t
+;;   :init
+;;   (setq show-paren-when-point-inside-paren t))
 
 (use-package evil-escape
   :straight t
@@ -136,9 +139,10 @@
   :diminish ivy-mode
   :init
   (ivy-mode t)
-  (setq
-   ivy-use-virtual-buffers t
-   enable-recursive-minibuffers t))
+  :custom
+  (ivy-use-virtual-buffers t)
+  (ivy-virtual-abbreviate 'abbreviate)
+  (enable-recursive-minibuffers t))
 
 (use-package ivy-posframe
   :straight t
@@ -150,8 +154,8 @@
   (if (not (eq window-system nil))
       (progn
         (custom-set-faces
-        '(ivy-posframe ((t (:inherit default :background "white" :foreground "#111111"))))
-        '(ivy-posframe-cursor ((t (:inherit cursor :background "blue" :foreground "white")))))))
+        '(ivy-posframe ((t (:inherit default :background "#1b1a17"))))
+        '(ivy-posframe-cursor ((t (:inherit cursor)))))))
   :config
   (ivy-posframe-enable))
 
