@@ -240,12 +240,12 @@
 
 (use-package magit
   :defer t
-  :straight (magit :type git :host github :repo "magit/magit" :branch "fix-3516"))
+  :straight t)
 
 (use-package git-commit
   :defer t
   :commands global-git-commit-mode
-  :straight (magit :type git :host github :repo "magit/magit" :branch "fix-3516")
+  :straight t
   :init
   (global-git-commit-mode t)
   :config
