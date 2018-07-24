@@ -16,11 +16,9 @@
 ;;   :straight t
 ;;   :demand t
 ;;   :config
-;;   ;; To disable collection of benchmark data after init is done.
 ;;   (add-hook 'after-init-hook 'benchmark-init/deactivate))
 
 (use-package doom-themes
-  :defer 2
   :straight t
   :config
   (load-theme 'doom-peacock t))
@@ -44,12 +42,12 @@
 
 (use-package evil
   :straight t
-  :init
-  (setq evil-want-integration nil)
+  :defer t
+  :custom
+  (evil-want-integration nil)
+  (evil-search-module 'evil-search)
+  (evil-want-fine-undo t)
   :config
-  (setq
-   evil-search-module 'evil-search
-   evil-want-fine-undo t)
   (evil-mode t))
 
 (use-package evil-surround
@@ -61,7 +59,7 @@
 (use-package evil-collection
   :straight t
   :commands evil-collection-init
-  :defer 3
+  :defer t
   :custom (evil-collection-setup-minibuffer t)
   :config (evil-collection-init))
 
@@ -240,14 +238,15 @@
 
 (use-package magit
   :defer t
+  :commands (magit magit-process-file)
   :straight t)
 
 (use-package git-commit
   :defer t
-  :commands global-git-commit-mode
+  :commands git-commit-setup-check-buffer
   :straight t
   :init
-  (global-git-commit-mode t)
+  (add-hook 'find-file-hook 'git-commit-setup-check-buffer)
   :config
   (defun git-commit-turn-on-auto-fill ()))
 
@@ -289,11 +288,14 @@
 (use-package company
   :straight t
   :commands company-mode
-  :config
-  (company-tng-configure-default)
-  (setq company-dabbrev-downcase nil)
-  (setq company-show-numbers t)
-  (setq company-idle-delay 0))
+  :diminish company-mode
+  :hook ((emacs-lisp-mode . company-mode)
+         (web-mode . company-mode))
+  :defer 2
+  :custom
+  (company-dabbrev-downcase nil)
+  (company-show-numbers t)
+  (company-idle-delay 0))
 
 (use-package flycheck
   :straight t
@@ -378,7 +380,7 @@
 
 (use-package rainbow-delimiters
   :straight t
-  :hook 'prog-mode-hook
+  :hook (prog-mode . rainbow-delimiters-mode)
   :commands rainbow-delimiters-mode)
 
 ;;; Haskell
@@ -401,12 +403,3 @@
   (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
   (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
   (add-hook 'haskell-mode-hook 'flycheck-mode))
-
-;;; Programming in general
-
-(use-package company
-  :straight t
-  :diminish company-mode
-  :commands company-mode
-  :init
-  (add-hook 'prog-mode-hook 'company-mode))
