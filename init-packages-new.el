@@ -200,6 +200,9 @@
 
   (general-define-key
    :states '(normal visual insert emacs)
+   "M-." 'save-buffer :which-key "save buffer")
+  (general-define-key
+   :states '(normal visual insert emacs)
    "C-d" 'scroll-up-command
    "M-d" 'scroll-down-command)
 
