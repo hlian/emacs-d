@@ -66,8 +66,8 @@
 (use-package telephone-line
   :straight t
   :commands telephone-line-mode
-  :defer t
-  :config
+  :defer 2
+  :init
   (telephone-line-defsegment* position-segment ()
     `("(%l, %c)"))
 
@@ -184,10 +184,30 @@
   :straight t
   :commands general-define-key
   :init
+  (defun insert-line-below ()
+    "Insert an empty line below the current line."
+    (interactive)
+    (save-excursion
+      (end-of-line)
+      (open-line 1)))
+
+  (defun insert-line-above ()
+    "Insert an empty line above the current line."
+    (interactive)
+    (save-excursion
+      (end-of-line 0)
+      (open-line 1)))
+
   (general-define-key
    :states '(normal visual insert emacs)
    "C-d" 'scroll-up-command
    "M-d" 'scroll-down-command)
+
+  (general-define-key
+   :states '(normal visual insert)
+   "C-o" '(insert-line-below :which-key "insert line below")
+   "C-S-o" '(insert-line-above :which-key "insert line above"))
+
   (general-define-key
    :states '(normal visual insert emacs)
    :keymaps 'override
