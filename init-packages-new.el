@@ -47,6 +47,7 @@
   (evil-want-integration nil)
   (evil-search-module 'evil-search)
   (evil-want-fine-undo t)
+  (evil-cross-lines t)
   :config
   (evil-mode t))
 
@@ -72,7 +73,10 @@
     `("(%l, %c)"))
 
   (telephone-line-defsegment* vc-segment ()
-    (replace-regexp-in-string "Git:" "" (telephone-line-raw vc-mode t)))
+    (let ((boosh (telephone-line-raw vc-mode t)))
+      (if boosh
+          (replace-regexp-in-string "Git:" "" boosh)
+        boosh)))
 
   (custom-set-faces
    '(telephone-line-accent-active ((t (:inherit mode-line))))
@@ -140,6 +144,7 @@
   :custom
   (ivy-use-virtual-buffers t)
   (ivy-virtual-abbreviate 'abbreviate)
+  (ivy-format-function 'ivy-format-function-line)
   (enable-recursive-minibuffers t))
 
 (use-package ivy-posframe
@@ -149,11 +154,6 @@
   :init
   (setq ivy-display-function #'ivy-posframe-display-at-point)
   (setq ivy-posframe-border-width 10)
-  (if (not (eq window-system nil))
-      (progn
-        (custom-set-faces
-        '(ivy-posframe ((t (:inherit default :background "#1b1a17"))))
-        '(ivy-posframe-cursor ((t (:inherit cursor)))))))
   :config
   (ivy-posframe-enable))
 
@@ -201,10 +201,11 @@
   (general-define-key
    :states '(normal visual insert emacs)
    "M-." 'save-buffer :which-key "save buffer")
+
   (general-define-key
-   :states '(normal visual insert emacs)
-   "C-d" 'scroll-up-command
-   "M-d" 'scroll-down-command)
+   :states '(normal visual insert)
+   "C-v" 'scroll-up-command
+   "M-v" 'scroll-down-command)
 
   (general-define-key
    :states '(normal visual insert)
