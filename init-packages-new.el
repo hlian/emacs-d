@@ -163,6 +163,9 @@
   :init
   (ivy-rich-mode t))
 
+(use-package ivy-hydra
+  :straight t)
+
 (use-package swiper
   :defer t
   :straight t)
