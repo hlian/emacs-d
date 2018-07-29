@@ -62,7 +62,7 @@
   :commands evil-collection-init
   :defer t
   :custom (evil-collection-setup-minibuffer t)
-  :config (evil-collection-init))
+  :init (evil-collection-init))
 
 (use-package telephone-line
   :straight t
@@ -156,6 +156,12 @@
   (setq ivy-posframe-border-width 10)
   :config
   (ivy-posframe-enable))
+
+(use-package ivy-rich
+  :straight t
+  :commands ivy-rich-mode
+  :init
+  (ivy-rich-mode t))
 
 (use-package swiper
   :defer t
