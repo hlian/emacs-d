@@ -218,8 +218,13 @@
 
   (general-define-key
    :states '(normal visual insert)
-   "C-o" '(insert-line-below :which-key "insert line below")
-   "C-S-o" '(insert-line-above :which-key "insert line above"))
+   "C-c o" '(insert-line-below :which-key "insert line below")
+   "C-c S-o" '(insert-line-above :which-key "insert line above"))
+
+  (general-define-key
+   :keymaps 'ivy-minibuffer-map
+   :states '(normal visual insert)
+   "C-o" 'hydra-ivy/body)
 
   (general-define-key
    :states '(normal visual insert emacs)
@@ -415,6 +420,11 @@
   :straight t
   :hook (prog-mode . rainbow-delimiters-mode)
   :commands rainbow-delimiters-mode)
+
+(use-package wgrep
+  :straight t
+  :custom
+  (wgrep-auto-save-buffer t))
 
 ;;; Haskell
 
