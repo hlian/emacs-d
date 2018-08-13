@@ -164,6 +164,7 @@
   (ivy-rich-mode t))
 
 (use-package ivy-hydra
+  :defer 2
   :straight t)
 
 (use-package swiper
@@ -218,13 +219,8 @@
 
   (general-define-key
    :states '(normal visual insert)
-   "C-c o" '(insert-line-below :which-key "insert line below")
-   "C-c S-o" '(insert-line-above :which-key "insert line above"))
-
-  (general-define-key
-   :keymaps 'ivy-minibuffer-map
-   :states '(normal visual insert)
-   "C-o" 'hydra-ivy/body)
+   "C-8" '(insert-line-below :which-key "insert line below")
+   "C-S-8" '(insert-line-above :which-key "insert line above"))
 
   (general-define-key
    :states '(normal visual insert emacs)
@@ -425,6 +421,21 @@
   :straight t
   :custom
   (wgrep-auto-save-buffer t))
+
+(use-package hydra
+  :straight t
+  :defer 2
+  :init
+  (require 'hydra)
+  (defhydra hydra-undo-tree (:color red :hint nil)
+    "
+  _p_: undo  _n_: redo _s_: save _l_: load   "
+    ("p"   undo-tree-undo)
+    ("n"   undo-tree-redo)
+    ("s"   undo-tree-save-history)
+    ("l"   undo-tree-load-history)
+    ("u"   undo-tree-visualize "visualize" :color blue)
+    ("q"   nil "quit" :color blue)))
 
 ;;; Haskell
 
