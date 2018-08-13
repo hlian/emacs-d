@@ -5,8 +5,9 @@
       gc-cons-percentage 0.6)
 (setq file-name-handler-alist nil)
 
-(scroll-bar-mode -1)
-(tool-bar-mode   -1)
+(when (memq window-system '(mac ns))
+  (scroll-bar-mode -1)
+  (tool-bar-mode   -1))
 (tooltip-mode    -1)
 (menu-bar-mode   -1)
 (fset 'yes-or-no-p 'y-or-n-p)
