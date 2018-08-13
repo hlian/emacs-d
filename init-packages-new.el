@@ -155,7 +155,8 @@
   (setq ivy-display-function #'ivy-posframe-display-at-point)
   (setq ivy-posframe-border-width 10)
   :config
-  (ivy-posframe-enable))
+  (when (memq window-system '(mac ns))
+    (ivy-posframe-enable)))
 
 (use-package ivy-rich
   :straight t
