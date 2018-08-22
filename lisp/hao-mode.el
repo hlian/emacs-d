@@ -13,6 +13,10 @@
            (file-name-directory (buffer-file-name))
          (expand-file-name default-directory)))))
 
+(defun hao-prog-mode-hook ()
+  "Sigh"
+  (setq show-trailing-whitespace t))
+
 ;;;###autoload
 (define-minor-mode hao-mode
   "Toggle Hao's stuff."
@@ -40,6 +44,7 @@
     (setq backup-directory-alist `(("." . "~/.saves")))
     (setq auto-save-file-name-transforms `(("." "~/.saves" t)))
     (setq create-lockfiles nil)
+    (setq save-interprogram-paste-before-kill t)
     (column-number-mode t)
     (delete-selection-mode t)
     (global-hl-line-mode t)

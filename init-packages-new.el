@@ -104,7 +104,8 @@
   (telephone-line-mode t))
 
 (use-package hao-mode
-  :commands (open-terminal-here hao-mode)
+  :commands (open-terminal-here hao-mode hao-prog-mode-hook)
+  :hook (prog-mode . hao-prog-mode-hook)
   :load-path "lisp"
   :defer 2
   :config (hao-mode t))
@@ -220,8 +221,13 @@
 
   (general-define-key
    :states '(normal visual insert)
-   "C-8" '(insert-line-below :which-key "insert line below")
-   "C-S-8" '(insert-line-above :which-key "insert line above"))
+   "C-c o" '(insert-line-below :which-key "insert line below")
+   "C-c O" '(insert-line-above :which-key "insert line above"))
+
+  (general-define-key
+   :keymaps 'ivy-minibuffer-map
+   :states '(normal visual insert)
+   "C-o" 'hydra-ivy/body)
 
   (general-define-key
    :states '(normal visual insert emacs)
