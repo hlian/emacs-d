@@ -184,6 +184,8 @@
   :diminish projectile-mode
   :defer t
   :commands projectile-mode
+  :custom
+  (projectile-enable-caching t)
   :init
   (setq projectile-git-command "~/.emacs.d/bin/git-projectile-command")
   (projectile-mode t))
