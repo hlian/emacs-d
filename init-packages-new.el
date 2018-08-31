@@ -48,6 +48,7 @@
   (evil-search-module 'evil-search)
   (evil-want-fine-undo t)
   (evil-cross-lines t)
+  (evil-shift-width 2)
   :config
   (evil-mode t))
 
@@ -176,8 +177,8 @@
 (use-package counsel
   :defer t
   :straight t
-  :config
-  (setq counsel-ag-base-command "ag -W100 --nocolor --nogroup %s"))
+  :custom
+  (counsel-rg-base-command "rg -S --no-heading --line-number --hidden --color never %s ."))
 
 (use-package projectile
   :straight t
@@ -243,7 +244,7 @@
    "t" '(tide-project-errors :which-key "tide errors")
    ;; Buffers
    "f" '(counsel-projectile :which-key "counsel projectile")
-   "d" '(counsel-projectile-ag :which-key "counsel projectile ag")
+   "d" '(counsel-projectile-rg :which-key "counsel projectile ag")
    ;; File
    "." '(save-buffer :which-key "save file")
    "at" '(open-terminal-here :which-key "open terminal here")
