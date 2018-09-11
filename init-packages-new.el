@@ -65,6 +65,25 @@
   :custom (evil-collection-setup-minibuffer t)
   :init (evil-collection-init))
 
+(use-package evil-goggles
+  :straight t
+  :commands (evil-goggles-mode)
+  :defer t
+  :init
+  (evil-goggles-mode))
+
+(use-package evil-args
+  :straight t
+  :commands (evil-inner-arg evil-outer-arg evil-forward-arg evil-backward-arg evil-jump-out-args)
+  :defer t
+  :init
+  (define-key evil-inner-text-objects-map "a" 'evil-inner-arg)
+  (define-key evil-outer-text-objects-map "a" 'evil-outer-arg)
+  (define-key evil-normal-state-map "L" 'evil-forward-arg)
+  (define-key evil-normal-state-map "H" 'evil-backward-arg)
+  (define-key evil-motion-state-map "L" 'evil-forward-arg)
+  (define-key evil-motion-state-map "H" 'evil-backward-arg))
+
 (use-package telephone-line
   :straight t
   :commands telephone-line-mode
@@ -162,6 +181,7 @@
 
 (use-package ivy-rich
   :straight t
+  :after counsel
   :commands ivy-rich-mode
   :init
   (ivy-rich-mode t))
