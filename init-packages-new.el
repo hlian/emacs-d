@@ -61,12 +61,14 @@
 (use-package evil-collection
   :straight t
   :commands evil-collection-init
+  :diminish t
   :defer t
   :custom (evil-collection-setup-minibuffer t)
   :init (evil-collection-init))
 
 (use-package evil-goggles
   :straight t
+  :diminish t
   :commands (evil-goggles-mode)
   :defer t
   :init
@@ -349,6 +351,17 @@
     (when (and eslint (file-executable-p eslint))
       (setq-local flycheck-javascript-eslint-executable eslint))))
 
+(defun my/use-flow-from-node-modules ()
+  (let* ((root (locate-dominating-file
+                (or (buffer-file-name) default-directory)
+                "node_modules"))
+         (flow (and root
+                    (expand-file-name "node_modules/flow-bin/vendor/flow"
+                                      root))))
+    (when (and flow (file-executable-p flow))
+      (setq-local flowmacs/+flow+ flow)
+      (setq-local flycheck-javascript-flow-executable flow))))
+
 (use-package company
   :straight t
   :commands company-mode
@@ -364,7 +377,7 @@
 (use-package flycheck
   :straight t
   :diminish flycheck-mode
-  :commands (flycheck-define-checker flycheck-add-mode flycheck-define-command-checker)
+  :commands (flycheck-define-checker flycheck-add-mode flycheck-define-command-checker flycheck-may-use-checker)
   :defer 1
   :config
   (flycheck-define-checker web-mode-python-json
@@ -389,7 +402,7 @@
   :straight t
   :commands (flycheck-posframe-mode
              flycheck-posframe-configure-pretty-defaults flycheck-mode
-             flycheck-select-checker flycheck-may-use-checker)
+             flycheck-select-checker)
   :after flycheck
   :config
   (add-hook 'flycheck-mode-hook #'flycheck-posframe-mode)
@@ -419,12 +432,18 @@
                   (or
                    (string-equal "jsx" (file-name-extension buffer-file-name))
                    (string-equal "js" (file-name-extension buffer-file-name)))
-                (if (flycheck-may-use-checker 'javascript-eslint)
-                    (progn
-                      (my/use-eslint-from-node-modules)
-                      (flycheck-select-checker 'javascript-eslint)
-                      (flycheck-mode)
-                      )))))
+                ;; (if (flycheck-may-use-checker 'javascript-eslint)
+                ;;     (progn
+                ;;       (my/use-eslint-from-node-modules)
+                ;;       (my/use-flow-from-node-modules)
+                ;;       (flycheck-select-checker 'javascript-eslint)
+                ;;       (flycheck-mode)
+                ;;       ))
+                (require 'flycheck)
+                (require 'flycheck-flow)
+                (my/use-flow-from-node-modules)
+                (flycheck-select-checker 'javascript-flow)
+                (flycheck-mode))))
   (add-hook 'web-mode-hook
             (lambda ()
               (when
@@ -487,3 +506,15 @@
   (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
   (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
   (add-hook 'haskell-mode-hook 'flycheck-mode))
+
+;; Flow
+
+
+(use-package flycheck-flow
+  :straight t)
+
+(use-package flowmacs
+  :load-path "lisp/flowmacs"
+  :commands flowmacs-mode
+  :config
+  (add-hook 'web-mode-hook 'flowmacs-mode))
