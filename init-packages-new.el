@@ -432,17 +432,12 @@
                   (or
                    (string-equal "jsx" (file-name-extension buffer-file-name))
                    (string-equal "js" (file-name-extension buffer-file-name)))
-                ;; (if (flycheck-may-use-checker 'javascript-eslint)
-                ;;     (progn
-                ;;       (my/use-eslint-from-node-modules)
-                ;;       (my/use-flow-from-node-modules)
-                ;;       (flycheck-select-checker 'javascript-eslint)
-                ;;       (flycheck-mode)
-                ;;       ))
                 (require 'flycheck)
                 (require 'flycheck-flow)
+                (my/use-eslint-from-node-modules)
                 (my/use-flow-from-node-modules)
-                (flycheck-select-checker 'javascript-flow)
+                (if (flycheck-may-use-checker 'javascript-flow)
+                      (flycheck-select-checker 'javascript-flow))
                 (flycheck-mode))))
   (add-hook 'web-mode-hook
             (lambda ()
