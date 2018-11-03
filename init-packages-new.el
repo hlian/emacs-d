@@ -200,7 +200,7 @@
   :defer t
   :straight t
   :custom
-  (counsel-rg-base-command "rg -S --no-heading --line-number --hidden --color never %s ."))
+  (counsel-rg-base-command "rg -S --ignore-file ~/.rgignore --no-heading --line-number --hidden --color never %s ."))
 
 (use-package projectile
   :straight t
@@ -344,7 +344,7 @@
 (defun my/use-eslint-from-node-modules ()
   (let* ((root (locate-dominating-file
                 (or (buffer-file-name) default-directory)
-                "node_modules"))
+                ".flowconfig"))
          (eslint (and root
                       (expand-file-name "node_modules/eslint/bin/eslint.js"
                                         root))))
@@ -354,7 +354,7 @@
 (defun my/use-flow-from-node-modules ()
   (let* ((root (locate-dominating-file
                 (or (buffer-file-name) default-directory)
-                "node_modules"))
+                ".flowconfig"))
          (flow (and root
                     (expand-file-name "node_modules/flow-bin/vendor/flow"
                                       root))))
@@ -377,26 +377,7 @@
 (use-package flycheck
   :straight t
   :diminish flycheck-mode
-  :commands (flycheck-define-checker flycheck-add-mode flycheck-define-command-checker flycheck-may-use-checker)
-  :defer 1
-  :config
-  (flycheck-define-checker web-mode-python-json
-    "A JSON syntax checker using Python json.tool module.
-
-  See URL `https://docs.python.org/3.5/library/json.html#command-line-interface'."
-    :command ("python" "-m" "json.tool" source
-              ;; Send the pretty-printed output to the null device
-              null-device)
-    :error-patterns
-    ((error line-start
-            (message) ": line " line " column " column
-            ;; Ignore the rest of the line which shows the char position.
-            (one-or-more not-newline)
-            line-end))
-    :modes web-mode
-    :predicate flycheck-define-checker-macro-workaround)
-  (flycheck-add-mode 'typescript-tslint 'web-mode)
-  (flycheck-add-mode 'javascript-eslint 'web-mode))
+  :commands (flycheck-define-checker flycheck-add-mode flycheck-define-command-checker flycheck-may-use-checker))
 
 (use-package flycheck-posframe
   :straight t
@@ -425,6 +406,24 @@
   (setq-default web-mode-enable-auto-pairing nil)
   (setq-default web-mode-enable-auto-indentation nil)
   (setq-default web-mode-enable-auto-quoting nil)
+
+  (flycheck-define-checker web-mode-python-json
+    "A JSON syntax checker using Python json.tool module.
+
+  See URL `https://docs.python.org/3.5/library/json.html#command-line-interface'."
+    :command ("python" "-m" "json.tool" source
+              ;; Send the pretty-printed output to the null device
+              null-device)
+    :error-patterns
+    ((error line-start
+            (message) ": line " line " column " column
+            ;; Ignore the rest of the line which shows the char position.
+            (one-or-more not-newline)
+            line-end))
+    :modes web-mode
+    :predicate flycheck-define-checker-macro-workaround)
+  (flycheck-add-mode 'typescript-tslint 'web-mode)
+  (flycheck-add-mode 'javascript-eslint 'web-mode)
 
   (add-hook 'web-mode-hook
             (lambda ()
