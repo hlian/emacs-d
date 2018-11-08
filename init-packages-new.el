@@ -1,3 +1,4 @@
+
 ;;; -*- lexical-binding: t -*-
 
 (custom-set-variables
@@ -12,11 +13,11 @@
   (when (memq window-system '(mac ns))
     (exec-path-from-shell-initialize)))
 
-;; (use-package benchmark-init
-;;   :straight t
-;;   :demand t
-;;   :config
-;;   (add-hook 'after-init-hook 'benchmark-init/deactivate))
+(use-package benchmark-init
+  :straight t
+  :demand t
+  :config
+  (add-hook 'after-init-hook 'benchmark-init/deactivate))
 
 (use-package doom-themes
   :straight t
@@ -52,6 +53,26 @@
   :config
   (evil-mode t))
 
+(use-package evil-args
+  :straight t
+  :config
+  ;; locate and load the package
+  (add-to-list 'load-path "path/to/evil-args")
+  (require 'evil-args)
+
+  ;; bind evil-args text objects
+  (define-key evil-inner-text-objects-map "a" 'evil-inner-arg)
+  (define-key evil-outer-text-objects-map "a" 'evil-outer-arg)
+
+  ;; bind evil-forward/backward-args
+  (define-key evil-normal-state-map "L" 'evil-forward-arg)
+  (define-key evil-normal-state-map "H" 'evil-backward-arg)
+  (define-key evil-motion-state-map "L" 'evil-forward-arg)
+  (define-key evil-motion-state-map "H" 'evil-backward-arg)
+
+  ;; bind evil-jump-out-args
+  (define-key evil-normal-state-map "K" 'evil-jump-out-args))
+
 (use-package evil-surround
   :straight t
   :commands global-evil-surround-mode
@@ -68,8 +89,8 @@
 
 (use-package evil-goggles
   :straight t
-  :diminish t
   :commands (evil-goggles-mode)
+  :diminish evil-googles-mode
   :defer t
   :init
   (evil-goggles-mode))
@@ -85,6 +106,17 @@
   (define-key evil-normal-state-map "H" 'evil-backward-arg)
   (define-key evil-motion-state-map "L" 'evil-forward-arg)
   (define-key evil-motion-state-map "H" 'evil-backward-arg))
+
+(use-package evil-indent-plus
+  :straight t
+  :defer 2
+  :init
+  (define-key evil-inner-text-objects-map "i" 'evil-indent-plus-i-indent)
+  (define-key evil-outer-text-objects-map "i" 'evil-indent-plus-a-indent)
+  (define-key evil-inner-text-objects-map "I" 'evil-indent-plus-i-indent-up)
+  (define-key evil-outer-text-objects-map "I" 'evil-indent-plus-a-indent-up)
+  (define-key evil-inner-text-objects-map "J" 'evil-indent-plus-i-indent-up-down)
+  (define-key evil-outer-text-objects-map "J" 'evil-indent-plus-a-indent-up-down))
 
 (use-package telephone-line
   :straight t
@@ -299,8 +331,7 @@
   :straight t
   :commands popwin-mode
   :config
-  (push '(flycheck-error-list-mode :stick t :dedicated t :noselect t) popwin:special-display-config)
-  (popwin-mode t))
+  (push '(flycheck-error-list-mode :stick t :dedicated t :noselect t) popwin:special-display-config))
 
 (use-package magit
   :defer t
@@ -377,7 +408,10 @@
 (use-package flycheck
   :straight t
   :diminish flycheck-mode
-  :commands (flycheck-define-checker flycheck-add-mode flycheck-define-command-checker flycheck-may-use-checker))
+  :commands
+  (flycheck-define-checker flycheck-add-mode flycheck-define-command-checker flycheck-may-use-checker)
+  :config
+  (popwin-mode))
 
 (use-package flycheck-posframe
   :straight t
@@ -505,6 +539,7 @@
 
 
 (use-package flycheck-flow
+  :if nil
   :straight t)
 
 (use-package flowmacs
