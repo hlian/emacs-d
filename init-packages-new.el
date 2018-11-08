@@ -5,6 +5,9 @@
  '(initial-frame-alist (quote ((fullscreen . maximized))))
  '(default-frame-alist (quote ((fullscreen . maximized)))))
 
+(eval-when-compile
+  (require 'use-package))
+
 (use-package exec-path-from-shell
   :commands exec-path-from-shell-initialize
   :demand t
@@ -25,12 +28,10 @@
   (load-theme 'doom-peacock t))
 
 (use-package smex
-  :straight t
-  :defer t)
+  :straight t)
 
 (use-package wgrep
-  :straight t
-  :defer t)
+  :straight t)
 
 (use-package diminish
   :commands diminish
@@ -43,7 +44,6 @@
 
 (use-package evil
   :straight t
-  :defer t
   :custom
   (evil-want-integration nil)
   (evil-search-module 'evil-search)
@@ -56,10 +56,6 @@
 (use-package evil-args
   :straight t
   :config
-  ;; locate and load the package
-  (add-to-list 'load-path "path/to/evil-args")
-  (require 'evil-args)
-
   ;; bind evil-args text objects
   (define-key evil-inner-text-objects-map "a" 'evil-inner-arg)
   (define-key evil-outer-text-objects-map "a" 'evil-outer-arg)
@@ -83,22 +79,20 @@
   :straight t
   :commands evil-collection-init
   :diminish t
-  :defer t
   :custom (evil-collection-setup-minibuffer t)
-  :init (evil-collection-init))
+  :init
+  (run-with-idle-timer 2 nil 'evil-collection-init))
 
 (use-package evil-goggles
   :straight t
   :commands (evil-goggles-mode)
   :diminish evil-googles-mode
-  :defer t
   :init
   (evil-goggles-mode))
 
 (use-package evil-args
   :straight t
   :commands (evil-inner-arg evil-outer-arg evil-forward-arg evil-backward-arg evil-jump-out-args)
-  :defer t
   :init
   (define-key evil-inner-text-objects-map "a" 'evil-inner-arg)
   (define-key evil-outer-text-objects-map "a" 'evil-outer-arg)
@@ -109,7 +103,6 @@
 
 (use-package evil-indent-plus
   :straight t
-  :defer 2
   :init
   (define-key evil-inner-text-objects-map "i" 'evil-indent-plus-i-indent)
   (define-key evil-outer-text-objects-map "i" 'evil-indent-plus-a-indent)
@@ -121,7 +114,6 @@
 (use-package telephone-line
   :straight t
   :commands telephone-line-mode
-  :defer 2
   :init
   (telephone-line-defsegment* position-segment ()
     `("(%l, %c)"))
@@ -161,12 +153,10 @@
   :commands (open-terminal-here hao-mode hao-prog-mode-hook)
   :hook (prog-mode . hao-prog-mode-hook)
   :load-path "lisp"
-  :defer 2
   :config (hao-mode t))
 
 ;; (use-package solarized-theme
 ;;   :straight t
-;;   :defer t
 ;;   :init
 ;;   (setq show-paren-when-point-inside-paren t))
 
@@ -174,7 +164,6 @@
   :straight t
   :commands evil-escape-mode
   :diminish evil-escape-mode
-  :defer t
   :init
   (setq-default
    evil-escape-unordered-key-sequence t
@@ -183,7 +172,6 @@
 
 (use-package which-key
   :straight t
-  :defer t
   :commands which-key-mode
   :diminish which-key-mode
   :init
@@ -191,7 +179,6 @@
 
 (use-package ivy
   :straight t
-  :defer t
   :commands ivy-mode
   :diminish ivy-mode
   :init
@@ -205,7 +192,6 @@
 (use-package ivy-posframe
   :straight t
   :commands (ivy-posframe-enable ivy-posframe-display-at-point)
-  :defer t
   :init
   (setq ivy-display-function #'ivy-posframe-display-at-point)
   (setq ivy-posframe-border-width 10)
@@ -221,15 +207,12 @@
   (ivy-rich-mode t))
 
 (use-package ivy-hydra
-  :defer 2
   :straight t)
 
 (use-package swiper
-  :defer t
   :straight t)
 
 (use-package counsel
-  :defer t
   :straight t
   :custom
   (counsel-rg-base-command "rg -S --ignore-file ~/.rgignore --no-heading --line-number --hidden --color never %s ."))
@@ -237,7 +220,6 @@
 (use-package projectile
   :straight t
   :diminish projectile-mode
-  :defer t
   :commands projectile-mode
   :custom
   (projectile-enable-caching t)
@@ -246,7 +228,6 @@
   (projectile-mode t))
 
 (use-package counsel-projectile
-  :defer t
   :straight t)
 
 (use-package general
@@ -320,7 +301,6 @@
 
 (use-package recentf
   :commands recentf-mode
-  :defer 2
   :init
   (setq recentf-max-saved-items 1000)
   (setq recentf-max-menu-items 1000)
@@ -334,12 +314,10 @@
   (push '(flycheck-error-list-mode :stick t :dedicated t :noselect t) popwin:special-display-config))
 
 (use-package magit
-  :defer t
   :commands (magit magit-process-file)
   :straight t)
 
 (use-package git-commit
-  :defer t
   :commands git-commit-setup-check-buffer
   :straight t
   :init
@@ -349,7 +327,6 @@
 
 ;; (use-package desktop+
 ;;   :straight t
-;;   :defer 2
 ;;   :config
 ;;   (when (not noninteractive)
 ;;     (setq desktop-load-locked-desktop t)
@@ -399,7 +376,6 @@
   :diminish company-mode
   :hook ((emacs-lisp-mode . company-mode)
          (web-mode . company-mode))
-  :defer 2
   :custom
   (company-dabbrev-downcase nil)
   (company-show-numbers t)
@@ -501,7 +477,6 @@
 
 (use-package hydra
   :straight t
-  :defer 2
   :init
   (require 'hydra)
   (defhydra hydra-undo-tree (:color red :hint nil)

@@ -2,6 +2,7 @@
 
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/") t)
+(setq package-enable-at-startup nil)
 (package-initialize)
 
 ;; (use-package benchmark-init
