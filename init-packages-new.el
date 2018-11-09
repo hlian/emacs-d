@@ -16,11 +16,11 @@
   (when (memq window-system '(mac ns))
     (exec-path-from-shell-initialize)))
 
-(use-package benchmark-init
-  :straight t
-  :demand t
-  :config
-  (add-hook 'after-init-hook 'benchmark-init/deactivate))
+;; (use-package benchmark-init
+;;   :straight t
+;;   :demand t
+;;   :config
+;;   (add-hook 'after-init-hook 'benchmark-init/deactivate))
 
 (use-package doom-themes
   :straight t
@@ -28,9 +28,7 @@
   (load-theme 'doom-peacock t))
 
 (use-package smex
-  :straight t)
-
-(use-package wgrep
+  :defer t
   :straight t)
 
 (use-package diminish
@@ -54,6 +52,7 @@
   (evil-mode t))
 
 (use-package evil-args
+  :defer t
   :straight t
   :config
   ;; bind evil-args text objects
@@ -102,6 +101,7 @@
   (define-key evil-motion-state-map "H" 'evil-backward-arg))
 
 (use-package evil-indent-plus
+  :defer t
   :straight t
   :init
   (define-key evil-inner-text-objects-map "i" 'evil-indent-plus-i-indent)
@@ -116,7 +116,7 @@
   :commands telephone-line-mode
   :init
   (telephone-line-defsegment* position-segment ()
-    `("(%l, %c)"))
+    `("%l,%c"))
 
   (telephone-line-defsegment* vc-segment ()
     (let ((boosh (telephone-line-raw vc-mode t)))
@@ -147,7 +147,7 @@
           (accent . (telephone-line-major-mode-segment))
           (nil . (position-segment))))
 
-  (telephone-line-mode t))
+  (run-with-idle-timer 1 nil (lambda () (telephone-line-mode t))))
 
 (use-package hao-mode
   :commands (open-terminal-here hao-mode hao-prog-mode-hook)
@@ -182,7 +182,7 @@
   :commands ivy-mode
   :diminish ivy-mode
   :init
-  (ivy-mode t)
+  (run-with-idle-timer 1 nil (lambda () (ivy-mode t)))
   :custom
   (ivy-use-virtual-buffers t)
   (ivy-virtual-abbreviate 'abbreviate)
@@ -207,13 +207,16 @@
   (ivy-rich-mode t))
 
 (use-package ivy-hydra
+  :defer t
   :straight t)
 
 (use-package swiper
+  :defer t
   :straight t)
 
 (use-package counsel
   :straight t
+  :defer t
   :custom
   (counsel-rg-base-command "rg -S --ignore-file ~/.rgignore --no-heading --line-number --hidden --color never %s ."))
 
@@ -228,6 +231,7 @@
   (projectile-mode t))
 
 (use-package counsel-projectile
+  :defer t
   :straight t)
 
 (use-package general
@@ -472,6 +476,7 @@
 
 (use-package wgrep
   :straight t
+  :defer t
   :custom
   (wgrep-auto-save-buffer t))
 
