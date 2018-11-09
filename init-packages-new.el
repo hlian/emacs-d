@@ -51,23 +51,6 @@
   :config
   (evil-mode t))
 
-(use-package evil-args
-  :defer t
-  :straight t
-  :config
-  ;; bind evil-args text objects
-  (define-key evil-inner-text-objects-map "a" 'evil-inner-arg)
-  (define-key evil-outer-text-objects-map "a" 'evil-outer-arg)
-
-  ;; bind evil-forward/backward-args
-  (define-key evil-normal-state-map "L" 'evil-forward-arg)
-  (define-key evil-normal-state-map "H" 'evil-backward-arg)
-  (define-key evil-motion-state-map "L" 'evil-forward-arg)
-  (define-key evil-motion-state-map "H" 'evil-backward-arg)
-
-  ;; bind evil-jump-out-args
-  (define-key evil-normal-state-map "K" 'evil-jump-out-args))
-
 (use-package evil-surround
   :straight t
   :commands global-evil-surround-mode
@@ -91,6 +74,7 @@
   (diminish 'evil-goggles-mode))
 
 (use-package evil-args
+  :defer t
   :straight t
   :commands (evil-inner-arg evil-outer-arg evil-forward-arg evil-backward-arg evil-jump-out-args)
   :init
