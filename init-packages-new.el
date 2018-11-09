@@ -84,10 +84,11 @@
 
 (use-package evil-goggles
   :straight t
-  :commands (evil-goggles-mode)
-  :diminish evil-googles-mode
+  :commands evil-goggles-mode
   :init
-  (evil-goggles-mode))
+  (run-with-idle-timer 1 nil (lambda () (evil-goggles-mode t)))
+  :config
+  (diminish 'evil-goggles-mode))
 
 (use-package evil-args
   :straight t
@@ -121,7 +122,7 @@
   (telephone-line-defsegment* vc-segment ()
     (let ((boosh (telephone-line-raw vc-mode t)))
       (if boosh
-          (replace-regexp-in-string "Git:" "" boosh)
+          (replace-regexp-in-string "Git" "" boosh)
         boosh)))
 
   (custom-set-faces
