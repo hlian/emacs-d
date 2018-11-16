@@ -34,8 +34,7 @@
      '(cursor-type 'hollow))
 
     (setq hippie-expand-try-functions-list
-          '(yas-expand
-            try-complete-file-name-partially
+          '(try-complete-file-name-partially
             try-complete-file-name
             try-expand-dabbrev
             try-expand-dabbrev-all-buffers

@@ -1,5 +1,7 @@
-
 ;;; -*- lexical-binding: t -*-
+
+(require 'package)
+(add-to-list 'package-archives (cons "melpa" "https://melpa.org/packages/") t)
 
 (custom-set-variables
  '(initial-frame-alist (quote ((fullscreen . maximized))))
@@ -512,3 +514,15 @@
   :commands flowmacs-mode
   :config
   (add-hook 'web-mode-hook 'flowmacs-mode))
+
+;; Go
+
+(use-package go-mode
+  :straight t
+  :commands go-mode
+  :mode "\\.go\\'"
+  :config
+  (add-hook 'go-mode-hook 'flycheck-mode)
+  (add-hook 'go-mode-hook (lambda () (progn
+                                       (setq gofmt-command "goimports")
+                                       (add-hook 'before-save-hook 'gofmt-before-save nil 'local)))))
