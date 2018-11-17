@@ -50,6 +50,7 @@
 (add-to-list 'default-frame-alist '(ns-appearance . dark))
 (setq ns-use-proxy-icon  nil)
 (setq frame-title-format nil)
+(setq evil-normal-state-cursor '(hollow "green"))
 
 ;; Bring sanity into the world
 (setq-default

@@ -105,6 +105,9 @@
   (telephone-line-defsegment* position-segment ()
     `("%l,%c"))
 
+  (telephone-line-defsegment* buffer-segment ()
+    "%f ")
+
   (telephone-line-defsegment* vc-segment ()
     (let ((boosh (telephone-line-raw vc-mode t)))
       (if boosh
@@ -122,19 +125,16 @@
 
   (setq telephone-line-lhs
         '((evil   . (telephone-line-evil-tag-segment))
-          (accent . (vc-segment
-                     telephone-line-erc-modified-channels-segment
-                     telephone-line-process-segment))
-          (nil    . (telephone-line-minor-mode-segment
-                     telephone-line-buffer-segment))))
+          (accent . (buffer-segment vc-segment))))
 
   (setq telephone-line-rhs
         '((nil    . (telephone-line-flycheck-segment
                      telephone-line-misc-info-segment))
-          (accent . (telephone-line-major-mode-segment))
           (nil . (position-segment))))
 
-  (run-with-idle-timer 1 nil (lambda () (telephone-line-mode t))))
+  (run-with-idle-timer 1 nil (lambda () (telephone-line-mode t)))
+  :config
+  (setq-default mode-line-format nil))
 
 (use-package hao-mode
   :commands (open-terminal-here hao-mode hao-prog-mode-hook)
