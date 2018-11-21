@@ -45,6 +45,7 @@
 (use-package evil
   :straight t
   :custom
+  (evil-ex-search-highlight-all nil)
   (evil-want-integration nil)
   (evil-search-module 'evil-search)
   (evil-want-fine-undo t)
