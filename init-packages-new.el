@@ -177,15 +177,15 @@
   (ivy-format-function 'ivy-format-function-line)
   (enable-recursive-minibuffers t))
 
-(use-package ivy-posframe
-  :straight t
-  :commands (ivy-posframe-enable ivy-posframe-display-at-point)
-  :init
-  (setq ivy-display-function #'ivy-posframe-display-at-point)
-  (setq ivy-posframe-border-width 10)
-  :config
-  (when (memq window-system '(mac ns))
-    (ivy-posframe-enable)))
+;; (use-package ivy-posframe
+;;   :straight t
+;;   :commands (ivy-posframe-enable ivy-posframe-display-at-point)
+;;   :init
+;;   (setq ivy-display-function #'ivy-posframe-display-at-point)
+;;   (setq ivy-posframe-border-width 10)
+;;   :config
+;;   (when (memq window-system '(mac ns))
+;;     (ivy-posframe-enable)))
 
 (use-package ivy-rich
   :straight t
@@ -381,15 +381,15 @@
   :config
   (popwin-mode))
 
-(use-package flycheck-posframe
-  :straight t
-  :commands (flycheck-posframe-mode
-             flycheck-posframe-configure-pretty-defaults flycheck-mode
-             flycheck-select-checker)
-  :after flycheck
-  :config
-  (add-hook 'flycheck-mode-hook #'flycheck-posframe-mode)
-  (flycheck-posframe-configure-pretty-defaults))
+;; (use-package flycheck-posframe
+;;   :straight t
+;;   :commands (flycheck-posframe-mode
+;;              flycheck-posframe-configure-pretty-defaults flycheck-mode
+;;              flycheck-select-checker)
+;;   :after flycheck
+;;   :config
+;;   (add-hook 'flycheck-mode-hook #'flycheck-posframe-mode)
+;;   (flycheck-posframe-configure-pretty-defaults))
 
 (use-package web-mode
   :straight t
