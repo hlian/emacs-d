@@ -16,6 +16,7 @@
   :straight t
   :init
   (when (memq window-system '(mac ns))
+    (exec-path-from-shell-copy-env "GOPATH")
     (exec-path-from-shell-initialize)))
 
 ;; (use-package benchmark-init
