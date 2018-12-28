@@ -1,12 +1,15 @@
 # -*- mode: snippet -*-
 # name: react
-# key: react
 # --
 // @flow
 
 import React from 'react';
 
-class $0 extends React.Component<$0Props, $0State> {
+class ${1:Chumby} extends React.Component<$1Props, $1State> {
+  constructor(props: $1Props) {
+    super(props);
+    this.state = {};
+  }
 }
 
-export { $0 }
+export { $1 }

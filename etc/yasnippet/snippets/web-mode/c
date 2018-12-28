@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: dumb regular class
+# --
+// @flow
+
+class ${1:Chumby} {
+}
+
+export { $1 }

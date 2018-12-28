@@ -100,41 +100,18 @@
   (define-key evil-inner-text-objects-map "J" 'evil-indent-plus-i-indent-up-down)
   (define-key evil-outer-text-objects-map "J" 'evil-indent-plus-a-indent-up-down))
 
-(use-package telephone-line
-  :straight t
-  :commands telephone-line-mode
-  :init
-  (telephone-line-defsegment* position-segment ()
-    `("%l,%c"))
-
-  (telephone-line-defsegment* buffer-segment ()
-    "%f ")
-
-  (telephone-line-defsegment* vc-segment ()
-    (let ((boosh (telephone-line-raw vc-mode t)))
-      (if boosh
-          (replace-regexp-in-string "Git" "" boosh)
-        boosh)))
-
-  (custom-set-faces
-   '(telephone-line-accent-active ((t (:inherit mode-line))))
-   '(telephone-line-accent-inactive ((t (:inherit mode-line-inactive)))))
-
-  (setq telephone-line-primary-left-separator 'telephone-line-nil
-        telephone-line-secondary-left-separator 'telephone-line-nil
-        telephone-line-primary-right-separator 'telephone-line-nil
-        telephone-line-secondary-right-separator 'telephone-line-nil)
-
-  (setq telephone-line-lhs
-        '((evil   . (telephone-line-evil-tag-segment))
-          (accent . (buffer-segment vc-segment))))
-
-  (setq telephone-line-rhs
-        '((nil    . (telephone-line-flycheck-segment
-                     telephone-line-misc-info-segment))
-          (nil . (position-segment))))
-
-  (run-with-idle-timer 1 nil (lambda () (telephone-line-mode t))))
+(use-package doom-modeline
+  :straight
+  (doom-modeline
+   :type git
+   :host github
+   :repo "seagle0128/doom-modeline"
+   :fork (:host github :repo "hlian/doom-modeline-2000"))
+  :defer t
+  :custom
+  (doom-modeline-buffer-file-name-style 'relative-to-project)
+  (doom-modeline-icon nil)
+  :hook (after-init . doom-modeline-init))
 
 (use-package hao-mode
   :commands (open-terminal-here hao-mode hao-prog-mode-hook)
