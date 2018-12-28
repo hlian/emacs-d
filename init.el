@@ -29,10 +29,8 @@
   :straight t
   :demand t)
 
- ;; Sweet setup from emacs-starter-kit.
 (defvar dotfiles-dir (file-name-directory
                       (or (buffer-file-name) load-file-name)))
-;; Use-package!
 (load (concat dotfiles-dir "init-packages-new.el"))
 
 (setq-default
