@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: react
+# key: react
+# --
+// @flow
+
+import React from 'react';
+
+class $0 extends React.Component<$0Props, $0State> {
+}
+
+export { $0 }

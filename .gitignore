@@ -4,7 +4,6 @@ init-here.el
 
 .cask/
 var/
-etc/
 elpa/
 network-security.data
 straight/

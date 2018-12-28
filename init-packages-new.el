@@ -277,7 +277,8 @@
    "at" '(open-terminal-here :which-key "open terminal here")
    "ak" '(kill-this-buffer :which-key "kill file")
    ;; Projectile
-   "k" '(counsel-projectile-find-file :which-key "projectile find file")
+   "o" '(projectile-switch-project :which-key "switch project")
+   "k" '(counsel-projectile-find-file :which-key "find file")
    ;; Window
    "wl"  '(windmove-right :which-key "move right")
    "wh"  '(windmove-left :which-key "move left")
@@ -321,6 +322,16 @@
   :commands undo-tree-mode
   :custom
   (undo-tree-auto-save-history t))
+
+(use-package yasnippet
+  :straight t
+  :init
+  (setq yas-alias-to-yas/prefix-p nil)
+  :custom
+  (yas-verbosity 1)
+  (yas-wrap-around-region 1)
+  :config
+  (yas-global-mode))
 
 ;; TypeScript
 
