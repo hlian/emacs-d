@@ -47,7 +47,7 @@
   :straight t
   :custom
   (evil-ex-search-highlight-all nil)
-  (evil-want-integration nil)
+  (evil-want-keybinding nil)
   (evil-search-module 'evil-search)
   (evil-want-fine-undo t)
   (evil-cross-lines t)
@@ -134,9 +134,7 @@
                      telephone-line-misc-info-segment))
           (nil . (position-segment))))
 
-  (run-with-idle-timer 1 nil (lambda () (telephone-line-mode t)))
-  :config
-  (setq-default mode-line-format nil))
+  (run-with-idle-timer 1 nil (lambda () (telephone-line-mode t))))
 
 (use-package hao-mode
   :commands (open-terminal-here hao-mode hao-prog-mode-hook)
@@ -270,6 +268,7 @@
    "/" '(swiper :which-key "swiper")
    "r" '(ivy-resume :which-key "ivy-resume")
    "t" '(tide-project-errors :which-key "tide errors")
+   "i" '(hydra-flycheck/body :which-key "flycheck")
    ;; Buffers
    "f" '(counsel-projectile :which-key "counsel projectile")
    "d" '(counsel-projectile-rg :which-key "counsel projectile ag")
@@ -318,13 +317,10 @@
   :config
   (defun git-commit-turn-on-auto-fill ()))
 
-;; (use-package desktop+
-;;   :straight t
-;;   :config
-;;   (when (not noninteractive)
-;;     (setq desktop-load-locked-desktop t)
-;;     (desktop+-load "octopus")
-;;     (set-frame-parameter nil 'fullscreen 'maximized)))
+(use-package undo-tree
+  :commands undo-tree-mode
+  :custom
+  (undo-tree-auto-save-history t))
 
 ;; TypeScript
 
@@ -473,6 +469,17 @@
   :straight t
   :init
   (require 'hydra)
+  (defhydra hydra-flycheck
+    (:pre (progn (setq hydra-lv t) (flycheck-list-errors))
+    :post (progn (setq hydra-lv nil) (quit-windows-on "*Flycheck errors*"))
+    :hint nil)
+    "Errors"
+    ("f"  flycheck-error-list-set-filter                            "Filter")
+    ("j"  flycheck-next-error                                       "Next")
+    ("k"  flycheck-previous-error                                   "Previous")
+    ("gg" flycheck-first-error                                      "First")
+    ("G"  (progn (goto-char (point-max)) (flycheck-previous-error)) "Last")
+    ("q"  nil))
   (defhydra hydra-undo-tree (:color red :hint nil)
     "
   _p_: undo  _n_: redo _s_: save _l_: load   "
@@ -505,7 +512,6 @@
   (add-hook 'haskell-mode-hook 'flycheck-mode))
 
 ;; Flow
-
 
 (use-package flycheck-flow
   :if nil
