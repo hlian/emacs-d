@@ -47,6 +47,7 @@
   :straight t
   :custom
   (evil-ex-search-highlight-all nil)
+  (evil-want-integration nil)
   (evil-want-keybinding nil)
   (evil-search-module 'evil-search)
   (evil-want-fine-undo t)
@@ -105,8 +106,8 @@
   (doom-modeline
    :type git
    :host github
-   :repo "seagle0128/doom-modeline"
-   :fork (:host github :repo "hlian/doom-modeline-2000"))
+   :repo "hlian/doom-modeline-2000"
+   :fork (:host github :repo "seagle0128/doom-modeline"))
   :defer t
   :custom
   (doom-modeline-buffer-file-name-style 'relative-to-project)
