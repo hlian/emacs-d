@@ -308,8 +308,7 @@
   :custom
   (yas-verbosity 1)
   (yas-wrap-around-region 1)
-  :config
-  (yas-global-mode))
+  :hook (after-init . yas-global-mode))
 
 ;; TypeScript
 
