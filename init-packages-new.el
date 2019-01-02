@@ -244,6 +244,7 @@
    "TAB" '(switch-to-prev-buffer :which-key "previous buffer")
    "SPC" '(counsel-M-x :which-key "M-x")
    "/" '(swiper :which-key "swiper")
+   "p" '(swiper-all :which-key "swiper")
    "r" '(ivy-resume :which-key "ivy-resume")
    "t" '(tide-project-errors :which-key "tide errors")
    "i" '(hydra-flycheck/body :which-key "flycheck")
