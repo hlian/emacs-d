@@ -1,0 +1,1 @@
+This is a pretty standard Emacs config. It's fairly modern: it uses use-package and straight.el, which are both wonderful; it is oriented around evil-mode and has a lot of text objects you might find useful. It also demonstrates the `:fork` feature of straight.el, which I fell in love with when I saw it.
