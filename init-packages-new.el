@@ -26,8 +26,11 @@
 ;;   (add-hook 'after-init-hook 'benchmark-init/deactivate))
 
 (use-package doom-themes
-  :straight t
-  :config
+  :straight
+  (doom-themes :type git :files (:defaults "themes/*.el") :host github :repo "hlian/emacs-doom-themes")
+  :init
+  (setq doom-themes-enable-bold t
+        doom-themes-enable-italic t)
   (load-theme 'doom-peacock t))
 
 (use-package smex
@@ -47,7 +50,6 @@
   :straight t
   :custom
   (evil-ex-search-highlight-all nil)
-  (evil-want-integration nil)
   (evil-want-keybinding nil)
   (evil-search-module 'evil-search)
   (evil-want-fine-undo t)
@@ -106,8 +108,8 @@
   (doom-modeline
    :type git
    :host github
-   :repo "hlian/doom-modeline-2000"
-   :fork (:host github :repo "seagle0128/doom-modeline"))
+   :repo "seagle0128/doom-modeline-2000"
+   :fork (:host github :repo "hlian/doom-modeline"))
   :defer t
   :custom
   (doom-modeline-buffer-file-name-style 'relative-to-project)
