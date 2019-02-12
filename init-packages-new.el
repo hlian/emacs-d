@@ -183,7 +183,7 @@
   :straight t
   :defer t
   :custom
-  (counsel-rg-base-command "rg -S --ignore-file ~/.rgignore --no-heading --line-number --hidden --color never %s ."))
+  (counsel-rg-base-command "rg -M200 -S --ignore-file ~/.rgignore --no-heading --line-number --hidden --color never %s ."))
 
 (use-package projectile
   :straight t
@@ -337,16 +337,16 @@
     (when (and eslint (file-executable-p eslint))
       (setq-local flycheck-javascript-eslint-executable eslint))))
 
-(defun my/use-flow-from-node-modules ()
-  (let* ((root (locate-dominating-file
-                (or (buffer-file-name) default-directory)
-                ".flowconfig"))
-         (flow (and root
-                    (expand-file-name "node_modules/flow-bin/vendor/flow"
-                                      root))))
-    (when (and flow (file-executable-p flow))
-      (setq-local flowmacs/+flow+ flow)
-      (setq-local flycheck-javascript-flow-executable flow))))
+;; (defun my/use-flow-from-node-modules ()
+;;   (let* ((root (locate-dominating-file
+;;                 (or (buffer-file-name) default-directory)
+;;                 ".flowconfig"))
+;;          (flow (and root
+;;                     (expand-file-name "node_modules/flow-bin/vendor/flow"
+;;                                       root))))
+;;     (when (and flow (file-executable-p flow))
+;;       (setq-local flowmacs/+flow+ flow)
+;;       (setq-local flycheck-javascript-flow-executable flow))))
 
 (use-package company
   :straight t
@@ -523,3 +523,6 @@
   (add-hook 'go-mode-hook (lambda () (progn
                                        (setq gofmt-command "goimports")
                                        (add-hook 'before-save-hook 'gofmt-before-save nil 'local)))))
+
+(use-package yaml-mode
+  :straight t)
