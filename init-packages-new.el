@@ -528,3 +528,7 @@
 
 (use-package yaml-mode
   :straight t)
+
+(use-package markdown-mode
+  :mode "\\.md\\'"
+  :straight t)
