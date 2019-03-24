@@ -46,6 +46,8 @@
 (eval-after-load "undo-tree"
   '(diminish 'undo-tree-mode))
 
+(setq evil-want-integration nil)
+
 (use-package evil
   :straight t
   :custom
@@ -108,13 +110,13 @@
   (doom-modeline
    :type git
    :host github
-   :repo "seagle0128/doom-modeline-2000"
-   :fork (:host github :repo "hlian/doom-modeline"))
+   :repo "hlian/doom-modeline-2000"
+   :fork (:host github :repo "seagle0128/doom-modeline-2000"))
   :defer t
   :custom
   (doom-modeline-buffer-file-name-style 'relative-to-project)
   (doom-modeline-icon nil)
-  :hook (after-init . doom-modeline-init))
+  :hook (after-init . doom-modeline-mode))
 
 (use-package hao-mode
   :commands (open-terminal-here hao-mode hao-prog-mode-hook)
@@ -333,7 +335,7 @@
 (defun my/use-eslint-from-node-modules ()
   (let* ((root (locate-dominating-file
                 (or (buffer-file-name) default-directory)
-                ".flowconfig"))
+                ".hao"))
          (eslint (and root
                       (expand-file-name "node_modules/eslint/bin/eslint.js"
                                         root))))
@@ -423,11 +425,20 @@
                    (string-equal "jsx" (file-name-extension buffer-file-name))
                    (string-equal "js" (file-name-extension buffer-file-name)))
                 (require 'flycheck)
-                (require 'flycheck-flow)
                 (my/use-eslint-from-node-modules)
-                (my/use-flow-from-node-modules)
-                (if (flycheck-may-use-checker 'javascript-flow)
-                      (flycheck-select-checker 'javascript-flow))
+                (if (flycheck-may-use-checker 'javascript-eslint)
+                      (flycheck-select-checker 'javascript-eslint))
+                (flycheck-mode))))
+  (add-hook 'web-mode-hook
+            (lambda ()
+              (when
+                  (or
+                   (string-equal "tsx" (file-name-extension buffer-file-name))
+                   (string-equal "ts" (file-name-extension buffer-file-name)))
+                (require 'flycheck)
+                (my/use-eslint-from-node-modules)
+                (if (flycheck-may-use-checker 'javascript-eslint)
+                      (flycheck-select-checker 'javascript-eslint))
                 (flycheck-mode))))
   (add-hook 'web-mode-hook
             (lambda ()
@@ -533,3 +544,7 @@
 (use-package markdown-mode
   :mode "\\.md\\'"
   :straight t)
+
+(use-package css-mode
+  :custom
+  (css-indent-offset 2))
