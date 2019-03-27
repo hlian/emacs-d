@@ -46,12 +46,11 @@
 (eval-after-load "undo-tree"
   '(diminish 'undo-tree-mode))
 
-(setq evil-want-integration nil)
-
 (use-package evil
   :straight t
   :custom
   (evil-ex-search-highlight-all nil)
+  (evil-want-integration t)
   (evil-want-keybinding nil)
   (evil-search-module 'evil-search)
   (evil-want-fine-undo t)
@@ -70,7 +69,9 @@
   :straight t
   :commands evil-collection-init
   :diminish t
-  :custom (evil-collection-setup-minibuffer t)
+  :custom
+  (evil-want-integration t)
+  (evil-collection-setup-minibuffer t)
   :init
   (run-with-idle-timer 2 nil 'evil-collection-init))
 
