@@ -111,8 +111,7 @@
   (doom-modeline
    :type git
    :host github
-   :repo "hlian/doom-modeline-2000"
-   :fork (:host github :repo "seagle0128/doom-modeline-2000"))
+   :repo "hlian/doom-modeline-2000")
   :defer t
   :custom
   (doom-modeline-buffer-file-name-style 'relative-to-project)
