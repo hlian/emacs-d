@@ -548,3 +548,20 @@
 (use-package css-mode
   :custom
   (css-indent-offset 2))
+
+(use-package lsp-mode
+  :commands lsp
+  :straight t
+  :config (require 'lsp-clients))
+
+(use-package lsp-ui
+  :straight t)
+
+(use-package rust-mode
+  :straight t
+  :hook ((rust-mode . flycheck-mode)
+         (rust-mode . lsp)))
+
+(use-package flycheck-rust
+  :straight t
+  :config (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
