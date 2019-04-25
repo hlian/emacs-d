@@ -54,7 +54,6 @@
     (toggle-scroll-bar -1)
     (show-paren-mode t)
     (diminish 'auto-revert-mode)
-    (recentf-mode 1)
     (setq-default save-place t)
     (setq-default uniquify-buffer-name-style 'forward)
     (midnight-delay-set 'midnight-delay "4:30am")))

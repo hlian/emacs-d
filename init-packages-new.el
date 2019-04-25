@@ -107,6 +107,7 @@
   (define-key evil-outer-text-objects-map "J" 'evil-indent-plus-a-indent-up-down))
 
 (use-package doom-modeline
+  :commands doom-modeline-mode
   :straight
   (doom-modeline
    :type git
@@ -116,7 +117,8 @@
   :custom
   (doom-modeline-buffer-file-name-style 'relative-to-project)
   (doom-modeline-icon nil)
-  :hook (after-init . doom-modeline-mode))
+  :config
+  (doom-modeline-mode))
 
 (use-package hao-mode
   :commands (open-terminal-here hao-mode hao-prog-mode-hook)
@@ -280,7 +282,8 @@
 
 (use-package recentf
   :commands recentf-mode
-  :init
+  :defer t
+  :config
   (setq recentf-max-saved-items 1000)
   (setq recentf-max-menu-items 1000)
   (recentf-mode t)
@@ -541,6 +544,7 @@
                                        (add-hook 'before-save-hook 'gofmt-before-save nil 'local)))))
 
 (use-package yaml-mode
+  :commands yaml-mode
   :straight t)
 
 (use-package markdown-mode
@@ -548,15 +552,15 @@
   :straight t)
 
 (use-package css-mode
+  :commands css-mode
   :custom
   (css-indent-offset 2))
 
 (use-package lsp-mode
   :commands lsp
   :straight t
-  :config (require 'lsp-clients))
-
-(use-package lsp-ui
+  :config (require 'lsp-clients))(use-package lsp-ui
+  :hook (lsp-mode . lsp-ui-mode)
   :straight t)
 
 (use-package rust-mode
@@ -565,5 +569,5 @@
          (rust-mode . lsp)))
 
 (use-package flycheck-rust
-  :straight t
-  :config (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
+  :hook (flycheck-mode . flycheck-rust-setup)
+  :straight t)
