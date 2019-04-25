@@ -1,8 +1,8 @@
 ;;; -*- lexical-binding: t -*-
-
 ;; https://github.com/hlissner/doom-emacs/wiki/FAQ#how-is-dooms-startup-so-fast
 (setq gc-cons-threshold 402653184
       gc-cons-percentage 0.6)
+(package-initialize)
 (setq file-name-handler-alist nil)
 
 (when (memq window-system '(mac ns))

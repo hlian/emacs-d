@@ -263,6 +263,8 @@
    ;; Projectile
    "o" '(projectile-switch-project :which-key "switch project")
    "k" '(counsel-projectile-find-file :which-key "find file")
+   ;; Frame
+   "0" '(other-frame :which-key "other frame")
    ;; Window
    "wl"  '(windmove-right :which-key "move right")
    "wh"  '(windmove-left :which-key "move left")
