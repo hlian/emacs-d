@@ -107,18 +107,19 @@
   (define-key evil-outer-text-objects-map "J" 'evil-indent-plus-a-indent-up-down))
 
 (use-package doom-modeline
-  :commands doom-modeline-mode
+  :commands (doom-modeline-mode doom-modeline-set-main-modeline)
   :straight
   (doom-modeline
    :type git
    :host github
    :repo "hlian/doom-modeline-2000")
-  :defer t
+  :defer 2
   :custom
   (doom-modeline-buffer-file-name-style 'relative-to-project)
   (doom-modeline-icon nil)
   :config
-  (doom-modeline-mode))
+  (doom-modeline-mode)
+  (doom-modeline-set-main-modeline))
 
 (use-package hao-mode
   :commands (open-terminal-here hao-mode hao-prog-mode-hook)
