@@ -251,6 +251,7 @@
    "SPC" '(counsel-M-x :which-key "M-x")
    "/" '(swiper :which-key "swiper")
    ":" '(swiper-all :which-key "swiper")
+   "b" '(ivy-switch-buffer :which-key "ivy-switch-buffer")
    "p" '(counsel-yank-pop :which-key "swiper")
    "r" '(ivy-resume :which-key "ivy-resume")
    "t" '(tide-project-errors :which-key "tide errors")
