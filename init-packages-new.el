@@ -421,7 +421,6 @@
             line-end))
     :modes web-mode
     :predicate flycheck-define-checker-macro-workaround)
-  (flycheck-add-mode 'typescript-tslint 'web-mode)
   (flycheck-add-mode 'javascript-eslint 'web-mode)
 
   (add-hook 'web-mode-hook
@@ -430,17 +429,6 @@
                   (or
                    (string-equal "jsx" (file-name-extension buffer-file-name))
                    (string-equal "js" (file-name-extension buffer-file-name)))
-                (require 'flycheck)
-                (my/use-eslint-from-node-modules)
-                (if (flycheck-may-use-checker 'javascript-eslint)
-                      (flycheck-select-checker 'javascript-eslint))
-                (flycheck-mode))))
-  (add-hook 'web-mode-hook
-            (lambda ()
-              (when
-                  (or
-                   (string-equal "tsx" (file-name-extension buffer-file-name))
-                   (string-equal "ts" (file-name-extension buffer-file-name)))
                 (require 'flycheck)
                 (my/use-eslint-from-node-modules)
                 (if (flycheck-may-use-checker 'javascript-eslint)
@@ -460,7 +448,14 @@
                   (or
                    (string-equal "tsx" (file-name-extension buffer-file-name))
                    (string-equal "ts" (file-name-extension buffer-file-name)))
-                (tide-setup))))
+                (my/use-eslint-from-node-modules)
+                (tide-setup)
+                (flycheck-mode t)
+                (setq flycheck-check-syntax-automatically '(save mode-enabled))
+                (eldoc-mode t)
+                (tide-hl-identifier-mode 1)
+                (company-mode 1)
+                )))
  )
 
 (use-package rainbow-delimiters
