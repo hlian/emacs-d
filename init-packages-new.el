@@ -1,5 +1,4 @@
 ;;; -*- lexical-binding: t -*-
-
 (require 'package)
 (add-to-list 'package-archives (cons "melpa" "https://melpa.org/packages/") t)
 
@@ -105,6 +104,17 @@
   (define-key evil-outer-text-objects-map "I" 'evil-indent-plus-a-indent-up)
   (define-key evil-inner-text-objects-map "J" 'evil-indent-plus-i-indent-up-down)
   (define-key evil-outer-text-objects-map "J" 'evil-indent-plus-a-indent-up-down))
+
+(use-package evil-snipe
+  :straight t
+  :defer t
+  :commands (evil-snipe-mode evil-snipe-override-mode)
+  :custom
+  (evil-snipe-scope 'whole-visible)
+  (evil-snipe-repeat-scope 'whole-visible)
+  :init
+  (evil-snipe-mode 't)
+  (evil-snipe-override-mode 't))
 
 (use-package doom-modeline
   :commands (doom-modeline-mode doom-modeline-set-main-modeline)
@@ -330,6 +340,7 @@
   :commands (tide-hl-identifier-mode tide-setup)
   :diminish tide-mode
   :config
+  (flycheck-add-next-checker 'tsx-tide '(t . javascript-eslint) 'append)
   (add-hook 'tide-mode-hook (lambda ()
                               (setq flycheck-check-syntax-automatically '(save mode-enabled))
                               (flycheck-mode t)
@@ -379,16 +390,6 @@
   :config
   (popwin-mode))
 
-;; (use-package flycheck-posframe
-;;   :straight t
-;;   :commands (flycheck-posframe-mode
-;;              flycheck-posframe-configure-pretty-defaults flycheck-mode
-;;              flycheck-select-checker)
-;;   :after flycheck
-;;   :config
-;;   (add-hook 'flycheck-mode-hook #'flycheck-posframe-mode)
-;;   (flycheck-posframe-configure-pretty-defaults))
-
 (use-package web-mode
   :straight t
   :mode (("\\.js\\'" . web-mode)
@@ -422,6 +423,7 @@
             line-end))
     :modes web-mode
     :predicate flycheck-define-checker-macro-workaround)
+
   (flycheck-add-mode 'javascript-eslint 'web-mode)
 
   (add-hook 'web-mode-hook
@@ -456,6 +458,8 @@
                 (eldoc-mode t)
                 (tide-hl-identifier-mode 1)
                 (company-mode 1)
+                (require 'flycheck)
+                (my/use-eslint-from-node-modules)
                 )))
  )
 
@@ -563,7 +567,13 @@
 (use-package rust-mode
   :straight t
   :hook ((rust-mode . flycheck-mode)
-         (rust-mode . lsp)))
+         (rust-mode . lsp))
+  :config
+  (general-define-key
+   :states 'insert
+   :keymaps 'rust-mode-map
+   "\"" '(lambda () (interactive) (insert "'"))
+   "'" '(lambda () (interactive) (insert "\""))))
 
 (use-package flycheck-rust
   :hook (flycheck-mode . flycheck-rust-setup)
