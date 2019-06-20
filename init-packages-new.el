@@ -234,6 +234,11 @@
       (end-of-line 0)
       (open-line 1)))
 
+  (define-key evil-motion-state-map "j" 'evil-next-visual-line)
+  (define-key evil-motion-state-map "k" 'evil-previous-visual-line)
+  (define-key evil-visual-state-map "j" 'evil-next-visual-line)
+  (define-key evil-visual-state-map "k" 'evil-previous-visual-line)
+
   (general-define-key
    :states '(normal visual insert emacs)
    "M-." 'save-buffer :which-key "save buffer")
@@ -241,10 +246,7 @@
   (general-define-key
    :states '(normal visual insert)
    "C-v" 'scroll-up-command
-   "M-v" 'scroll-down-command)
-
-  (general-define-key
-   :states '(normal visual insert)
+   "M-v" 'scroll-down-command
    "C-c o" '(insert-line-below :which-key "insert line below")
    "C-c O" '(insert-line-above :which-key "insert line above"))
 
@@ -479,8 +481,8 @@
   :init
   (require 'hydra)
   (defhydra hydra-flycheck
-    (:pre (progn (setq hydra-lv t) (flycheck-list-errors))
-    :post (progn (setq hydra-lv nil) (quit-windows-on "*Flycheck errors*"))
+    (:pre (progn (setq hydra-hint-display-type 'lv) (flycheck-list-errors))
+    :post (progn (setq hydra-hint-display-type 'message) (quit-windows-on "*Flycheck errors*"))
     :hint nil)
     "Errors"
     ("f"  flycheck-error-list-set-filter                            "Filter")
