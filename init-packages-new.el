@@ -205,7 +205,7 @@
 (use-package projectile
   :straight t
   :diminish projectile-mode
-  :commands projectile-mode
+  :commands (projectile-mode projectile-invalidate-cache)
   :custom
   (projectile-enable-caching t)
   :init
@@ -264,6 +264,7 @@
    "SPC" '(counsel-M-x :which-key "M-x")
    "/" '(swiper :which-key "swiper")
    ":" '(swiper-all :which-key "swiper")
+   "g" '(magit-status :which-key "magit-status")
    "b" '(ivy-switch-buffer :which-key "ivy-switch-buffer")
    "p" '(counsel-yank-pop :which-key "swiper")
    "r" '(ivy-resume :which-key "ivy-resume")
@@ -309,8 +310,20 @@
   :config
   (push '(flycheck-error-list-mode :stick t :dedicated t :noselect t) popwin:special-display-config))
 
+(defun run-projectile-invalidate-cache (&rest _args)
+  ;; We ignore the args to `magit-checkout'.
+  (projectile-invalidate-cache nil))
+
 (use-package magit
   :commands (magit magit-process-file)
+  :straight t
+  :config
+  (advice-add 'magit-checkout
+              :after #'run-projectile-invalidate-cache)
+  (advice-add 'magit-branch-and-checkout ; This is `b c'.
+              :after #'run-projectile-invalidate-cache))
+
+(use-package evil-magit
   :straight t)
 
 (use-package git-commit
