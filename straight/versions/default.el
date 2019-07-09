@@ -1,5 +1,7 @@
 (("Emacs-wgrep" . "379afd89ebd76f63842c8589127d66096a8bb595")
  ("all-the-icons.el" . "f996fafa5b2ea072d0ad1df9cd98acc75820f530")
+ ("cl-lib" . "deb92588d9d83d46c4698936ea31c5f58d244f04")
+ ("company-emoji" . "f0d91d5be0077b20b418a3ba37d36f431fae322f")
  ("company-mode" . "ad6ff0eecca99dc5ac8b6a8a6174df7d2ad88ae7")
  ("counsel-projectile" . "fb19569c9799e3edac7504d21a5ecf49231e9500")
  ("dash.el" . "77f3bf40c9c85386a50f2dab3dc950513f6f88bd")

@@ -397,6 +397,12 @@
   (company-show-numbers t)
   (company-idle-delay 0))
 
+(use-package company-emoji
+  :straight t
+  :after company
+  :config
+  (add-to-list 'company-backends 'company-emoji))
+
 (use-package flycheck
   :straight t
   :diminish flycheck-mode
