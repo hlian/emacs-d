@@ -259,6 +259,11 @@
    "C-c O" '(insert-line-above :which-key "insert line above"))
 
   (general-define-key
+   :keymaps 'minibuffer-local-map
+   :states '(normal visual insert)
+   "C-r" 'counsel-minibuffer-history)
+
+  (general-define-key
    :keymaps 'ivy-minibuffer-map
    :states '(normal visual insert)
    "C-o" 'hydra-ivy/body)
