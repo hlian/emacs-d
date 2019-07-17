@@ -32,6 +32,10 @@
         doom-themes-enable-italic t)
   (load-theme 'doom-peacock t))
 
+(use-package flx
+  :defer t
+  :straight t)
+
 (use-package smex
   :defer t
   :straight t)
@@ -110,6 +114,7 @@
   :defer t
   :commands (evil-snipe-mode evil-snipe-override-mode)
   :custom
+  (evil-snipe-smart-case t)
   (evil-snipe-scope 'whole-visible)
   (evil-snipe-repeat-scope 'whole-visible)
   :init
@@ -165,6 +170,9 @@
   :diminish ivy-mode
   :init
   (run-with-idle-timer 1 nil (lambda () (ivy-mode t)))
+  :config
+  (setq ivy-re-builders-alist '((swiper . ivy--regex-plus)
+                                (t . ivy--regex-fuzzy)))
   :custom
   (ivy-use-virtual-buffers t)
   (ivy-virtual-abbreviate 'abbreviate)
