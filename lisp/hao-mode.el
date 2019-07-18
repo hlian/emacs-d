@@ -51,7 +51,6 @@
     (global-auto-revert-mode t)
     (menu-bar-mode 0)
     (tool-bar-mode -1)
-    (toggle-scroll-bar -1)
     (show-paren-mode t)
     (diminish 'auto-revert-mode)
     (setq-default save-place t)
