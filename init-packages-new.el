@@ -109,17 +109,16 @@
   (define-key evil-inner-text-objects-map "J" 'evil-indent-plus-i-indent-up-down)
   (define-key evil-outer-text-objects-map "J" 'evil-indent-plus-a-indent-up-down))
 
-(use-package evil-snipe
+(use-package avy
+  :straight t)
+
+(use-package evil-easymotion
   :straight t
-  :defer t
-  :commands (evil-snipe-mode evil-snipe-override-mode)
-  :custom
-  (evil-snipe-smart-case t)
-  (evil-snipe-scope 'whole-visible)
-  (evil-snipe-repeat-scope 'whole-visible)
+  :defer 2
   :init
-  (evil-snipe-mode 't)
-  (evil-snipe-override-mode 't))
+  (evilem-make-motion evilem-motion-magic-man #'evil-avy-goto-char-timer)
+  (evilem-default-keybindings "o")
+  (define-key evilem-map "d" #'evilem-motion-magic-man))
 
 (use-package doom-modeline
   :commands (doom-modeline-mode doom-modeline-set-main-modeline)
@@ -246,6 +245,9 @@
   (define-key evil-motion-state-map "k" 'evil-previous-visual-line)
   (define-key evil-visual-state-map "j" 'evil-next-visual-line)
   (define-key evil-visual-state-map "k" 'evil-previous-visual-line)
+
+  (general-unbind 'normal "o")
+  (general-unbind 'visual "o")
 
   (general-define-key
    :states '(normal visual insert emacs)
