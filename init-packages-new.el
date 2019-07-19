@@ -116,6 +116,7 @@
   :straight t
   :defer 2
   :init
+  (require 'evil-easymotion)
   (evilem-make-motion evilem-motion-magic-man #'evil-avy-goto-char-timer)
   (evilem-default-keybindings "o")
   (define-key evilem-map "d" #'evilem-motion-magic-man))
