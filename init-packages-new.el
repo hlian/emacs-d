@@ -171,7 +171,8 @@
   :init
   (run-with-idle-timer 1 nil (lambda () (ivy-mode t)))
   :config
-  (setq ivy-re-builders-alist '((swiper . ivy--regex-plus)
+  (setq ivy-re-builders-alist '((counsel-rg . ivy--regex-plus)
+                                (swiper . ivy--regex-plus)
                                 (t . ivy--regex-fuzzy)))
   :custom
   (ivy-use-virtual-buffers t)
