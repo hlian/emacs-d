@@ -1,5 +1,6 @@
 ;;; -*- lexical-binding: t -*-
 (require 'package)
+
 (add-to-list 'package-archives (cons "melpa" "https://melpa.org/packages/") t)
 
 (custom-set-variables
@@ -335,13 +336,15 @@
   :commands (magit magit-process-file)
   :straight t
   :config
+  (require 'evil-magit)
   (advice-add 'magit-checkout
               :after #'run-projectile-invalidate-cache)
   (advice-add 'magit-branch-and-checkout ; This is `b c'.
               :after #'run-projectile-invalidate-cache))
 
 (use-package evil-magit
-  :straight t)
+  :straight t
+  :defer 100)
 
 (use-package git-commit
   :commands git-commit-setup-check-buffer
@@ -369,14 +372,8 @@
 
 (use-package tide
   :straight t
-  :commands (tide-hl-identifier-mode tide-setup)
   :diminish tide-mode
-  :config
-  (flycheck-add-next-checker 'tsx-tide '(t . javascript-eslint) 'append)
-  (add-hook 'tide-mode-hook (lambda ()
-                              (setq flycheck-check-syntax-automatically '(save mode-enabled))
-                              (flycheck-mode t)
-                              (tide-hl-identifier-mode t))))
+  :commands tide-mode)
 
 ;; https://github.com/flycheck/flycheck/issues/1398
 (defun flycheck-define-checker-macro-workaround ()
@@ -392,23 +389,11 @@
     (when (and eslint (file-executable-p eslint))
       (setq-local flycheck-javascript-eslint-executable eslint))))
 
-;; (defun my/use-flow-from-node-modules ()
-;;   (let* ((root (locate-dominating-file
-;;                 (or (buffer-file-name) default-directory)
-;;                 ".flowconfig"))
-;;          (flow (and root
-;;                     (expand-file-name "node_modules/flow-bin/vendor/flow"
-;;                                       root))))
-;;     (when (and flow (file-executable-p flow))
-;;       (setq-local flowmacs/+flow+ flow)
-;;       (setq-local flycheck-javascript-flow-executable flow))))
-
 (use-package company
   :straight t
   :commands company-mode
   :diminish company-mode
-  :hook ((emacs-lisp-mode . company-mode)
-         (web-mode . company-mode))
+  :hook ((emacs-lisp-mode . company-mode))
   :custom
   (company-dabbrev-downcase nil)
   (company-show-numbers t)
@@ -432,74 +417,65 @@
   :straight t
   :mode (("\\.js\\'" . web-mode)
          ("\\.jsx\\'" . web-mode)
-         ("\\.ts\\'" . web-mode)
-         ("\\.tsx\\'" . web-mode)
          ("\\.html\\'" . web-mode)
-         ("\\.vue\\'" . web-mode)
-         ("\\.json\\'" . web-mode))
+         ("\\.vue\\'" . web-mode))
   :interpreter ("node" . web-mode)
-  :commands web-mode
-  :config
-  (setq-default web-mode-code-indent-offset 2)
-  (setq-default web-mode-markup-indent-offset 2)
-  (setq-default web-mode-enable-auto-pairing nil)
-  (setq-default web-mode-enable-auto-indentation nil)
-  (setq-default web-mode-enable-auto-quoting nil)
+  :custom
+  (web-mode-code-indent-offset 2)
+  (web-mode-markup-indent-offset 2)
+  (web-mode-enable-auto-pairing nil)
+  (web-mode-enable-auto-indentation nil)
+  (web-mode-enable-current-element-highlight t)
+  (web-mode-enable-auto-quoting nil)
+  :hook
+  ((web-mode . flycheck-mode)
+   (web-mode . company-mode)
+   (web-mode . subword-mode)
+   )
+  :init
+  (define-derived-mode web-json-mode web-mode "god what is this"
+    (require 'flycheck)
+    (web-mode)
+    (flycheck-define-checker my-json-checker
+      ""
+      :command ("python" "-m" "json.tool" source null-device)
+      :modes web-mode
+      :error-patterns
+      ((error line-start
+              (message) ": line " line " column " column
+              ;; Ignore the rest of the line which shows the char position.
+              (one-or-more not-newline)
+              line-end)))
+    (flycheck-select-checker 'my-json-checker)
+    (flycheck-mode)
+    )
+  (define-derived-mode web-typescript-mode web-mode "um what is this"
+    "Major mode by Hao"
+    (require 'flycheck)
+    (require 'tide)
+    (tide-setup)
+    (flycheck-mode)
+    (setq flycheck-check-syntax-automatically '(save mode-enabled))
+    (eldoc-mode)
+    (tide-hl-identifier-mode)
+    (company-mode)
+    (flycheck-define-generic-checker 'my-tide-checker
+      "A TSX syntax checker using tsserver."
+      :start #'tide-flycheck-start
+      :verify #'tide-flycheck-verify
+      :modes '(web-mode))
+    (web-mode)
+    (tide-mode)
+    (flycheck-add-mode 'javascript-eslint 'web-mode)
+    (flycheck-select-checker 'my-tide-checker)
+    (my/use-eslint-from-node-modules)
+    (flycheck-add-next-checker 'my-tide-checker 'javascript-eslint 'append)
+    )
+  (add-to-list 'auto-mode-alist '("\\.json\\'" . web-json-mode))
+  (add-to-list 'auto-mode-alist '("\\.ts\\'" . web-typescript-mode))
+  (add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-typescript-mode))
+  )
 
-  (flycheck-define-checker web-mode-python-json
-    "A JSON syntax checker using Python json.tool module.
-
-  See URL `https://docs.python.org/3.5/library/json.html#command-line-interface'."
-    :command ("python" "-m" "json.tool" source
-              ;; Send the pretty-printed output to the null device
-              null-device)
-    :error-patterns
-    ((error line-start
-            (message) ": line " line " column " column
-            ;; Ignore the rest of the line which shows the char position.
-            (one-or-more not-newline)
-            line-end))
-    :modes web-mode
-    :predicate flycheck-define-checker-macro-workaround)
-
-  (flycheck-add-mode 'javascript-eslint 'web-mode)
-
-  (add-hook 'web-mode-hook
-            (lambda ()
-              (when
-                  (or
-                   (string-equal "jsx" (file-name-extension buffer-file-name))
-                   (string-equal "js" (file-name-extension buffer-file-name)))
-                (require 'flycheck)
-                (my/use-eslint-from-node-modules)
-                (if (flycheck-may-use-checker 'javascript-eslint)
-                      (flycheck-select-checker 'javascript-eslint))
-                (flycheck-mode))))
-  (add-hook 'web-mode-hook
-            (lambda ()
-              (when
-                  (string-equal "json" (file-name-extension buffer-file-name))
-                (progn
-                  (flycheck-select-checker 'web-mode-python-json)
-                  (flycheck-mode)
-                  ))))
-  (add-hook 'web-mode-hook
-            (lambda ()
-              (when
-                  (or
-                   (string-equal "tsx" (file-name-extension buffer-file-name))
-                   (string-equal "ts" (file-name-extension buffer-file-name)))
-                (my/use-eslint-from-node-modules)
-                (tide-setup)
-                (flycheck-mode t)
-                (setq flycheck-check-syntax-automatically '(save mode-enabled))
-                (eldoc-mode t)
-                (tide-hl-identifier-mode 1)
-                (company-mode 1)
-                (require 'flycheck)
-                (my/use-eslint-from-node-modules)
-                )))
- )
 
 (use-package rainbow-delimiters
   :straight t
