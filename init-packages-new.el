@@ -76,6 +76,8 @@
   :custom
   (evil-want-integration t)
   (evil-collection-setup-minibuffer t)
+  :hook
+  ((web-mode . evil-collection-init))
   :init
   (run-with-idle-timer 2 nil 'evil-collection-init))
 
@@ -459,10 +461,11 @@
     (require 'flycheck)
     (require 'tide)
     (require 'reformatter)
+    (web-mode)
     (tide-setup)
+    (eldoc-mode +1)
     (flycheck-mode)
     (setq flycheck-check-syntax-automatically '(save mode-enabled))
-    (eldoc-mode)
     (tide-hl-identifier-mode)
     (company-mode)
     (flycheck-define-generic-checker 'my-tide-checker
@@ -470,8 +473,6 @@
       :start #'tide-flycheck-start
       :verify #'tide-flycheck-verify
       :modes '(web-mode))
-    (web-mode)
-    (tide-mode)
     (flycheck-add-mode 'javascript-eslint 'web-mode)
     (flycheck-select-checker 'my-tide-checker)
     (my/use-eslint-from-node-modules)
