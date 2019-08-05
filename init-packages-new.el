@@ -383,9 +383,14 @@
   (let* ((root (locate-dominating-file
                 (or (buffer-file-name) default-directory)
                 ".hao"))
+         (prettier (and root
+                      (expand-file-name "node_modules/prettier/bin-prettier.js"
+                                        root)))
          (eslint (and root
                       (expand-file-name "node_modules/eslint/bin/eslint.js"
                                         root))))
+    (when (and prettier (file-executable-p eslint))
+      (setq-local my/prettier-bin prettier))
     (when (and eslint (file-executable-p eslint))
       (setq-local flycheck-javascript-eslint-executable eslint))))
 
@@ -453,6 +458,7 @@
     "Major mode by Hao"
     (require 'flycheck)
     (require 'tide)
+    (require 'reformatter)
     (tide-setup)
     (flycheck-mode)
     (setq flycheck-check-syntax-automatically '(save mode-enabled))
@@ -469,6 +475,11 @@
     (flycheck-add-mode 'javascript-eslint 'web-mode)
     (flycheck-select-checker 'my-tide-checker)
     (my/use-eslint-from-node-modules)
+    (reformatter-define typescript-format
+      :program my/prettier-bin
+      :args (list "--stdin-filepath" buffer-file-name)
+      :lighter "")
+    (typescript-format-on-save-mode)
     (flycheck-add-next-checker 'my-tide-checker 'javascript-eslint 'append)
     )
   (add-to-list 'auto-mode-alist '("\\.json\\'" . web-json-mode))
@@ -476,6 +487,9 @@
   (add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-typescript-mode))
   )
 
+(use-package reformatter
+  :commands reformatter
+  :straight t)
 
 (use-package rainbow-delimiters
   :straight t
