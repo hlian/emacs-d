@@ -38,4 +38,7 @@
    ("de" "(()=>{debugger;})()" "dw")
    ("re" "import React from 'react'" "re")
    ("rn" "import {${x}} from '${y}'" "rn")
+   ("rt" "type ${x}Type = React.FunctionComponent<{${y}}>" "function component")
+   ("rm" "React.memo(({${props}}) => (\n${body}\n))" "react.memo")
+   ("rexp" "export const ${name}: React.FunctionComponent<{${y}}> = ${rest}")
    ))
