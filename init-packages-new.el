@@ -1,6 +1,7 @@
 ;;; -*- lexical-binding: t -*-
 (require 'package)
 
+;; Code:
 (add-to-list 'package-archives (cons "melpa" "https://melpa.org/packages/") t)
 
 (custom-set-variables
@@ -288,8 +289,10 @@
    "b" '(ivy-switch-buffer :which-key "ivy-switch-buffer")
    "p" '(counsel-yank-pop :which-key "swiper")
    "r" '(ivy-resume :which-key "ivy-resume")
-   "t" '(tide-project-errors :which-key "tide errors")
+   "te" '(tide-project-errors :which-key "tide errors")
+   "tr" '(tide-restart-server :which-key "tide restart server")
    "i" '(hydra-flycheck/body :which-key "flycheck")
+   "s" '(hydra-mc/body :which-key "multiple cursors")
    ;; Buffers
    "f" '(counsel-projectile :which-key "counsel projectile")
    "d" '(counsel-projectile-rg :which-key "counsel projectile ag")
@@ -518,6 +521,7 @@
     ("gg" flycheck-first-error                                      "First")
     ("G"  (progn (goto-char (point-max)) (flycheck-previous-error)) "Last")
     ("q"  nil))
+
   (defhydra hydra-undo-tree (:color red :hint nil)
     "
   _p_: undo  _n_: redo _s_: save _l_: load   "
@@ -526,7 +530,26 @@
     ("s"   undo-tree-save-history)
     ("l"   undo-tree-load-history)
     ("u"   undo-tree-visualize "visualize" :color blue)
-    ("q"   nil "quit" :color blue)))
+    ("q"   nil "quit" :color blue))
+
+  (defhydra hydra-mc (:hint nil)
+    "
+      ^Up^            ^Down^        ^Miscellaneous^    ^Word^
+  ------------------------------------------------------------
+  [_p_]   Next    [_n_]   Next    [_l_] Edit lines    [_w_] Next symbol
+  [_P_]   Skip    [_N_]   Skip    [_a_] Mark all      [_e_] Previous symbol
+  [_M-p_] Unmark  [_M-n_] Unmark  [_q_] Quit"
+    ("l" mc/edit-lines :exit t)
+    ("a" mc/mark-all-like-this :exit t)
+    ("n" mc/mark-next-like-this)
+    ("N" mc/skip-to-next-like-this)
+    ("M-n" mc/unmark-next-like-this)
+    ("p" mc/mark-previous-like-this)
+    ("P" mc/skip-to-previous-like-this)
+    ("M-p" mc/unmark-previous-like-this)
+    ("w" mc/mark-next-like-this-symbol)
+    ("e" mc/mark-previous-like-this-symbol)
+    ("q" nil)))
 
 ;;; Haskell
 
@@ -607,3 +630,21 @@
 (use-package flycheck-rust
   :hook (flycheck-mode . flycheck-rust-setup)
   :straight t)
+
+(use-package multiple-cursors
+  :commands
+    (multiple-cursors-mode
+      mc/edit-lines
+      mc/mark-all-like-this
+      mc/mark-next-like-this
+      mc/skip-to-next-like-this
+      mc/unmark-next-like-this
+      mc/mark-previous-like-this
+      mc/skip-to-previous-like-this
+      mc/unmark-previous-like-this)
+  :straight t
+  :custom
+  (mc/unsupported-minor-modes '(company-mode auto-complete-mode flyspell-mode jedi-mode))
+  :init
+  (add-hook 'multiple-cursors-mode-enabled-hook 'evil-emacs-state)
+  (add-hook 'multiple-cursors-mode-disabled-hook 'evil-normal-state))
