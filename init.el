@@ -31,7 +31,7 @@
 
 (defvar dotfiles-dir (file-name-directory
                       (or (buffer-file-name) load-file-name)))
-(load (concat dotfiles-dir "init-packages-new.el"))
+(load (concat dotfiles-dir "hao/pkgs.el"))
 
 (setq-default
  mac-option-key-is-meta nil
@@ -75,7 +75,7 @@
  auto-window-vscroll t ;; https://emacs.stackexchange.com/questions/28736/emacs-pointcursor-movement-lag/28746
  )
 
-(load (concat dotfiles-dir "init-here.el"))
+(load (concat dotfiles-dir "hao/here.el"))
 
 (defun restore-default-settings ()
   (setq gc-cons-threshold 16777216

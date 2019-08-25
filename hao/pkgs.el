@@ -53,6 +53,7 @@
 
 (use-package evil
   :straight t
+  :defer 2
   :custom
   (evil-ex-search-highlight-all nil)
   (evil-want-integration t)
@@ -66,8 +67,9 @@
 
 (use-package evil-surround
   :straight t
+  :defer 2
   :commands global-evil-surround-mode
-  :init
+  :config
   (global-evil-surround-mode t))
 
 (use-package evil-collection
@@ -92,6 +94,7 @@
 
 (use-package evil-args
   :defer t
+  :after evil
   :straight t
   :commands (evil-inner-arg evil-outer-arg evil-forward-arg evil-backward-arg evil-jump-out-args)
   :init
@@ -104,6 +107,7 @@
 
 (use-package evil-indent-plus
   :defer t
+  :after evil
   :straight t
   :init
   (define-key evil-inner-text-objects-map "i" 'evil-indent-plus-i-indent)
@@ -118,7 +122,7 @@
 
 (use-package evil-easymotion
   :straight t
-  :defer 2
+  :after evil
   :init
   (require 'evil-easymotion)
   (evilem-make-motion evilem-motion-magic-man #'evil-avy-goto-char-timer)
@@ -155,11 +159,12 @@
   :straight t
   :commands evil-escape-mode
   :diminish evil-escape-mode
-  :init
+  :config
   (setq-default
    evil-escape-unordered-key-sequence t
    evil-escape-key-sequence "jk")
-  (evil-escape-mode t))
+  :init
+  (run-with-idle-timer 1 nil (lambda () (evil-escape-mode t))))
 
 (use-package which-key
   :straight t
@@ -184,16 +189,6 @@
   (ivy-format-function 'ivy-format-function-line)
   (enable-recursive-minibuffers t))
 
-;; (use-package ivy-posframe
-;;   :straight t
-;;   :commands (ivy-posframe-enable ivy-posframe-display-at-point)
-;;   :init
-;;   (setq ivy-display-function #'ivy-posframe-display-at-point)
-;;   (setq ivy-posframe-border-width 10)
-;;   :config
-;;   (when (memq window-system '(mac ns))
-;;     (ivy-posframe-enable)))
-
 (use-package ivy-rich
   :straight t
   :after counsel
@@ -217,20 +212,18 @@
 
 (use-package projectile
   :straight t
-  :diminish projectile-mode
-  :commands (projectile-mode projectile-invalidate-cache)
   :custom
   (projectile-enable-caching t)
-  :init
-  (setq projectile-git-command "~/.emacs.d/bin/git-projectile-command")
-  (projectile-mode t))
+  (projectile-git-command "~/.emacs.d/bin/git-projectile-command"))
 
 (use-package counsel-projectile
-  :defer t
-  :straight t)
+  :straight t
+  :init
+  (run-with-idle-timer 1 nil (lambda () (counsel-projectile-mode t))))
 
 (use-package general
   :straight t
+  :after evil
   :commands general-define-key
   :init
   (defun insert-line-below ()
@@ -287,22 +280,20 @@
    ":" '(swiper-all :which-key "swiper")
    "g" '(magit-status :which-key "magit-status")
    "b" '(ivy-switch-buffer :which-key "ivy-switch-buffer")
+   "u" '(projectile-command-map :which-key "projectile hydra")
    "p" '(counsel-yank-pop :which-key "swiper")
    "r" '(ivy-resume :which-key "ivy-resume")
    "te" '(tide-project-errors :which-key "tide errors")
    "tr" '(tide-restart-server :which-key "tide restart server")
    "i" '(hydra-flycheck/body :which-key "flycheck")
    "s" '(hydra-mc/body :which-key "multiple cursors")
-   ;; Buffers
-   "f" '(counsel-projectile :which-key "counsel projectile")
-   "d" '(counsel-projectile-rg :which-key "counsel projectile ag")
+   "c" '(comment-region :which-key "comment-region")
+   "C" '(uncomment-region :which-key "comment-region")
+   "0" '(hydra-smerge/body :which-key "smerge hydra")
    ;; File
    "." '(save-buffer :which-key "save file")
    "at" '(open-terminal-here :which-key "open terminal here")
    "ak" '(kill-this-buffer :which-key "kill file")
-   ;; Projectile
-   "o" '(projectile-switch-project :which-key "switch project")
-   "k" '(counsel-projectile-find-file :which-key "find file")
    ;; Frame
    "0" '(other-frame :which-key "other frame")
    ;; Window
@@ -325,7 +316,7 @@
   (setq recentf-max-saved-items 1000)
   (setq recentf-max-menu-items 1000)
   (recentf-mode t)
-  (run-at-time nil (* 5 60) 'recentf-save-list))
+  (run-at-time nil (* 5 60) (lambda () (let ((save-silently t)) (recentf-save-list)))))
 
 (use-package popwin
   :straight t
@@ -366,12 +357,13 @@
 
 (use-package yasnippet
   :straight t
-  :init
-  (setq yas-alias-to-yas/prefix-p nil)
+  :defer 2
+  :commands yas-define-snippets
   :custom
-  (yas-verbosity 1)
   (yas-wrap-around-region 1)
-  :hook (after-init . yas-global-mode))
+  :config
+  (yas-global-mode)
+  (load (concat dotfiles-dir "hao/snippets.el")))
 
 ;; TypeScript
 
@@ -383,6 +375,8 @@
 ;; https://github.com/flycheck/flycheck/issues/1398
 (defun flycheck-define-checker-macro-workaround ()
   (not (flycheck-buffer-empty-p)))
+
+(defvar my/prettier-bin)
 
 (defun my/use-eslint-from-node-modules ()
   (let* ((root (locate-dominating-file
@@ -398,6 +392,15 @@
       (setq-local my/prettier-bin prettier))
     (when (and eslint (file-executable-p eslint))
       (setq-local flycheck-javascript-eslint-executable eslint))))
+
+(use-package reformatter
+  :commands reformatter
+  :straight t)
+(require 'reformatter)
+(reformatter-define typescript-format
+  :program my/prettier-bin
+  :args (list "--stdin-filepath" buffer-file-name)
+  :lighter "")
 
 (use-package company
   :straight t
@@ -479,10 +482,6 @@
     (flycheck-add-mode 'javascript-eslint 'web-mode)
     (flycheck-select-checker 'my-tide-checker)
     (my/use-eslint-from-node-modules)
-    (reformatter-define typescript-format
-      :program my/prettier-bin
-      :args (list "--stdin-filepath" buffer-file-name)
-      :lighter "")
     (typescript-format-on-save-mode)
     (flycheck-add-next-checker 'my-tide-checker 'javascript-eslint 'append)
     )
@@ -490,10 +489,6 @@
   (add-to-list 'auto-mode-alist '("\\.ts\\'" . web-typescript-mode))
   (add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-typescript-mode))
   )
-
-(use-package reformatter
-  :commands reformatter
-  :straight t)
 
 (use-package rainbow-delimiters
   :straight t
@@ -508,48 +503,10 @@
 
 (use-package hydra
   :straight t
-  :init
+  :defer 2
+  :config
   (require 'hydra)
-  (defhydra hydra-flycheck
-    (:pre (progn (setq hydra-hint-display-type 'lv) (flycheck-list-errors))
-    :post (progn (setq hydra-hint-display-type 'message) (quit-windows-on "*Flycheck errors*"))
-    :hint nil)
-    "Errors"
-    ("f"  flycheck-error-list-set-filter                            "Filter")
-    ("j"  flycheck-next-error                                       "Next")
-    ("k"  flycheck-previous-error                                   "Previous")
-    ("gg" flycheck-first-error                                      "First")
-    ("G"  (progn (goto-char (point-max)) (flycheck-previous-error)) "Last")
-    ("q"  nil))
-
-  (defhydra hydra-undo-tree (:color red :hint nil)
-    "
-  _p_: undo  _n_: redo _s_: save _l_: load   "
-    ("p"   undo-tree-undo)
-    ("n"   undo-tree-redo)
-    ("s"   undo-tree-save-history)
-    ("l"   undo-tree-load-history)
-    ("u"   undo-tree-visualize "visualize" :color blue)
-    ("q"   nil "quit" :color blue))
-
-  (defhydra hydra-mc (:hint nil)
-    "
-      ^Up^            ^Down^        ^Miscellaneous^    ^Word^
-  ------------------------------------------------------------
-  [_p_]   Next    [_n_]   Next    [_l_] Edit lines    [_w_] Next symbol
-  [_P_]   Skip    [_N_]   Skip    [_a_] Mark all      [_e_] Previous symbol
-  [_M-p_] Unmark  [_M-n_] Unmark  [_q_] Quit"
-    ("l" mc/edit-lines :exit t)
-    ("a" mc/mark-all-like-this :exit t)
-    ("n" mc/mark-next-like-this)
-    ("N" mc/skip-to-next-like-this)
-    ("M-n" mc/unmark-next-like-this)
-    ("p" mc/mark-previous-like-this)
-    ("P" mc/skip-to-previous-like-this)
-    ("M-p" mc/unmark-previous-like-this)
-    ("w" mc/mark-next-like-this-symbol)
-    ("e" mc/mark-previous-like-this-symbol)
-    ("q" nil)))
+  (load (concat dotfiles-dir "hao/hydras.el")))
 
 ;;; Haskell
 
