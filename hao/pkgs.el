@@ -125,9 +125,7 @@
   :after evil
   :init
   (require 'evil-easymotion)
-  (evilem-make-motion evilem-motion-magic-man #'evil-avy-goto-char-timer)
-  (evilem-default-keybindings "o")
-  (define-key evilem-map "d" #'evilem-motion-magic-man))
+  (evilem-default-keybindings "o"))
 
 (use-package doom-modeline
   :commands (doom-modeline-mode doom-modeline-set-main-modeline)
@@ -283,6 +281,7 @@
    "u" '(projectile-command-map :which-key "projectile hydra")
    "p" '(counsel-yank-pop :which-key "swiper")
    "r" '(ivy-resume :which-key "ivy-resume")
+   "e" '(avy-goto-char-timer :which-key "tide errors")
    "te" '(tide-project-errors :which-key "tide errors")
    "tr" '(tide-restart-server :which-key "tide restart server")
    "i" '(hydra-flycheck/body :which-key "flycheck")
