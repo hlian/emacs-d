@@ -278,6 +278,7 @@
    ":" '(swiper-all :which-key "swiper")
    "g" '(magit-status :which-key "magit-status")
    "b" '(ivy-switch-buffer :which-key "ivy-switch-buffer")
+   "d" '(counsel-projectile-rg :which-key "counsel projectile rg")
    "u" '(projectile-command-map :which-key "projectile hydra")
    "p" '(counsel-yank-pop :which-key "swiper")
    "r" '(ivy-resume :which-key "ivy-resume")
