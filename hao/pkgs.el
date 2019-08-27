@@ -31,8 +31,9 @@
   (doom-themes :type git :files (:defaults "themes/*.el") :host github :repo "hlian/emacs-doom-themes")
   :init
   (setq doom-themes-enable-bold t
-        doom-themes-enable-italic t)
-  (load-theme 'doom-peacock t))
+        doom-themes-enable-italic t
+        custom-safe-themes t)
+  (load-theme 'doom-nord-light t))
 
 (use-package flx
   :defer t
@@ -247,6 +248,9 @@
   (general-unbind 'visual "o")
 
   (general-define-key
+   "M-t" '(insert-line-above :which-key "um what is this"))
+
+  (general-define-key
    :states '(normal visual insert emacs)
    "M-." 'save-buffer :which-key "save buffer")
 
@@ -294,8 +298,6 @@
    "." '(save-buffer :which-key "save file")
    "at" '(open-terminal-here :which-key "open terminal here")
    "ak" '(kill-this-buffer :which-key "kill file")
-   ;; Frame
-   "0" '(other-frame :which-key "other frame")
    ;; Window
    "wl"  '(windmove-right :which-key "move right")
    "wh"  '(windmove-left :which-key "move left")
@@ -370,7 +372,9 @@
 (use-package tide
   :straight t
   :diminish tide-mode
-  :commands tide-mode)
+  :commands tide-mode
+  :custom
+  (tide-completion-ignore-case t))
 
 ;; https://github.com/flycheck/flycheck/issues/1398
 (defun flycheck-define-checker-macro-workaround ()
