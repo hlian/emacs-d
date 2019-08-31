@@ -318,7 +318,7 @@
   (setq recentf-max-saved-items 1000)
   (setq recentf-max-menu-items 1000)
   (recentf-mode t)
-  (run-at-time nil (* 5 60) (lambda () (let ((save-silently t)) (recentf-save-list)))))
+  (run-at-time nil (* 5 60) (lambda () (let ((inhibit-message t)) (recentf-save-list)))))
 
 (use-package popwin
   :straight t
