@@ -33,7 +33,7 @@
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t
         custom-safe-themes t)
-  (load-theme 'doom-nord-light t))
+  (load-theme 'doom-peacock t))
 
 (use-package flx
   :defer t
