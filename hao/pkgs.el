@@ -217,8 +217,17 @@
 
 (use-package counsel-projectile
   :straight t
+  :commands counsel-projectile-mode
   :init
-  (run-with-idle-timer 1 nil (lambda () (counsel-projectile-mode t))))
+  (run-with-idle-timer
+   1
+   nil
+   (lambda ()
+     (progn
+       (counsel-projectile-mode t)
+       (ivy-set-actions
+        'counsel-projectile-rg
+        `(("u" ,(lambda (x) (insert (if (stringp x) (replace-regexp-in-string "^[^:]+:[^:]+:" "" x) (car x)))) "insert+")))))))
 
 (use-package general
   :straight t
@@ -289,6 +298,7 @@
    "e" '(avy-goto-char-timer :which-key "tide errors")
    "te" '(tide-project-errors :which-key "tide errors")
    "tr" '(tide-restart-server :which-key "tide restart server")
+   "tf" '(typescript-format :which-key "typescript format")
    "i" '(hydra-flycheck/body :which-key "flycheck")
    "s" '(hydra-mc/body :which-key "multiple cursors")
    "c" '(comment-region :which-key "comment-region")
@@ -476,7 +486,6 @@
     (eldoc-mode +1)
     (flycheck-mode)
     (setq flycheck-check-syntax-automatically '(save mode-enabled))
-    (tide-hl-identifier-mode)
     (company-mode)
     (flycheck-define-generic-checker 'my-tide-checker
       "A TSX syntax checker using tsserver."
