@@ -405,6 +405,7 @@
     (when (and prettier (file-executable-p eslint))
       (setq-local my/prettier-bin prettier))
     (when (and eslint (file-executable-p eslint))
+      (setq-local flycheck-eslint-args '("--cache"))
       (setq-local flycheck-javascript-eslint-executable eslint))))
 
 (use-package reformatter
@@ -431,6 +432,9 @@
   :after company
   :config
   (add-to-list 'company-backends 'company-emoji))
+
+(with-eval-after-load 'flycheck
+  (advice-add 'flycheck-eslint-config-exists-p :override (lambda() t)))
 
 (use-package flycheck
   :straight t
