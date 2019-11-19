@@ -306,6 +306,7 @@
    "0" '(hydra-smerge/body :which-key "smerge hydra")
    ;; File
    "." '(save-buffer :which-key "save file")
+   "ac" '(my/pivotal :which-key "pivotal time")
    "at" '(open-terminal-here :which-key "open terminal here")
    "ak" '(kill-this-buffer :which-key "kill file")
    ;; Window
@@ -642,3 +643,6 @@
   :init
   (add-hook 'multiple-cursors-mode-enabled-hook 'evil-emacs-state)
   (add-hook 'multiple-cursors-mode-disabled-hook 'evil-normal-state))
+
+(fset 'my/pivotal
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ("gg^f#lyt];%s/{replace_with_ticket_id}/p/g" 0 "%d")) arg)))

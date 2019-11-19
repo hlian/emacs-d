@@ -55,6 +55,7 @@
     (diminish 'auto-revert-mode)
     (setq-default save-place t)
     (setq-default uniquify-buffer-name-style 'forward)
+    (setq ring-bell-function 'ignore)
     (midnight-delay-set 'midnight-delay "4:30am")))
 
 (provide 'hao-mode)
