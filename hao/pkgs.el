@@ -1,6 +1,9 @@
 ;;; -*- lexical-binding: t -*-
 (require 'package)
 
+(fset 'my/chief-ticket-magic
+  (kmacro-lambda-form [?f ?# ?l ?v ?t ?\] ?y ?j ?j ?j ?j ?j ?k ?k ?k ?k ?k ?/ ?r ?e ?p ?l ?a ?c ?e ?\C-m ?V ?: ?\; ?s ?/ ?\{ ?r ?e ?p ?l ?a ?c ?e ?_ ?w ?i ?t ?h ?_ ?t ?i ?c ?k ?e ?t ?_ ?i ?d ?\} ?/ ?\C-y ?\C-o ?p ?/ ?\C-? ?\C-\[ ?O ?C ?/ ?g ?\C-m ?j] 0 "%d"))
+
 ;; Code:
 (add-to-list 'package-archives (cons "melpa" "https://melpa.org/packages/") t)
 
@@ -309,6 +312,7 @@
    "ac" '(my/pivotal :which-key "pivotal time")
    "at" '(open-terminal-here :which-key "open terminal here")
    "ak" '(kill-this-buffer :which-key "kill file")
+   "ac" '(my/chief-ticket-magic :which-key "chief ticket magic")
    ;; Window
    "wl"  '(windmove-right :which-key "move right")
    "wh"  '(windmove-left :which-key "move left")
