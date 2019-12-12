@@ -1,5 +1,8 @@
 ;;; -*- lexical-binding: t -*-
 ;; https://github.com/hlissner/doom-emacs/wiki/FAQ#how-is-dooms-startup-so-fast
+(setq undo-limit 40000
+      undo-outer-limit 8000000
+      undo-strong-limit 100000)
 (setq gc-cons-threshold 402653184
       gc-cons-percentage 0.6)
 (package-initialize)

@@ -352,6 +352,10 @@
   (advice-add 'magit-branch-and-checkout ; This is `b c'.
               :after #'run-projectile-invalidate-cache))
 
+(use-package forge
+  :straight t
+  :after magit)
+
 (use-package evil-magit
   :straight t
   :defer 100)
