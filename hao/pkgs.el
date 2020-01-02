@@ -67,7 +67,11 @@
   (evil-cross-lines t)
   (evil-shift-width 2)
   :config
-  (evil-mode t))
+  (evil-mode t)
+  (define-key evil-motion-state-map "j" 'evil-next-visual-line)
+  (define-key evil-motion-state-map "k" 'evil-previous-visual-line)
+  (define-key evil-visual-state-map "j" 'evil-next-visual-line)
+  (define-key evil-visual-state-map "k" 'evil-previous-visual-line))
 
 (use-package evil-surround
   :straight t
@@ -234,7 +238,6 @@
 
 (use-package general
   :straight t
-  :after evil
   :commands general-define-key
   :init
   (defun insert-line-below ()
@@ -250,11 +253,6 @@
     (save-excursion
       (end-of-line 0)
       (open-line 1)))
-
-  (define-key evil-motion-state-map "j" 'evil-next-visual-line)
-  (define-key evil-motion-state-map "k" 'evil-previous-visual-line)
-  (define-key evil-visual-state-map "j" 'evil-next-visual-line)
-  (define-key evil-visual-state-map "k" 'evil-previous-visual-line)
 
   (general-unbind 'normal "o")
   (general-unbind 'visual "o")
@@ -300,6 +298,7 @@
    "r" '(ivy-resume :which-key "ivy-resume")
    "e" '(avy-goto-char-timer :which-key "tide errors")
    "te" '(tide-project-errors :which-key "tide errors")
+   "ts" '(tide-rename-symbol :which-key "tide restart server")
    "tr" '(tide-restart-server :which-key "tide restart server")
    "tf" '(typescript-format :which-key "typescript format")
    "i" '(hydra-flycheck/body :which-key "flycheck")
