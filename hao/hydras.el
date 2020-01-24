@@ -80,17 +80,11 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
   ("b"  projectile-switch-to-buffer-other-window "buffer")
   ("q"  nil                                      "cancel" :color blue))
 
-(defhydra hydra-projectile (:color teal :hint nil)
-  ("r"   counsel-projectile-rg)
-  ("b"   projectile-switch-to-buffer)
-  ("c"   projectile-invalidate-cache)
-  ("d"   projectile-find-dir)
-  ("ff"  projectile-find-file-other-window)
-  ("fd"  projectile-find-file-in-directory)
-  ("K"   projectile-kill-buffers)
-  ("m"   projectile-multi-occur)
-  ("p"   projectile-switch-project)
-  ("r"   projectile-recentf)
-  ("x"   projectile-remove-known-project)
-  ("X"   projectile-cleanup-known-projects)
-  ("q"   nil "cancel" :color blue))
+(defhydra hydra-forge (:color blue :hint nil)
+  "
+_c_reate _b_rowse _B_rowse _q_uit
+"
+  ("c" forge-create-pullreq)
+  ("b" forge-browse-pullreq)
+  ("B" forge-browse-pullreqs)
+  ("q" nil "cancel" :color blue))

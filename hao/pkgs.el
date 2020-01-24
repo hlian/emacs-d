@@ -306,6 +306,7 @@
    "c" '(comment-region :which-key "comment-region")
    "C" '(uncomment-region :which-key "comment-region")
    "0" '(hydra-smerge/body :which-key "smerge hydra")
+   "f" '(hydra-forge/body :which-key "forge hydra")
    ;; File
    "." '(save-buffer :which-key "save file")
    "ac" '(my/pivotal :which-key "pivotal time")
