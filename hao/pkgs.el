@@ -32,11 +32,12 @@
 (use-package doom-themes
   :straight
   (doom-themes :type git :files (:defaults "themes/*.el") :host github :repo "hlian/emacs-doom-themes")
-  :init
-  (setq doom-themes-enable-bold t
-        doom-themes-enable-italic t
-        custom-safe-themes t)
-  (load-theme 'doom-peacock t))
+  :custom
+  (doom-themes-enable-bold t)
+  (doom-themes-enable-italic t)
+  (custom-safe-themes t)
+  :config
+  (load-theme 'doom-tomorrow-day t))
 
 (use-package flx
   :defer t
@@ -370,7 +371,8 @@
   :init
   (add-hook 'find-file-hook 'git-commit-setup-check-buffer)
   :config
-  (defun git-commit-turn-on-auto-fill ()))
+  (defun git-commit-turn-on-auto-fill ())
+  (evil-mode t))
 
 ;; Suppress the message saying that the undo history file was
 ;; saved (because this happens every single time you save a file).
