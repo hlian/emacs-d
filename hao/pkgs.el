@@ -26,6 +26,10 @@
 ;;   :config
 ;;   (add-hook 'after-init-hook 'benchmark-init/deactivate))
 
+(defun unset-bg-color-sometimes ()
+  (unless (display-graphic-p)
+      (set-face-background 'default "unspecified-bg" (selected-frame))))
+
 (use-package doom-themes
   :straight
   (doom-themes :type git :files (:defaults "themes/*.el") :host github :repo "hlian/emacs-doom-themes")
@@ -34,7 +38,8 @@
   (doom-themes-enable-italic t)
   (custom-safe-themes t)
   :config
-  (load-theme 'doom-tomorrow-day t))
+  (load-theme 'doom-tomorrow-day t)
+  (add-hook 'window-setup-hook 'unset-bg-color-sometimes))
 
 (use-package flx
   :defer t
