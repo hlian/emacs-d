@@ -5,8 +5,18 @@
       undo-strong-limit 100000)
 (setq gc-cons-threshold 402653184
       gc-cons-percentage 0.6)
-(package-initialize)
 (setq file-name-handler-alist nil)
+
+(defun unset-bg-color-sometimes ()
+  (unless (display-graphic-p)
+      (set-face-background 'default "unspecified-bg" (selected-frame))))
+
+(unless (display-graphic-p)
+  (advice-add #'tty-run-terminal-initialization :override #'ignore)
+  (add-hook 'window-setup-hook
+    (lambda ()
+      (advice-remove #'tty-run-terminal-initialization #'ignore)
+      (tty-run-terminal-initialization (selected-frame) nil t))))
 
 (when (memq window-system '(mac ns))
   (scroll-bar-mode -1)
@@ -36,24 +46,23 @@
                       (or (buffer-file-name) load-file-name)))
 (load (concat dotfiles-dir "hao/pkgs.el"))
 
-(setq-default
- mac-option-key-is-meta nil
- mac-command-key-is-meta t
- mac-command-modifier 'meta
- mac-option-modifier nil
- ns-pop-up-frames nil
- )
-
 (progn (define-key key-translation-map (kbd ";") (kbd ":"))
        (define-key key-translation-map (kbd ":") (kbd ";")))
 
 (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
 (add-to-list 'default-frame-alist '(ns-appearance . dark))
-(setq ns-use-proxy-icon  nil)
-(setq frame-title-format nil)
 
 ;; Bring sanity into the world
 (setq-default
+ frame-inhibit-implied-resize t
+ initial-major-mode 'fundamental-mode
+ ns-use-proxy-icon nil
+ frame-title-format nil
+ mac-option-key-is-meta nil
+ mac-command-key-is-meta t
+ mac-command-modifier 'meta
+ mac-option-modifier nil
+ ns-pop-up-frames nil
  auto-save-default nil
  c-basic-offset 4
  custom-file (concat dotfiles-dir "custom.el")

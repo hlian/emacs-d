@@ -26,10 +26,6 @@
 ;;   :config
 ;;   (add-hook 'after-init-hook 'benchmark-init/deactivate))
 
-(defun unset-bg-color-sometimes ()
-  (unless (display-graphic-p)
-      (set-face-background 'default "unspecified-bg" (selected-frame))))
-
 (use-package doom-themes
   :straight
   (doom-themes :type git :files (:defaults "themes/*.el") :host github :repo "hlian/emacs-doom-themes")
@@ -38,8 +34,7 @@
   (doom-themes-enable-italic t)
   (custom-safe-themes t)
   :config
-  (load-theme 'doom-tomorrow-day t)
-  (add-hook 'window-setup-hook 'unset-bg-color-sometimes))
+  (load-theme 'doom-tomorrow-day t))
 
 (use-package flx
   :defer t
@@ -131,12 +126,16 @@
 (use-package avy
   :straight t)
 
+(defun evil-easymotion-pre-command-hook ()
+  (evilem-default-keybindings "o")
+  (remove-hook 'pre-command-hook 'evil-easymotion-pre-command-hook))
+
 (use-package evil-easymotion
   :straight t
+  :commands (evilem-default-keybindings)
   :after evil
   :init
-  (require 'evil-easymotion)
-  (evilem-default-keybindings "o"))
+  (add-hook 'pre-command-hook 'evil-easymotion-pre-command-hook))
 
 (use-package doom-modeline
   :commands (doom-modeline-mode doom-modeline-set-main-modeline)
@@ -159,21 +158,16 @@
   :load-path "lisp"
   :config (hao-mode t))
 
-;; (use-package solarized-theme
-;;   :straight t
-;;   :init
-;;   (setq show-paren-when-point-inside-paren t))
-
 (use-package evil-escape
   :straight t
-  :commands evil-escape-mode
+  :commands evil-escape-pre-command-hook
   :diminish evil-escape-mode
   :config
   (setq-default
    evil-escape-unordered-key-sequence t
    evil-escape-key-sequence "jk")
   :init
-  (run-with-idle-timer 1 nil (lambda () (evil-escape-mode t))))
+  (add-hook 'pre-command-hook 'evil-escape-pre-command-hook))
 
 (use-package which-key
   :straight t
@@ -239,24 +233,21 @@
         'counsel-projectile-rg
         `(("u" ,(lambda (x) (insert (if (stringp x) (replace-regexp-in-string "^[^:]+:[^:]+:" "" x) (car x)))) "insert+")))))))
 
-(use-package general
-  :straight t
-  :commands general-define-key
-  :init
-  (defun insert-line-below ()
-    "Insert an empty line below the current line."
-    (interactive)
-    (save-excursion
-      (end-of-line)
-      (open-line 1)))
+(defun insert-line-below ()
+  "Insert an empty line below the current line."
+  (interactive)
+  (save-excursion
+    (end-of-line)
+    (open-line 1)))
 
-  (defun insert-line-above ()
-    "Insert an empty line above the current line."
-    (interactive)
-    (save-excursion
-      (end-of-line 0)
-      (open-line 1)))
+(defun insert-line-above ()
+  "Insert an empty line above the current line."
+  (interactive)
+  (save-excursion
+    (end-of-line 0)
+    (open-line 1)))
 
+(defun general-pre-command-hook ()
   (general-unbind 'normal "o")
   (general-unbind 'visual "o")
 
@@ -312,15 +303,23 @@
    "f" '(hydra-forge/body :which-key "forge hydra")
    ;; File
    "." '(save-buffer :which-key "save file")
-   "ac" '(my/pivotal :which-key "pivotal time")
+   "ac" '(my/omp :which-key "omp time")
    "at" '(open-terminal-here :which-key "open terminal here")
    "ak" '(kill-this-buffer :which-key "kill file")
-   "ac" '(my/chief-ticket-magic :which-key "chief ticket magic")
    ;; Window
    "wl"  '(windmove-right :which-key "move right")
    "wh"  '(windmove-left :which-key "move left")
    "wk"  '(windmove-up :which-key "move up")
-   "wj"  '(windmove-down :which-key "move bottom")))
+   "wj"  '(windmove-down :which-key "move bottom"))
+
+  (evil-normalize-keymaps)
+  (remove-hook 'pre-command-hook 'general-pre-command-hook))
+
+(use-package general
+  :straight t
+  :commands (general-unbind general-define-key)
+  :init
+  (add-hook 'pre-command-hook 'general-pre-command-hook))
 
 (use-package lisp-mode
   :commands emacs-lisp-mode
@@ -560,24 +559,24 @@
 
 ;;; Haskell
 
-(use-package hindent
-  :load-path "lisp"
-  :hook haskell-mode
-  :commands hindent-mode)
+;; (use-package hindent
+;;   :load-path "lisp"
+;;   :hook haskell-mode
+;;   :commands hindent-mode)
 
-(use-package haskell-mode
-  :straight t
-  :mode "\\.hs\\'"
-  :commands haskell-mode
-  :diminish interactive-haskell-mode
-  :config
-  (custom-set-variables
-   '(haskell-ask-also-kill-buffers nil)
-   '(haskell-process-type (quote stack-ghci))
-   '(haskell-interactive-popup-errors nil))
-  (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
-  (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
-  (add-hook 'haskell-mode-hook 'flycheck-mode))
+;; (use-package haskell-mode
+;;   :straight t
+;;   :mode "\\.hs\\'"
+;;   :commands haskell-mode
+;;   :diminish interactive-haskell-mode
+;;   :config
+;;   (custom-set-variables
+;;    '(haskell-ask-also-kill-buffers nil)
+;;    '(haskell-process-type (quote stack-ghci))
+;;    '(haskell-interactive-popup-errors nil))
+;;   (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
+;;   (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
+;;   (add-hook 'haskell-mode-hook 'flycheck-mode))
 
 ;; Flow
 
@@ -593,15 +592,15 @@
 
 ;; Go
 
-(use-package go-mode
-  :straight t
-  :commands go-mode
-  :mode "\\.go\\'"
-  :config
-  (add-hook 'go-mode-hook 'flycheck-mode)
-  (add-hook 'go-mode-hook (lambda () (progn
-                                       (setq gofmt-command "goimports")
-                                       (add-hook 'before-save-hook 'gofmt-before-save nil 'local)))))
+;; (use-package go-mode
+;;   :straight t
+;;   :commands go-mode
+;;   :mode "\\.go\\'"
+;;   :config
+;;   (add-hook 'go-mode-hook 'flycheck-mode)
+;;   (add-hook 'go-mode-hook (lambda () (progn
+;;                                        (setq gofmt-command "goimports")
+;;                                        (add-hook 'before-save-hook 'gofmt-before-save nil 'local)))))
 
 (use-package yaml-mode
   :commands yaml-mode
@@ -656,5 +655,5 @@
   (add-hook 'multiple-cursors-mode-enabled-hook 'evil-emacs-state)
   (add-hook 'multiple-cursors-mode-disabled-hook 'evil-normal-state))
 
-(fset 'my/pivotal
-   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ("gg^f#lyt];%s/{replace_with_ticket_id}/p/g" 0 "%d")) arg)))
+(fset 'my/omp
+   [?g ?g ?f ?\[ ?l ?y ?i ?\] ?\; ?% ?s ?/ ?r ?e ?p ?l ?a ?c ?e ?_ ?w ?i ?t ?h ?_ ?t ?i ?c ?k ?e ?t ?- backspace ?_ ?i ?d ?/ ?\C-o ?p right ?/ ?g return])
