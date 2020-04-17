@@ -34,7 +34,7 @@
   (doom-themes-enable-italic t)
   (custom-safe-themes t)
   :config
-  (load-theme 'doom-tomorrow-day t))
+  (load-theme 'doom-solarized-light t))
 
 (use-package flx
   :defer t
@@ -124,6 +124,7 @@
   (define-key evil-outer-text-objects-map "J" 'evil-indent-plus-a-indent-up-down))
 
 (use-package avy
+  :commands (avy-goto-char-timer)
   :straight t)
 
 (defun evil-easymotion-pre-command-hook ()
@@ -215,9 +216,30 @@
 
 (use-package projectile
   :straight t
+  :commands (projectile-project-root
+             projectile-project-name
+             projectile-project-p
+             projectile-locate-dominating-file)
   :custom
   (projectile-enable-caching t)
-  (projectile-git-command "~/.emacs.d/bin/git-projectile-command"))
+  (projectile-git-command "~/.emacs.d/bin/git-projectile-command")
+  (projectile-kill-buffers-filter 'kill-only-files)
+  (projectile-sort-order 'recentf)
+  (projectile-files-cache-expire 604800)
+  (projectile-globally-ignored-files '(".DS_Store" "Icon" "TAGS"))
+  (projectile-globally-ignored-file-suffixes '(".elc" ".pyc" ".o"))
+  (projectile-ignored-projects '("~/" "/tmp"))
+
+  :config
+  ;; In the interest of performance, we reduce the number of project root marker
+  ;; files/directories projectile searches for when resolving the project root.
+  (setq projectile-project-root-files-bottom-up
+        (append '(".hao" ".git"))
+        ;; This will be filled by other modules. We build this list manually so
+        ;; projectile doesn't perform so many file checks every time it resolves
+        ;; a project's root -- particularly when a file has no project.
+        projectile-project-root-files '("TAGS")
+        projectile-project-root-files-top-down-recurring '(".svn" "Makefile")))
 
 (use-package counsel-projectile
   :straight t
@@ -349,10 +371,8 @@
 
 (use-package magit
   :commands (magit magit-process-file)
-  :after evil-magit
   :straight t
   :config
-  (require 'evil-magit)
   (advice-add 'magit-checkout
               :after #'run-projectile-invalidate-cache)
   (advice-add 'magit-branch-and-checkout ; This is `b c'.
@@ -364,7 +384,7 @@
 
 (use-package evil-magit
   :straight t
-  :defer 100)
+  :after magit)
 
 (use-package git-commit
   :commands git-commit-setup-check-buffer
@@ -441,13 +461,13 @@
       (setq-local flycheck-javascript-eslint-executable eslint))))
 
 (use-package reformatter
-  :commands reformatter
-  :straight t)
-(require 'reformatter)
-(reformatter-define typescript-format
-  :program my/prettier-bin
-  :args (list "--stdin-filepath" buffer-file-name)
-  :lighter "")
+  :straight t
+  :config
+  (require 'reformatter)
+  (reformatter-define typescript-format
+    :program my/prettier-bin
+    :args (list "--stdin-filepath" buffer-file-name)
+    :lighter ""))
 
 (use-package company
   :straight t
@@ -478,6 +498,7 @@
 
 (use-package web-mode
   :straight t
+  :after reformatter
   :mode (("\\.js\\'" . web-mode)
          ("\\.jsx\\'" . web-mode)
          ("\\.html\\'" . web-mode)
@@ -654,6 +675,10 @@
   :init
   (add-hook 'multiple-cursors-mode-enabled-hook 'evil-emacs-state)
   (add-hook 'multiple-cursors-mode-disabled-hook 'evil-normal-state))
+
+(use-package vterm
+  :straight t
+  :commands vterm)
 
 (fset 'my/omp
    [?g ?g ?f ?\[ ?l ?y ?i ?\] ?\; ?% ?s ?/ ?r ?e ?p ?l ?a ?c ?e ?_ ?w ?i ?t ?h ?_ ?t ?i ?c ?k ?e ?t ?- backspace ?_ ?i ?d ?/ ?\C-o ?p right ?/ ?g return])
